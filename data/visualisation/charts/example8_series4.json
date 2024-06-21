@@ -1,0 +1,49 @@
+{
+    "list": [
+        {
+            "id": 1,
+            "name": "A",
+            "temp3": 0.3
+        },
+        {
+            "id": 2,
+            "name": "B",
+            "temp": 12
+        },
+        {
+            "id": 3,
+            "name": "C",
+            "temp": 10
+        },
+        {
+            "id": 4,
+            "name": "C",
+            "temp": 8
+        },
+        {
+            "id": 5,
+            "name": "D",
+            "temp": 7
+        },
+        {
+            "id": 6,
+            "name": "E",
+            "temp": 2
+        },
+        {
+            "id": 7,
+            "name": "F",
+            "temp": -8
+        },
+        {
+            "id": 8,
+            "name": "G",
+            "temp": -7
+        },
+        {
+            "id": 9,
+            "name": "H",
+            "temp": -7
+        }
+    ]
+}

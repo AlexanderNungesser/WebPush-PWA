@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Filter intval",
+        "desc": "Filter datasets after intval",
+        "attr": "intval",
+        "type": "lt",
+        "values": "2500"
+    },
+    {
+        "name": "Filter stringval",
+        "desc": "Filter datasets after stringval",
+        "attr": "stringval",
+        "type": "eq",
+        "values": "string"
+    }
+]

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SWAC - Worldmap2d component - Example 21: Show model data added by url</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../files/icons/16x16.png">
+        <link rel="stylesheet" type="text/css" href="../../css/global.css">
+        <noscript>
+        <link rel="stylesheet" type="text/css" href="../../css/noscript.css">
+        </noscript>
+
+        <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
+        <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
+        <script src="/SWAC/swac/swac.js" type="module"></script>
+        <script src="../../js/visualisation/worldmap2d_example21.js"></script>
+    </head>
+    <body>
+        <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
+        <noscript>
+        <div class="noscript_nav">
+            <a href="../sitemap.html" class="uk-button uk-button-primary">Sitemap</a>
+            <br>Bitte aktiviere Javascript, um die bestmögliche Ansicht zu haben. / Please activate Javascript for the best experience.
+        </div>
+        </noscript>
+
+        <h1>Example 21: Show model data added by url</h1>
+        <p>With the addModelFile function you simply add geo data files to the map.
+            <br>Try it with: ../../data/worldmap/example3/stadtgebiet.geojson (Displays the city borders of Bielefeld)
+            <br>And with: ../../data/worldmap2d/shapefiles/congress.zip (Asks for the type. Choose shapefile here)
+            <br>And with: ../../data/worldmap2d/geotiffs/example_australia.tif (Displays Geotiff in Australia)
+            <br>And with: https://geoportal.bafg.de/arcgis1/rest/services/INSPIRE/Catchment/MapServer/exts/InspireView/service?VERSION=1.3.0&SERVICE=WMS&REQUEST=Getcapabilities (Displays water bodies)
+            <br>And with: https://api.openweathermap.org/data/2.5/box/city?bbox={lon-left},{lat-bottom},{lon-right},{lat-top},{zoom}&appid=API-KEY (viewport based GeoJSON, you must provide a valid API key)
+        </p>
+        <div id="worldmap2d_example21" swa="Worldmap2d"></div>
+        
+        <h2>WMS Support notes</h2>
+        <p>WMS (WebMapService) is a widly used standard for requesting tiles from geo information serves (such as arcgis).
+        SWAC currently supports following WMS urls:</p>
+        <h3>Capabilities-Link XML format</h3>
+        <p>If a link to a capabilities XML file (like 
+            <a href="https://geoportal.bafg.de/arcgis1/rest/services/INSPIRE/Catchment/MapServer/exts/InspireView/service?VERSION=1.3.0&SERVICE=WMS&REQUEST=Getcapabilities">example</a>
+            )is provied, a popup displayes the known layers and let the user choose which of them to view.</p>
+        
+        <h3>Capabilities-Link JSON format</h3>
+        <p>If a link to a capabilities JSON file (like 
+            <a href="https://www.gis.nrw.de/arcgis/rest/services/umwelt_uvo/wasser/MapServer?f=json&dpi=96&transparent=true&format=png8">example</a>
+            )is provied, a popup displayes the known layers and let the user choose which of them to view.</p>
+        
+        <h3>Tile-Link example</h3>
+        <p>If a link to a request of a concrete tile (like <a href="https://www.gis.nrw.de/arcgis/rest/services/umwelt_uvo/wasser/MapServer/export?dpi=96&transparent=true&format=png8&LANGUAGE=ger&layers=show%3A0&bbox=423741.35640169494%2C5774665.972381661%2C580284.3903297358%2C5820528.189352766&bboxSR=25832&imageSR=25832&size=2048%2C600&f=image">example</a>)
+            is given, the WMS Format plugin tries to build the neccessery modification for requesting leaflet supporting tiles.</p>
+        
+        <h3>Limitations</h3>
+        <p>WMS support is currently limited to tiles and Legends. Data fetch are currently not supported.</p>
+        
+        <footer>
+            <a href="../about/privacy.html">Privacy policy / Datenschutzerklärung</a>
+            <a href="../about/imprint.html">Imprint / Impressum</a>
+            <a class="toplink" href="#">Top</a>
+        </footer>
+    </body>
+</html>

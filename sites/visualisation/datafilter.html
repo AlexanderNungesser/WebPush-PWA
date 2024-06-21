@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SWAC - datafilter component</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../files/icons/16x16.png">
+        <link rel="stylesheet" type="text/css" href="../../css/global.css">
+        <noscript>
+        <link rel="stylesheet" type="text/css" href="../../css/noscript.css">
+        </noscript>
+
+        <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
+        <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
+        <script src="/SWAC/swac/libs/uikit/js/uikit-icons.min.js"></script>
+        <script src="/SWAC/swac/swac.js" type="module"></script>
+
+        <script src="../../js/visualisation/datafilter.js"></script>
+    </head>
+    <body>
+        <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
+        <noscript>
+        <div class="noscript_nav">
+            <a href="../sitemap.html" class="uk-button uk-button-primary">Sitemap</a>
+            <br>Bitte aktiviere Javascript, um die bestmögliche Ansicht zu haben. / Please activate Javascript for the best experience.
+        </div>
+        </noscript>
+
+        <article>
+            <div id="explaincomponent" swa="ExplainComponents"></div>
+
+            <h3>Example 1: Create filter for one datasource</h3>
+            <b>Component declaration:</b>
+            <pre><code class="lang-html">
+&lt;div id="datafilter_example1" swa="Datafilter FROM ../../data/visualisation/datafilter/example1.json"&gt;&lt;/div&gt;   
+        </code></pre>
+
+            <b>Component options:</b>
+            <pre><code class="lang-javascript">
+// Empty data for filteredDataSource (used by another component)
+var filtered_data = [];
+
+window['datafilter_example1_options'] = {
+    originalDataRequestor: {
+        fromName: 'exampledata_list.json'
+    },
+    filteredDataSource: 'filtered_data'
+};
+        </code></pre>
+
+            <b>Useage of the filteredDataSource at another component:</b>
+            <pre><code class="lang-html">
+&lt;div id="datafilter_example1_filtereddata" swa="Present FROM filtered_data"&gt;&lt;/div&gt;   
+        </code></pre>
+
+            <b>Datasets for component:</b>
+            <pre><code class="lang-javascript">
+[
+    {
+        "name": "Filter intval",
+        "desc": "Filter datasets after intval",
+        "attr": "intval",
+        "type": "lt",
+        "values": "2500"
+    },
+    {
+        "name": "Filter stringval",
+        "desc": "Filter datasets after stringval",
+        "attr": "stringval",
+        "type": "eq",
+        "values": "string"
+    }
+]
+        </code></pre>
+
+            <div id="datafilter_example1" swa="Datafilter FROM ../../data/visualisation/datafilter/example1.json"></div>
+
+            <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">
+                        <h3 class="uk-card-title">Original data</h3>
+                        <div id="datafilter_example1_originaldata" swa="Present FROM exampledata_list.json"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">
+                        <h3 class="uk-card-title">Filtered data</h3>
+                        <div id="datafilter_example1_filtereddata" swa="Present FROM filtered_data"></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </article>
+        <footer>
+            <a href="../about/privacy.html">Privacy policy / Datenschutzerklärung</a>
+            <a href="../about/imprint.html">Imprint / Impressum</a>
+            <a class="toplink" href="#">Top</a>
+        </footer>
+    </body>
+</html>

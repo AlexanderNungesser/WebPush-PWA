@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SWAC - geolocation component</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../files/icons/16x16.png">
+        <link rel="stylesheet" type="text/css" href="../../css/global.css">
+        <noscript>
+        <link rel="stylesheet" type="text/css" href="../../css/noscript.css">
+        </noscript>
+
+        <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
+        <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
+        <script src="/SWAC/swac/libs/uikit/js/uikit-icons.min.js"></script>
+        <script src="/SWAC/swac/swac.js" type="module"></script>
+        
+        <!-- Datasources -->
+        <script src="../../js/userinterface/geolocation.js"></script>
+    </head>
+    <body>
+        <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
+        <noscript>
+        <div class="noscript_nav">
+            <a href="../sitemap.html" class="uk-button uk-button-primary">Sitemap</a>
+            <br>Bitte aktiviere Javascript, um die bestmögliche Ansicht zu haben. / Please activate Javascript for the best experience.
+        </div>
+        </noscript>
+
+        <article>
+            <div id="explaincomponent" swa="ExplainComponents"></div>
+
+            <h3>Example 1: Use geolocation over function</h3>
+            Create a ask for geolocation useage with more user compfort options and 
+            more data security.
+            <pre><code class="lang-html">
+&lt;div id="geoloc_example1" swa="Geolocation"&gt;&lt;/div&gt;
+        </code></pre>
+
+            <pre><code class="lang-javascript">
+geoloc_example1_options = {
+    onLocateFunctions: [
+      function(position){
+          alert("position recived. See javascript console for more information");
+          console.log(position);
+      }  
+    ]
+};     
+        </code></pre>
+            <div id="geoloc_example1" swa="Geolocation"></div>
+            
+            <h3>Example 2: Use geolocation by event</h3>
+            <p>When a new geolocation is found, the swac_REQUESTORID_geolocation_newlocation event is fired.
+                <br>It contains in the "detail" field the gps coordinates in field "position" and the translated address in "address".</p>
+            
+            <pre><code class="lang-javascript">
+document.addEventListener('swac_geoloc_example1_geolocation_newlocation',function(e) {
+    console.log('New geolocation recived: ', e.detail.position);
+    console.log('New geolocations address: ', e.detail.address);
+});               
+</code></pre>
+            
+        </article>
+        <footer>
+            <a href="../about/privacy.html">Privacy policy / Datenschutzerklärung</a>
+            <a href="../about/imprint.html">Imprint / Impressum</a>
+            <a class="toplink" href="#">Top</a>
+        </footer>
+    </body>
+</html>

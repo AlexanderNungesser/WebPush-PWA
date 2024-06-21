@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SWAC - progressive</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../files/icons/16x16.png">
+        <link rel="stylesheet" type="text/css" href="../../css/global.css">
+        <noscript>
+        <link rel="stylesheet" type="text/css" href="../../css/noscript.css">
+        </noscript>
+
+        <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
+        <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
+        <script src="/SWAC/swac/swac.js" type="module"></script>
+    </head>
+    <body>
+        <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
+        <noscript>
+        <div class="noscript_nav">
+            <a href="../sitemap.html" class="uk-button uk-button-primary">Sitemap</a>
+            <br>Bitte aktiviere Javascript, um die bestmögliche Ansicht zu haben. / Please activate Javascript for the best experience.
+        </div>
+        </noscript>
+
+        <article>
+            <h1>Simply build progressive webapps with SWAC</h1>
+            <p>SWAC includes features for progressive webapps. To make a webapp 
+                installable on devices and useable offline a view configuration 
+                steps are sufficient.</p>
+
+            <h2>Prequisits</h2>
+            <p>For useing the SWAC progressive the following prequisits are mendatory:</p>
+            <ul>
+                <li>The whole page must be hostet over secure HTTPS</li>
+                <li>SWAC framework must be accessable on the same domain under /SWAC</li>
+                <li>The serviceworker.js script must be installed in root directory.</li>
+                <li>The manifest.json must be installed in the root directory.</li>
+            </ul>
+            <p>These things are needed, because the used serviceworker will only work 
+            on HTTPS sites and has only access to sites and files on the same 
+            directory level or deeper paths.
+            <br>The neccessery structure is implemented in the SWAC template to make the first steps easy.</p>
+            
+            <h2>Make your webapp installable</h2>
+            <p>To make your webapp installable on devices. Configure the manifest.json</p>
+            <ol>
+                <li>Name, description and colors should be changed to describe your app.</li>
+                <li>Exchange the default icons in /content</li>
+                <li>icon paths are allready configured to meet the default paths for SWAC applications.</li>
+            </ol>
+            <p>Configure the configuration.js</p>
+            <ol>
+                <li>Set option "intallable" to true</li>
+            </ol>
+
+            <h2>Make your webapp progressive</h2>
+            <p>Progressive webapps did not only make your webapp offline useable. 
+                It also improves performance, when the user is online.
+                <br>SWAC implements a widly automated progressive mode.</p>
+
+            <pre><code class="lang-javascript">
+...
+
+progressive: {
+    active: true,
+
+...
+        </code></pre>
+
+            <h2>Progressive SWAC features</h2>
+            <p>Below are the features for progressive webapps with SWAC are explained.</p>
+            
+            <h3>Intelligent cacheing</h3>
+            <p>Once activated the progressive mode will cache the webapp on users devices, 
+            as soon as they enter the app. Cacheing effects automatically:</p>
+            <ul>
+                <li>The page the user entered</li>
+                <li>All content files on that page</li>
+                <li>All language files of the language the user currently uses.</li>
+                <li>All data files and REST api calls (GET requests only) on that page</li>
+                <li>All Components used on that page</li>
+                <li>Direct linked pages, their contents and components.</li>
+            </ul>
+            <p>New visited pages are cached on visit.</p>
+            
+            <h3>Offline fallback content</h3>
+            <p>If your application is offline and some sources could not be loaded
+                from cache, than fallbacks are used to show the users information on how
+                to get the latest content.</p>
+
+            <h2>Add files for precaching</h2>
+            <p>To add files for precaching, that would normally not be cached (e.g. offline files for your app).
+            Add them to the cachefiles list. Note that every file must be noted with path from the root directory of your webapp.</p>
+
+            <pre><code class="lang-javascript">
+...
+
+progressive: {
+        active: true,
+        cachefiles [
+            // default data
+            '/data/myofflinedata.json'
+        ],
+...
+        </code></pre>
+            
+            <h2>Cacheing and CORS</h2>
+            <p>If SWAC is used on a domain, and other content (such as libs from CDNs, files from media server, etc.)
+            The service worker will not be able to cache content from those sources, because of the CORS policy in modern browsers.
+            <br>In this cases the content will be fetched each time, resulting in the effect, that your application will not be 
+            offline useable untill the needed files are cached by "normal" browser file cache.
+            <br>You can solve this by makeing the content CORS allowed. This of couse must be done on the CDN server.
+            <br>Example for a .hataccess file</p>
+            
+            <pre><code>
+&lt;FilesMatch "\.(mp3)$"&gt;
+    Header set Access-Control-Allow-Origin "*"
+&lt;/FilesMatch&gt;
+        </code></pre>
+        </article>
+        <footer>
+            <a href="../about/privacy.html">Privacy policy / Datenschutzerklärung</a>
+            <a href="../about/imprint.html">Imprint / Impressum</a>
+            <a class="toplink" href="#">Top</a>
+        </footer>
+    </body>
+</html>
