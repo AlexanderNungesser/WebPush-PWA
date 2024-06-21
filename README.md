@@ -1,12 +1,19 @@
-Smart WebApplication Components
+Smart WebApplication Components Documentation
 
-A imperative GUI component library for webpages.
+This repository contains the documentation of the SWAC. It's pages document the useage and give live working examples for each component.
 
-To find out more about SWAC check this project out and copy the sourcefile to a webserver. The webpage includes full documentation and live examples.
+Development of SWAC begun in 2020 at the HSBI and is maintained by the SolarComputingLab where its original purpose was to create a toolset to make development of new sciencetific data webpages easy and quick.
+Some documented components are not available in the opensource version, you can find in the SWAC repository. For more informations and access to non open source components contact: florian.fehring@hsbi.de
 
-To use SWAC easiest way is to use the SWACtemplate, see at its repository for more information.
+## Setup
 
-Feel free to open tickets under issues if you find errors or wish new features.
+1. Copy the files contained in this repository to the root level of your server toghether with the contents of the SWAC repository.
+2. Open your servers /SWACdoc directory in a browser
+
+Enjoy the simplest webdevelopment!
+
+Feel free to open tickets under issues in the SWAC repository if you find errors or wish new features.
+
 
 ## Changelog
 
