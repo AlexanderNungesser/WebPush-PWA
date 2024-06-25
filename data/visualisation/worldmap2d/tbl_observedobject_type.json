@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "name": "Option 1"
+    "name": "Object type 1: A building"
   },
   {
     "id": 2,
-    "name": "Option 2"
+    "name": "Object type 2: A street"
   },
   {
     "id": 3,
-    "name": "Option 3"
+    "name": "Object type 3: A car"
   }
 ]

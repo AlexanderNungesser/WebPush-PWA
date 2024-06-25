@@ -933,7 +933,22 @@ window['AreaMarker_worldmap2d_example28_options'] = {
     ]),
 };
 
-</code></pre> 
+</code></pre>
+            <h3>Example 29: Create new objects on map</h3>
+            <p>The CreateObjectModal plugin allows you to create new objects on map. Objects are datasets that are bound to a location.</p>
+            
+            <a href="worldmap2d_example29.html" target="_blank">Open example</a>
+            <pre><code class="lang-javascript">
+window['worldmap2d_example29_options'] = {
+    zoom: 16,
+    plugins: new Map()
+};
+
+window['worldmap2d_example29_options'].plugins.set('CreateObjectModal', {
+    id: 'CreateObjectModal',
+    active: true
+});
+            </code></pre>
         </article>
         <footer>
             <a href="../about/privacy.html">Privacy policy / Datenschutzerklärung</a>

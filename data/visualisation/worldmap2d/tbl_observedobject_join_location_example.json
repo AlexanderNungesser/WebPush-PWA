@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "ABB",
+    "type_id": 1,
+    "completed": false,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, sit amet aliquam",
+    "tbl_location": {
+      "id": 1,
+      "name": "minden",
+      "coordinates": [
+        8.90021324157715,
+        52.297901755528954
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "name": "weser1",
+    "type_id": 2,
+    "completed": false,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, sit amet aliquam",
+    "tbl_location": {
+      "id": 2,
+      "name": "weser",
+      "coordinates": [
+        8.93021324157715,
+        52.297901755528954
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "name": "HSBI Minden",
+    "type_id": 3,
+    "completed": false,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, sit amet aliquam",
+    "tbl_location": {
+      "id": 3,
+      "name": "HSBI Minden",
+      "coordinates": [
+        8.90491324157715,
+        52.296501755528954
+      ]
+    }
+  }
+]
