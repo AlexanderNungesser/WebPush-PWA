@@ -35,7 +35,7 @@
             <h2>Access data from component</h2>
             <p>If you need data, that is allready loaded by a component. You can access those data over the component object.
                 <br>Be aware, that if you modify the content of a dataset, it will change the data in the component, too.</p>
-            
+
             <pre><code class="lang-javascript">
 // Wait for component to be ready
 window.swac.reactions.addReaction(function (requestors) {
@@ -53,14 +53,18 @@ window.swac.reactions.addReaction(function (requestors) {
     let set2 = mydatasets[2];
 }, "present_example1");
 </code></pre>
-            
-            
-            
+
+
+
             <h2>Load data with DataRequestor</h2>
             <p>You can access data by useing window.swac.Model.load(). The 
                 object given to Model.load() is a DataRequestor.
                 <br>It can contain one of the sources configured in configuration 
-                or global variable name or URL.</p>
+                or global variable name or URL.
+                <br>SWAC tries to interpret the response as a list of datasets. 
+                If that is possible, the datasets are delivered as array.
+                <br>If result cannot be interpreted as dataset(s) thet the value is 
+                returned in a single set object with the single attribute "origresponse"</p>
             <pre><code class="lang-javascript">
 // Get the model
 let Model = window.swac.Model;
@@ -96,8 +100,8 @@ set.myattr = 'new value';
 
             <h2>Load data with reference</h2>
             <p>You can access data by useing window.swac.Model.getFromReference().
-            This gives you the opportunity to get data from references found in 
-            another datasets.</p>
+                This gives you the opportunity to get data from references found in 
+                another datasets.</p>
             <pre><code class="lang-javascript">
 // Get the model
 let Model = window.swac.Model;
@@ -131,7 +135,7 @@ set.myattr = 'new value';
 
             <h2>Add data to component (from reference)</h2>
             <p>You can load data from a reference directly into an component.
-            The component is than automatically observer of each dataset the source.</p>
+                The component is than automatically observer of each dataset the source.</p>
             <div id="present_from_reference" swa="Present"></div>
             <button id="adddatafromref">Add data from reference</button>
             <pre><code class="lang-javascript">
@@ -155,14 +159,14 @@ let datasets = [{
 }];
 req.swac_comp.addData('myCustomSource', datasets);
             </code></pre>
-            
+
             <h2>Remove data from component</h2>
             <p>To remove all data from a component, simply use the removeAllData() or removeData(source) methods available on every component.</p>
-<pre><code class="lang-javascript">
+            <pre><code class="lang-javascript">
 let req = document.getElementById('datapresent');
 req.swac_comp.removeAllData();
             </code></pre>
-            
+
             <h1>Watch single sets</h1>
             <p>You can register own code to watch changes in datasets.</p>
             <pre><code class="lang-javascript">
@@ -182,10 +186,10 @@ loadProm.then(function(data) {
     // Done. You will be notified on data updates
 });
             </code></pre>
-            
+
             <h2>Watch all sets</h2>
             <p>You can watch all sets you requested with your own code useing 
-            model.loadData() or model.getFromReference()</p>
+                model.loadData() or model.getFromReference()</p>
 
             <pre><code class="lang-javascript">
 // Simple observer
@@ -215,12 +219,12 @@ dataPromise.then(function(dataCapsule) {
     // Handle load error
 });
             </code></pre>
-            
+
             Useing the getFromReference the array of observers is the last parameter:
             <pre><code>
 let dataPromise = Model.getFromReference(reference,idAttr,attributeDefaults,attributeRenames,reloadInterval,observers);
 </code></pre>
-            
+
             <h2>Save data</h2>
             <p>To save datasets, use the Model.save() method. If your dataset 
                 contains an id, the dataset will be updated, else it will be created.</p>
@@ -268,7 +272,7 @@ dataCapsule.data = [
 // Request data (returns promise)
 Model.save(dataCapsule).then().catch();
 </code></pre>
-            
+
             <h2>Delete data</h2>
             <p>Deleteing data is is the same way.</p>
             <pre><code class="lang-javascript">
@@ -285,27 +289,27 @@ dataCapsule.data = [{
 // Request data (returns promise)
 Model.delete(dataCapsule).then().catch();
             </code></pre>
-            
+
             <h1>Data creation</h1>
             <p>to create your own data that is automatic synchronising over differend 
                 components, create a WatchableSource and WatchableSets.</p>
-            
+
             <h2>Create a WatchableSource</h2>
             <p>A WatchableSource is observeable and auto observed by components, 
-            that use date of that source.</p>
-            
+                that use date of that source.</p>
+
             <pre><code class="lang-javascript">
 let ws = window.swac.Model.createWatchableSource({fromName: 'sourcename', requestId: 'sourcename?filter=id,es,1'});
             </code></pre>
-            
+
             <h2>Create a WatchableSet</h2>
             <p>WatchableSets are observeable and inform the components they are 
-            used in about changes of data values.</p>
-            
+                used in about changes of data values.</p>
+
             <pre><code class="lang-javascript">
 let set = window.swac.Model.createWatchableSet(dataobject);
             </code></pre>
-            
+
         </article>
         <footer>
             <a href="../about/privacy.html">Privacy policy / Datenschutzerklärung</a>
