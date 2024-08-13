@@ -34,6 +34,9 @@
             <h3>Example 1: Use geolocation over function</h3>
             Create a ask for geolocation useage with more user compfort options and 
             more data security.
+            
+            <div id="geoloc_example1" swa="Geolocation"></div>
+            
             <pre><code class="lang-html">
 &lt;div id="geoloc_example1" swa="Geolocation"&gt;&lt;/div&gt;
         </code></pre>
@@ -48,7 +51,6 @@ geoloc_example1_options = {
     ]
 };     
         </code></pre>
-            <div id="geoloc_example1" swa="Geolocation"></div>
             
             <h3>Example 2: Use geolocation by event</h3>
             <p>When a new geolocation is found, the swac_REQUESTORID_geolocation_newlocation event is fired.
@@ -58,6 +60,24 @@ geoloc_example1_options = {
 document.addEventListener('swac_geoloc_example1_geolocation_newlocation',function(e) {
     console.log('New geolocation recived: ', e.detail.position);
     console.log('New geolocations address: ', e.detail.address);
+});               
+</code></pre>
+            
+            <h3>Example 3: Use MagicMapper Plugin</h3>
+            <p>MagicMapper is a device to improve location accuracy. It can be used with help of an API and the MagicMapperPlugin.
+                <br>When activated an additional icon is shown in the geolocation bar. With click on that icon a dialog opens.
+            Enter the address of the MagicMapper interface here. The plugin checks the connectivity and updates positions with 
+            locations from the MagicMapper.</p>
+            
+            <div id="geoloc_example3" swa="Geolocation"></div>
+            
+            <pre><code class="lang-javascript">
+var geoloc_example3_options = {
+    plugins: new Map()
+};
+geoloc_example3_options.plugins.set('MagicMapperInterface', {
+    id: 'MagicMapperInterface',
+    active: true
 });               
 </code></pre>
             
