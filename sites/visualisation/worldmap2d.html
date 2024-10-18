@@ -203,100 +203,57 @@ worldmap2d_example5_options.plugins.set('Help', {
 });
             </code></pre>
 
-            <h3>Example 10: View and edit Measurement Point Data</h3>
-            <p>This customised map allows you to view and edit data.</p>
-            <p>Note: This example requires a compatible database to display the data correctly.</p>
+            <h3>Example 10: Create locations and objects</h3>
+            <p>This plugin allows you to add locations and objects on the map.</p>
             <a href="worldmap2d_example10.html" target="_blank">Open example</a>
 
             <pre><code class="lang-javascript">
+
 var worldmap2d_example10_options = {
     datasources: new Map([
-        ['tbl_observedobject', {
-            datacapsule: {
-                fromName: 'tbl_1',
-                fromWheres: {
-                    join: 'tbl_2',
+        ['../../data/visualisation/worldmap2d/tbl_observedobject.json', {
+                datacapsule: {
+                    fromName: '../../data/visualisation/worldmap2d/tbl_observedobject.json'
                 },
-            },
-            latitudeAttr: 'tbl_2.coodinates.coordinates[0]',
-            longitudeAttr: 'tbl_2.coodinates.coordinates[1]',
-        }],
+                latitudeAttr: 'latitude',
+                longitudeAttr: 'longitude'
+            }]
     ]),
     zoom: 18,
     showTimedDataAtOnce: true,
     clusterMarkers: true,
-    maxZoom: 18,
+    maxZoom: 18
 };
 
 
 //add plugin to the worldmap2d component
 worldmap2d_example10_options.plugins = new Map();
-worldmap2d_example10_options.plugins.set('ToggleClickInteractionButton', {
-    id: 'toggleclickinteractionbutton',
-    active: true
-});
-worldmap2d_example10_options.plugins.set('CreateMeasurementModal', {
-    id: 'createmeasurementmodal',
+worldmap2d_example10_options.plugins.set('CreateObjectModal', {
+    id: 'createobjectmodal',
     active: true
 });
 
-var createmeasurementmodal_worldmap2d_example10_options = {
-    datacapsuleLoad: worldmap2d_example10_options.datasources.get('tbl_observedobject').datacapsule,
-    createOoWithLocation: {
-        fromName: '',
-        responseIdAttr: '',
-        ooName: '',
-        ooDescription: '',
-        ooType: '',
-        ooCompleted: '',
-        ooCollection: '',
-        locLatitude: '',
-        locLongitude: '',
-        locName: '',
-        locDescription: '',
-    }
-}
-
-
-worldmap2d_example10_options.plugins.set('MapPinModal', {
-    id: 'mappinmodal',
-    active: true
-});
-
-var mappinmodal_worldmap2d_example10_options = {
-    table_names : {
-        locations_table: {
-            table_name: '',
-            idAttr: '',
-            geojsonattr: '',
-        },
-        oo_table: {
-            table_name: '',
-            idAttr: '',
-            completed: '',
-        },
-        file_table: {
-            table_name: '',
-            idAttr: ''
-        },
-        file_join_oo_table: {
-            table_name: '',
-            idAttr: '',
-            file_id: '',
-            oo_id: ''
-        },
-        uploadfile_options : {
-            uploadTargetURL: '',
-            docroot: ''
-        }
+var createobjectmodal_worldmap2d_example10_options = {
+    saveMapping: {
+        ooNameAttr: 'name',
+        ooDescriptionAttr: 'description',
+        ooTypeAttr: 'ootype_id',
+        ooParentAttr: 'parent_id',
+        ooCompletedAttr: 'complete',
+        ooDataCollectionAttr: 'data_collection',
+        ooMetaCollectionAttr: 'meta_collection',
+        locLatAttr: 'lat',
+        locLonAttr: 'lon',
+        locLatLonAttr: 'coordinates',
+        locNameAttr: 'name',
+        locDescriptionAttr: 'description',
+        joinOoIdAttr: 'oo_id',
+        joinLocIdAttr: 'loc_id'
     },
-}
-
-worldmap2d_example10_options.plugins.set('Help', {
-    id: 'help',
-    active: true
-});
-                
+    objectRequestor: {
+        fromName: 'tbl_observedobject'
+    }
+};      
             </code></pre>          
 
             <h3>Example 11: View and edit Measurement Point Data and Magic Mapper</h3>
@@ -333,27 +290,32 @@ worldmap2d_example11_options.plugins.set('ToggleClickInteractionButton', {
     id: 'toggleclickinteractionbutton',
     active: true
 });
-worldmap2d_example11_options.plugins.set('CreateMeasurementModal', {
-    id: 'createmeasurementmodal',
+worldmap2d_example11_options.plugins.set('CreateObjectModal', {
+    id: 'createobjectmodal',
     active: true
 });
 
-var createmeasurementmodal_worldmap2d_example11_options = {
-    datacapsuleLoad: worldmap2d_example11_options.datasources.get('tbl_observedobject').datacapsule,
-    createOoWithLocation: {
-        fromName: '',
-        responseIdAttr: '',
-        ooName: '',
-        ooDescription: '',
-        ooType: '',
-        ooCompleted: '',
-        ooCollection: '',
-        locLatitude: '',
-        locLongitude: '',
-        locName: '',
-        locDescription: '',
+var createobjectmodal_worldmap2d_example10_options = {
+    saveMapping: {
+        ooNameAttr: 'name',
+        ooDescriptionAttr: 'description',
+        ooTypeAttr: 'ootype_id',
+        ooParentAttr: 'parent_id',
+        ooCompletedAttr: 'complete',
+        ooDataCollectionAttr: 'data_collection',
+        ooMetaCollectionAttr: 'meta_collection',
+        locLatAttr: 'lat',
+        locLonAttr: 'lon',
+        locLatLonAttr: 'coordinates',
+        locNameAttr: 'name',
+        locDescriptionAttr: 'description',
+        joinOoIdAttr: 'oo_id',
+        joinLocIdAttr: 'loc_id'
+    },
+    objectRequestor: {
+        fromName: 'tbl_observedobject'
     }
-}
+};
 
 worldmap2d_example11_options.plugins.set('MapPinModal', {
     id: 'mappinmodal',
