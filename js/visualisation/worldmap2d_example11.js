@@ -26,43 +26,12 @@ var worldmap2d_example11_options = {
 
 //add plugin to the worldmap2d component
 worldmap2d_example11_options.plugins = new Map();
-worldmap2d_example11_options.plugins.set('ToggleClickInteractionButton', {
-    id: 'toggleclickinteractionbutton',
-    active: true
-});
-worldmap2d_example10_options.plugins.set('CreateObjectModal', {
-    id: 'createobjectmodal',
+worldmap2d_example11_options.plugins.set('DataAndMediaShowModal', {
+    id: 'dataandmediashowmodal',
     active: true
 });
 
-var createobjectmodal_worldmap2d_example11_options = {
-    saveMapping: {
-        ooNameAttr: 'name',
-        ooDescriptionAttr: 'description',
-        ooTypeAttr: 'ootype_id',
-        ooParentAttr: 'parent_id',
-        ooCompletedAttr: 'complete',
-        ooDataCollectionAttr: 'data_collection',
-        ooMetaCollectionAttr: 'meta_collection',
-        locLatAttr: 'lat',
-        locLonAttr: 'lon',
-        locLatLonAttr: 'coordinates',
-        locNameAttr: 'name',
-        locDescriptionAttr: 'description',
-        joinOoIdAttr: 'oo_id',
-        joinLocIdAttr: 'loc_id'
-    },
-    objectRequestor: {
-        fromName: 'tbl_observedobject'
-    }
-};
-
-worldmap2d_example11_options.plugins.set('MapPinModal', {
-    id: 'mappinmodal',
-    active: true
-});
-
-var mappinmodal_worldmap2d_example11_options = {
+var dataandmediashowmodal_worldmap2d_example11_options = {
     table_names : {
         locations_table: {
             table_name: 'tbl_location',
@@ -89,20 +58,4 @@ var mappinmodal_worldmap2d_example11_options = {
             docroot: '../../../'
         }
     },
-}
-
-
-worldmap2d_example11_options.plugins.set('InterfaceMagicMapper', {
-    id: 'interfacemagicmapper',
-    active: true
-});
-
-worldmap2d_example11_options.plugins.set('ToggleLatchOnLocation', {
-    id: 'togglelatchonlocation',
-    active: true
-});
-
-worldmap2d_example11_options.plugins.set('Help', {
-    id: 'help',
-    active: true
-});
+};

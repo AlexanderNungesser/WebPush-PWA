@@ -139,7 +139,7 @@ worldmap2d_example4_options.plugins.set('Help', {
             </code></pre>
 
             <h3>Example 7: Show dataset values</h3>
-            <p>With the MapPinModal plugin you can show data from a location.
+            <p>With the DataShowModal plugin you can show data from a location.
                 The option viewedAttrs give the attributes that should be shown and their order.</p>
 
             <a href="worldmap2d_example7.html" target="_blank">Open example</a>
@@ -256,9 +256,8 @@ var createobjectmodal_worldmap2d_example10_options = {
 };      
             </code></pre>          
 
-            <h3>Example 11: View and edit Measurement Point Data and Magic Mapper</h3>
-            <p>The MagicMapper can be used to share your precise location and to adjust the position of measuring points.</p>
-            <p>Note: This example requires a compatible database to display the data correctly.</p>
+            <h3>Example 11: Show data of locations and objects</h3>
+            <p>The DataAndMediaShowModal can display data from locations and objects in a modal dialog layed over the map.</p>
             <a href="worldmap2d_example11.html" target="_blank">Open example</a>
 
             <pre><code class="lang-javascript">
@@ -269,13 +268,13 @@ var worldmap2d_example11_options = {
     datasources: new Map([
         ['tbl_observedobject', {
             datacapsule: {
-                fromName: 'tbl_1',
+                fromName: 'tbl_observedobject',
                 fromWheres: {
-                    join: 'tbl_2',
+                    join: 'tbl_location_join_oo,tbl_location',
                 },
             },
-            latitudeAttr: 'tbl_2.coodinates.coordinates[0]',
-            longitudeAttr: 'tbl_2.coodinates.coordinates[1]',
+            latitudeAttr: 'tbl_location[0].coordinates.coordinates[0]',
+            longitudeAttr: 'tbl_location[0].coordinates.coordinates[1]',
         }],
     ]),
 
@@ -286,86 +285,39 @@ var worldmap2d_example11_options = {
 
 //add plugin to the worldmap2d component
 worldmap2d_example11_options.plugins = new Map();
-worldmap2d_example11_options.plugins.set('ToggleClickInteractionButton', {
-    id: 'toggleclickinteractionbutton',
-    active: true
-});
-worldmap2d_example11_options.plugins.set('CreateObjectModal', {
-    id: 'createobjectmodal',
+worldmap2d_example11_options.plugins.set('DataAndMediaShowModal', {
+    id: 'dataandmediashowmodal',
     active: true
 });
 
-var createobjectmodal_worldmap2d_example10_options = {
-    saveMapping: {
-        ooNameAttr: 'name',
-        ooDescriptionAttr: 'description',
-        ooTypeAttr: 'ootype_id',
-        ooParentAttr: 'parent_id',
-        ooCompletedAttr: 'complete',
-        ooDataCollectionAttr: 'data_collection',
-        ooMetaCollectionAttr: 'meta_collection',
-        locLatAttr: 'lat',
-        locLonAttr: 'lon',
-        locLatLonAttr: 'coordinates',
-        locNameAttr: 'name',
-        locDescriptionAttr: 'description',
-        joinOoIdAttr: 'oo_id',
-        joinLocIdAttr: 'loc_id'
-    },
-    objectRequestor: {
-        fromName: 'tbl_observedobject'
-    }
-};
-
-worldmap2d_example11_options.plugins.set('MapPinModal', {
-    id: 'mappinmodal',
-    active: true
-});
-
-var mappinmodal_worldmap2d_example11_options = {
+var dataandmediashowmodal_worldmap2d_example11_options = {
     table_names : {
         locations_table: {
-            table_name: '',
-            idAttr: '',
-            geojsonattr: '',
+            table_name: 'tbl_location',
+            idAttr: 'id',
+            geojsonattr: 'coordinates',
         },
         oo_table: {
-            table_name: '',
-            idAttr: '',
-            completed: '',
+            table_name: 'tbl_observedobject',
+            idAttr: 'id',
+            completed: 'completed',
         },
         file_table: {
-            table_name: '',
-            idAttr: ''
+            table_name: 'tbl_file',
+            idAttr: 'id'
         },
         file_join_oo_table: {
-            table_name: '',
-            idAttr: '',
-            file_id: '',
-            oo_id: ''
+            table_name: 'tbl_file_join_oo',
+            idAttr: 'id',
+            file_id: 'file_id',
+            oo_id: 'oo_id'
         },
         uploadfile_options : {
-            uploadTargetURL: '',
-            docroot: ''
+            uploadTargetURL: '/SmartFile/smartfile/file/map_pictures_Gewaesser',
+            docroot: '../../../'
         }
     },
-}
-
-
-worldmap2d_example11_options.plugins.set('InterfaceMagicMapper', {
-    id: 'interfacemagicmapper',
-    active: true
-});
-
-worldmap2d_example11_options.plugins.set('ToggleLatchOnLocation', {
-    id: 'togglelatchonlocation',
-    active: true
-});
-
-worldmap2d_example11_options.plugins.set('Help', {
-    id: 'help',
-    active: true
-});
+};
             </code></pre> 
 
             <h3>Example 12: Zoom to a certain point when its loaded</h3>
