@@ -131,6 +131,16 @@ SWAC_config.datasources = [
             </code></pre>
             <a href="3_data_example5.html">See working example here</a>
 
+            <h4>Excursion: Parameters into URL</h4>
+            <p>All parameters after the WHERE clause are puted into the data requestion URL as URL parameter.</p>
+            <pre><code>
+                WHERE filter=id,eq,1 AND size=4
+</code></pre>
+            becomes
+            <pre><code>
+                ?filter=id,eq,q&size=4
+</code></pre>
+
             <h3>Use parameter from page URL</h3>
             <p>If your option comes from the url you can simply use an placeholder.</p>
             <pre><code class="lang-html">
@@ -146,14 +156,14 @@ SWAC_config.datasources = [
             </code></pre>
             <span title="Also in title: {{id}}">You have inserted id: {{id}}</span>
             <br><a href="3_data.html?id=3">Not seeing an id? Click here!</a>
-            
+
             <h3>Use multiple parameters</h3>
             <p>You can use multiple parameters by listing them with the AND clause.</p>
             <pre><code class="lang-html">
 &lt;div id="data_example7" swa="Present FROM tbl_observedobject WHERE filter=id,gt,5 AND filter=id,lt,10"&gt;&lt;/div&gt;
             </code></pre>
             <a href="3_data_example7.html">See working example here</a>
-            
+
             <h3>Parameter from Configuration</h3>
             <p>You can define global parameters in the configuration file, that 
                 will take place if there is no parameter given by url.</p>
@@ -163,7 +173,7 @@ SWAC_config.globalparams = {
     exampleglobal: 2
 };
             </code></pre>
-            
+
             <h3>Use special parameters</h3>
             <p>There are some usefull build in parameters. Those replace placeholders with calculated values.
                 <br>See the network requests in your browsers development tools to see the effect on request uri.</p>
@@ -171,27 +181,27 @@ SWAC_config.globalparams = {
 &lt;div id="data_example_sp" swa="Present FROM ../../data/exampledata_object.json WHERE filter=ts,gt,&#123;&#123;date:m-1442&#125;&zwnj;&#125; AND filter=ts,lt,&#123;&#123;date:m-1438&#125;&zwnj;&#125;"&gt;&lt;/div&gt;
             </code></pre>
             <div id="data_example_sp" swa="Present FROM ../../data/exampledata_object.json WHERE filter=ts,gt,{{date:m-1442}} AND filter=ts,lt,{{date:m-1438}}"></div>
-            
+
             <table class="uk-table">
                 <tr><th>Parameter</th><th>Example</th><th>Explanation</th></tr>
                 <tr><td>&#123;&#123;date:m-X&#125;&zwnj;&#125;</td><td>{{date:m-1440}}</td><td>Replaced by the current date substracted with X seconds.</td></tr>
                 <tr><td>&#123;&#123;date:m+X&#125;&zwnj;&#125;</td><td>{{date:m+1440}}</td><td>Replaced by the current date added with X seconds.</td></tr>
             </table>
-            
+
             <h3>Global filtering</h3>
             <p>Additional to the coded and predefined parameters and placeholders for parameters on the swa statement
-            users can allways filter sets to their needs by useing the filter parameter in URL.
-            <br>Note that this filter can only narrow the datasets, never get more datasets than specified in the SWA statement.
-            <br>To prevent from filterein on all components, you can use a fourth attribute in the filter statement, so filter only apply on the component with the given id.</p>
+                users can allways filter sets to their needs by useing the filter parameter in URL.
+                <br>Note that this filter can only narrow the datasets, never get more datasets than specified in the SWA statement.
+                <br>To prevent from filterein on all components, you can use a fourth attribute in the filter statement, so filter only apply on the component with the given id.</p>
 
             <b>Without URL filter</b>
             <br><a href="../visualisation/worldmap2d_example12.html?zoomSource=../../data/worldmap2d/worldmap2d_example5.json&zoomSet=181" target="_blank">Open map with data</a>
             <br><b>Useing URL filter</b>
             <br><a href="../visualisation/worldmap2d_example12.html?zoomSource=../../data/worldmap2d/worldmap2d_example5.json&zoomSet=181&filter=id,eq,181" target="_blank">&filter=id,eq,181</a>
             <br><b>Use URL filter only on requestor with id example</b>
-            <br><a href="../visualisation/worldmap2d_example12.html?zoomSource=../../data/worldmap2d/worldmap2d_example5.json&zoomSet=181&filter=id,eq,181,example" target="_blank">&filter=id,eq,181,example</a>
+            <br><a href="../visualisation/worldmap2d_example12.html?zoomSource=../../data/worldmap2d/worldmap2d_example5.json&zoomSet=181&filter=id,eq,181,comps:example" target="_blank">&filter=id,eq,181,comps:example</a>
             <br>
-            
+
             <h2 class="uk-heading-divider">Datastructures</h2>
             <p>We are useing data in different forms and variations inprogramming.
                 SWAC aims to make it easy to reuse data that was builded with other tools.
@@ -600,7 +610,7 @@ exampledata_metalist.list = [
             <h3>Metadata</h3>
             <p>SWAC creates some metadata information. This is available in the 
                 components too. For a full list of available metadata refere to the
-                <a href="4_design.html">skinable</a> page</p>
+                <a href="4_design.html">design</a> page</p>
 
             <h3>Default values for missing attributes</h3>
             <p>You can specify default values that will apply if there are attributes 
@@ -621,7 +631,7 @@ var data_example14_1_options = {
 };
             </code></pre>
             <a href="3_data_example14_1.html">See working example here</a>
-            
+
             <h2>Renameing attributes</h2>
             <p>Sometimes you want the data show up with another name in frontend as 
                 it is named in the database. Or you just have an attribute that is 
@@ -679,30 +689,30 @@ data_example18_options = {
     liveMode: 10 //Updates data every 10 seconds
 };
             </code></pre>            
-            
+
             <h3>Add data per interface</h3>
             <p>By activateing the showAddDataInput function a input field is shown where 
-            users can add an URL to a datasource file and add the data to the component.</p>
+                users can add an URL to a datasource file and add the data to the component.</p>
             <pre><code class="lang-javascript">
 var present_example10_options = {
     showAddDataInput: true
 };
             </code></pre>  
-            
+
             <h2 class="uk-heading-divider">Automatic datavolume saveing</h2>
             <p>SWAC components can use the same data. In those cases SWAC automatically 
                 detect the same useage and shares the one time fetsched data over all 
                 components. This avoids uneccessery network requests.</p>
-            
+
             <h2 class="uk-heading-divider">CORS roundtrip</h2>
             <p>SWACs components are universal tools to show and manipulate data. So you can use many
-            datasources from anywhere on the web. But not all sources are freely accessable because of CORS.
-            <br>With the combination of SmartFile you can even add those data to your webapplication.
-            <br>If you give to any of the interfaces a datasource URL and SWAC odemtofoes the CORS error,
-            it can download the file over SmartFile and use the downloaded file instead of the original.
-            <br>Anything neccessery is to deploy the SmartFile on your server and configure the 
-            corsavoidurl option.</p>
-            
+                datasources from anywhere on the web. But not all sources are freely accessable because of CORS.
+                <br>With the combination of SmartFile you can even add those data to your webapplication.
+                <br>If you give to any of the interfaces a datasource URL and SWAC odemtofoes the CORS error,
+                it can download the file over SmartFile and use the downloaded file instead of the original.
+                <br>Anything neccessery is to deploy the SmartFile on your server and configure the 
+                corsavoidurl option.</p>
+
             <pre><code class="lang-javascript">
 var SWAC_config = {
     // ...
@@ -715,10 +725,10 @@ var SWAC_config = {
     // ...
 };
             </code></pre> 
-            
+
             <h2 class="uk-heading-divider">Accessing data programaticly</h2>
             <p>If you need to access the components data from a custom script, have a look at the Low Level API > </p>
-            
+
         </article>
 
         <footer>
