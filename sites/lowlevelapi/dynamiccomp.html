@@ -41,6 +41,8 @@ let reqState = 'Present FROM my_data';
 let reqElem = document.createElement('div');
 reqElem.setAttribute('id','my_custom_id');
 reqElem.setAttribute('swa',reqState);
+// Optional: Set custom template
+repElem.innerHTML = '&lt;div&gt;This is my awesome template written as documented within Concepts / Design&lt;/div&gt;';
 contElem.appendChild(reqElem);
                 
 // Build component
