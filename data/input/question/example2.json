@@ -25,7 +25,7 @@
                 }
             ],
             "required": true,
-            "target": "ref://../data/input/question/savetarget_persons.json"
+            "target": "ref://../../data/input/question/savetarget.json"
         }
     ]
 }

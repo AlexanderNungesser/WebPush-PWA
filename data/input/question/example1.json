@@ -5,7 +5,7 @@
             "name": "Ihre Daten",
             "question": "Wir möchten ein wenig über Sie erfahren.",
             "type": "group",
-            "target": "ref://../data/input/question/savetarget_persons.json"
+            "target": "ref://../../data/input/question/savetarget_persons.json"
         },
         {
             "id": 2,
@@ -19,7 +19,7 @@
                 "man",
                 "group"
             ],
-            "parent": "ref://../data/input/question/examplequestions.json?id=1",
+            "parent": 1,
             "required": true
         },
         {
@@ -28,7 +28,7 @@
             "name": "Alter",
             "question": "Geben Sie ihr Alter an",
             "type": "number",
-            "parent": "ref://../data/input/question/examplequestions.json?id=1",
+            "parent": 1,
             "required": true
         },
         {
@@ -37,7 +37,7 @@
             "name": "Vorname",
             "question": "Geben Sie ihren Vornamen an",
             "type": "text",
-            "parent": "ref://../data/input/question/examplequestions.json?id=1",
+            "parent": 1,
             "required": true,
             "min": 2,
             "max": 50
@@ -48,7 +48,7 @@
             "name": "Nachname",
             "question": "Geben Sie ihren Nachnamen an",
             "type": "text",
-            "parent": "ref://../data/input/question/examplequestions.json?id=1",
+            "parent": 1,
             "required": true,
             "min": 2,
             "max": 50
@@ -58,7 +58,7 @@
             "name": "Ihre Veranstaltung",
             "question": "Wählen Sie ihre Veranstaltung aus",
             "type": "group",
-            "target": "ref://../data/input/question/savetarget_events.json"
+            "target": "ref://../../data/input/question/savetarget_events.json"
         },
         {
             "id": 7,
@@ -71,7 +71,7 @@
                 {"value":2,"title":"Geburtstag - Prinzessinenschloss"},
                 {"value":3,"title":"Jahreshauptversammlung"}
             ],
-            "parent": "ref://../data/input/question/examplequestions.json?id=6",
+            "parent": 6,
             "required": true
         },
         {
@@ -85,7 +85,7 @@
                 {"value":2,"title":"Pommes"},
                 {"value":3,"title":"Kartoffelecken"}
             ],
-            "parent": "ref://../data/input/question/examplequestions.json?id=6",
+            "parent": 6,
             "required": false,
             "multiple": true
         },
@@ -97,7 +97,7 @@
             "type": "range",
             "min": 1,
             "max": 40,
-            "parent": "ref://../data/input/question/examplequestions.json?id=6",
+            "parent": 6,
             "required": true
         },
         {
@@ -106,7 +106,7 @@
             "name": "Datum und Uhrzeit",
             "question": "Wann soll ihre Veranstaltung sein?",
             "type": "datetime",
-            "parent": "ref://../data/input/question/examplequestions.json?id=6",
+            "parent": 6,
             "required": true
         },
         {
@@ -115,7 +115,7 @@
             "name": "Sonstiges",
             "question": "Wollen Sie uns sonst noch etwas mitteilen?",
             "type": "text",
-            "parent": "ref://../data/input/question/examplequestions.json?id=6",
+            "parent": 6,
             "required": false
         }
     ]

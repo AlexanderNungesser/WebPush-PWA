@@ -15,6 +15,8 @@
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
         <script src="../../js/input/question.js"></script>
+        <script src="../../js/input/question_example1.js"></script>
+        <script src="../../js/input/question_example2.js"></script>
     </head>
     <body>
         <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
@@ -32,26 +34,39 @@
 
             <h3>Example 1: Question data for a event request</h3>
             Create questions and surveys quickly by defining datasets with questions.
-            <pre><code class="lang-html">
-&lt;div id="question_example1" swa="Question FROM ../data/question/examplequestions.json"&gt;&lt;/div&gt;
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="question_example1" swa="Question FROM ../data/question/example1.json"&gt;&lt;/div&gt;
         </code></pre>
-            <pre><code class="lang-javascript">
-
-        </code></pre>
-            
-            <div id="question_example1" swa="Question FROM ../../data/input/question/examplequestions.json"></div>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <div id="question_example1_conf" swa="Coder FROM ../../js/input/question_example1.js"></div>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="question_example1_datasource" swa="Coder FROM ../../data/input/question/example1.json"></div>
+            </fieldset>
+            <div id="question_example1" swa="Question FROM ../../data/input/question/example1.json"></div>
 
             <h3>Example 2: Questioning with reanswer time</h3>
             You can set a wait time after that the question(s) can be reanswered.
-            <pre><code class="lang-html">
-&lt;div id="question_example2" swa="Question FROM ../data/question/examplequestions2.json"&gt;&lt;/div&gt;
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="question_example2" swa="Question FROM ../data/question/example2.json"&gt;&lt;/div&gt;
         </code></pre>
-            <pre><code class="lang-javascript">
-var example2_options = {};
-example2_options.timeToReanswer = 1;
-example2_options.afterSaveTxt = 'Thank you for your input!';        
-        </code></pre>
-            <div id="question_example2" swa="Question FROM ../../data/input/question/examplequestions2.json"></div>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <div id="question_example2_conf" swa="Coder FROM ../../js/input/question_example2.js"></div>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="question_example2_datasource" swa="Coder FROM ../../data/input/question/example2.json"></div>
+            </fieldset>
+            <div id="question_example2" swa="Question FROM ../../data/input/question/example2.json"></div>
         </article>
         <footer>
             <a href="../about/privacy.html">Privacy policy / Datenschutzerklärung</a>
