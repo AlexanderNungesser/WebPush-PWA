@@ -297,6 +297,7 @@ window['mycomp_options] = {
                 <tr><th>CSS selector</th><th>Explanation</th></tr>
                 <tr><td>.swac_dontdisplay</td><td>Hides the element per default. This can be used for toggle visability.</td></tr>
                 <tr><td>[swac_display="{attribute}"]</td><td>Used for conditional display of elements. If the attribute is true the element will be shown.</td></tr>
+                <tr><td>[swac_display_until="2025-04-10 18:00"]</td><td>Used for conditional display of elements. Displays the contnet until the date and time is reached.</td></tr>
                 <tr><td>[swac_hide="{attribute}"]</td><td>Used for conditional hiding of elements. If the attribute is true, the element will be hidden.</td></tr>
                 <tr><td>[swac_hideOnEmpty="{attribute}"]</td><td>Used for conditional hiding of elements. If the attribute is empty, element will be hidden.</td></tr>
                 <tr><td>[swac_showOnEmpty="{attribute}"]</td><td>Used for conditional hiding of elements. If the attribute is empty, element will be shown.</td></tr>
@@ -306,7 +307,11 @@ window['mycomp_options] = {
                 <tr><td>.swac_ondesktop</td><td>Only shown when page is viewed on desktop size screens.</td></tr>
                 <tr><td>.swac_pagebreakbefore</td><td>Make a pagebreak when printing the page right before the element.</td></tr>
             </table>
-
+            
+            <div>In next line text should be visible until 12.04.2025 18:00</div>
+            <div swac_display_until="2025-04-10 18:00">This should be visible until 12.04.2025 18:00</div>
+            <div>End swac_display_until test</div>
+            
             <h2>Share layouts</h2>
             <p>If you create a layout that you want to use on more than one place,
                 you can add your layout to the components layout. Simply copy your 
