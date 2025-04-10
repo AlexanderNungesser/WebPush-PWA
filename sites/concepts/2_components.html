@@ -108,17 +108,19 @@ window.swac.loadAlgorithm('AlgorithmsName','IdYouWantForTheAlgorithmInstance').t
                 SWAC Debugger. Simply click on the debugger button and scrol down.</p>
 
             <pre><code class="lang-javascript">
-var customizable_default_options = {
-    showWhenNoData: false,
-    sortable: false
+window['customizable_default_options'] = {
+    showWhenNoData: true
 };
         </code></pre>
 
             <pre><code class="lang-html">
-&lt;div id="customizable_default" swa="Present FROM exampledata_list"&gt;&lt;/div&gt;
+&lt;div id="customizable_default_empty" swa="Present FROM ../../data/exampledata_empty.json"&gt;&lt;/div&gt;
         </code></pre>
-
-            <div id="customizable_default" swa="Present FROM exampledata_list"></div>
+            <div>The next line a message for empty data should be visible:</div>
+            <div id="customizable_default_empty" swa="Present FROM ../../data/exampledata_empty.json">
+                Test
+            </div>
+            <div>Here the empty data requestor ends.</div>
 
 
             <h3>Options from data</h3>
@@ -151,6 +153,7 @@ var exampleoptions = {
                 <tr><td>Component</td><td>attributeRenames (Map)</td><td>Rename attributes from datasource to a name of your wish. Usefull if a component exepects a specific attribute name.</td></tr>
                 <tr><td>Component</td><td>reloadInterval</td><td>Time in seconds after that a component should automatically reload.</td></tr>
                 <tr><td>View</td><td>showWhenNoData (boolean)</td><td>When set to true the components layout is shown even if there is no data.</td></tr>
+                <tr><td>View</td><td>showWhenNoDataMsg (varchar)</td><td>Message to show, or key of language entry for a custom "There is no data" message.</td></tr>
             </table>
 
             <pre><code class="lang-javascript">
