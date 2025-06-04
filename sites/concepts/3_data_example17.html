@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SWAC - Data - Example 17: Automatic reload component data</title>
+        <title>SWAC - Data - Example 17: Datastructures: Object / Dataset</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
@@ -14,8 +14,7 @@
         <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
-        <script src="../../js/concepts/3_data_example17.js"></script>
-
+        <script src="../../data/concepts/data_example17.js"></script>
     </head>
     <body>
         <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
@@ -28,20 +27,49 @@
 
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
-            <h1 class="uk-article-title">Data Example 17: Automatic reload component data</h1>
-            <p>Data will be reloaded every 10 seconds. You can see the effect in the networks tab in developer tools.</p>
+            <h1 class="uk-article-title">Data Example 17: Datastructures: Object / Dataset</h1>
 
-            <pre><code class="lang-javascript">
-data_example17_options = {
-    reloadInterval: 10
-};
-            </code></pre>
+            <p>In web programming the simplest datastructure is
+                a object. A object consits of a number of attributes. SWAC treats
+                a object as "dataset". Every attribute is one value of this dataset.
+                SWAC makes every attribute useable in it's components. You can refer
+                to an attribut by simply name it.
+                <br>Below is a very simple example of one dataset. Once given as javascript
+                object and once given as json object from file.</p>
             
-            <pre><code class="lang-html">
-&lt;div id="data_example17" swa="Edit FROM ../../data/exampledata_list.json"&gt;&lt;/div&gt;
-            </code></pre>
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example17_js" swa="Present FROM data_example17"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <p swac_lang="no_configuraton_needed">No configuration needed</p>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="data_example17_js_datasource" swa="Coder FROM ../../data/concepts/data_example17.js"></div>
+            </fieldset>
 
-            <div id="data_example17" swa="Present FROM ../../data/exampledata_list.json"></div>
+            <div id="data_example17_js" swa="Present FROM example17_js"></div>
+
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example17_json" swa="Present FROM ../../data/concepts/data_example17.json"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <p swac_lang="no_configuraton_needed">No configuration needed</p>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="data_example17_json_datasource" swa="Coder FROM ../../data/concepts/data_example17.json"></div>
+            </fieldset>
+
+            <div id="data_example17_json" swa="Present FROM ../../data/concepts/data_example17.json"></div>
 
             <a href="3_data.html">Back to data overview</a>
         </article>

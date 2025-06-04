@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SWAC - Data - Example 14_1: Calculated default values</title>
+        <title>SWAC - Data - Example 21: Default values for missing attributes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
-        <script src="../../js/concepts/3_data_example14_1.js"></script>
+        <script src="../../js/concepts/3_data_example21.js"></script>
 
     </head>
     <body>
@@ -28,21 +28,25 @@
 
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
-            <h1 class="uk-article-title">Data Example 14: Calculated default values</h1>
-            <p>You can use calculated default values. Write an equation with names of existing attributes in % (as placeholder) 
-            and a javascript supported equation.</p>
+            <h1 class="uk-article-title">Data Example 21: Default values for missing attributes</h1>
+            <p>Attributes 'job' are added by SWAC to every dataset where its missing.</p>
 
-            <pre><code class="lang-javascript">
-var data_example14_1_options = {
-  attributeDefaults: new Map([['../../data/exampledata_list.json',{multiply: '%doubleval% + %intval%'}]])
-};
-            </code></pre>
-            
-            <pre><code class="lang-html">
-&lt;div id="data_example14_1" swa="Edit FROM ../../data/exampledata_list.json"&gt;&lt;/div&gt;
-            </code></pre>
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example21" swa="Present FROM ../../data/concepts/data_example21.json"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <div id="data_example21_configuration" swa="Coder FROM ../../js/concepts/3_data_example21.js"></div>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="data_example21_datasource" swa="Coder FROM ../../data/concepts/data_example21.json"></div>
+            </fieldset>
 
-            <div id="data_example14_1" swa="Present FROM ../../data/exampledata_list.json"></div>
+            <div id="data_example21" swa="Present FROM ../../data/concepts/data_example21.json"></div>
 
             <a href="3_data.html">Back to data overview</a>
         </article>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SWAC - Data - Example 13: Use multiple parameters</title>
+        <title>SWAC - Data - Example 11: Get data with parameters</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
@@ -16,7 +16,7 @@
         <script src="/SWAC/swac/swac.js" type="module"></script>
     </head>
     <body>
-        <!--<header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>-->
+        <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
         <noscript>
         <div class="noscript_nav">
             <a href="sitemap.html" class="uk-button uk-button-primary">Sitemap</a>
@@ -26,13 +26,13 @@
 
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
-            <h1 class="uk-article-title">Data Example 13: Use multiple parameters</h1>
+            <h1 class="uk-article-title">Data Example 11: Get data with parameters</h1>
 
             <pre><code class="lang-html">
-&lt;div id="data_example13" swa="Present FROM tbl_observedobject WHERE filter=id,gt,5 AND filter=id,lt,10"&gt;&lt;/div&gt;
+&lt;div id="data_example11" swa="Present FROM tbl_observedobject WHERE filter=id,eq,1"&gt;&lt;/div&gt;
             </code></pre>
 
-            <div id="data_example13" swa="Present FROM tbl_observedobject WHERE filter=id,gt,5 AND filter=id,lt,10"></div>
+            <div id="data_example11" swa="Present FROM tbl_observedobject WHERE filter=id,eq,1"></div>
 
             <a href="3_data.html">Back to data overview</a>
         </article>

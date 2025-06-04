@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SWAC - Data - Example 14: Default values for missing attributes</title>
+        <title>SWAC - Data - Example 20: Effect of databinding</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
@@ -14,8 +14,6 @@
         <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
-        <script src="../../js/concepts/3_data_example14.js"></script>
-
     </head>
     <body>
         <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
@@ -28,20 +26,16 @@
 
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
-            <h1 class="uk-article-title">Data Example 14: Default values for missing attributes</h1>
-            <p>Attributes 'job' are added by SWAC to every dataset where its missing.</p>
+            <h1 class="uk-article-title">Data Example 20: Effect of databinding</h1>
+            <p>Here is an editor that allows editing of the navigation. Open the 
+            first dataset and edit the name. You will see, that the title in 
+            editor will change and the menue entry, too.</p>
 
-            <pre><code class="lang-javascript">
-var data_example14_options = {
-  attributeDefaults: new Map([['../../data/exampledata_list.json',{job: 'programmer'}]])
-};
-            </code></pre>
-            
             <pre><code class="lang-html">
-&lt;div id="data_example14" swa="Edit FROM ../../data/exampledata_list.json"&gt;&lt;/div&gt;
+&lt;div id="data_example20" swa="Edit FROM ../../data/routes.json"&gt;&lt;/div&gt;
             </code></pre>
 
-            <div id="data_example14" swa="Present FROM ../../data/exampledata_list.json"></div>
+            <div id="data_example13" swa="Edit FROM ../../data/routes.json"></div>
 
             <a href="3_data.html">Back to data overview</a>
         </article>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SWAC - Data - Example 6: Use parameters from page URL</title>
+        <title>SWAC - Data - Example 10: Data with datasource configuration</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
@@ -26,15 +26,35 @@
 
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
-            <h1 class="uk-article-title">Data Example 6: Use parameters from page URL</h1>
-            <p>Note: <a href="3_data.html?id=1">Call this page with ?id=1</a> to show the effect.</p>
+            <h1 class="uk-article-title">Data Example 10: Data with datasource configuration</h1>
+            <p>Global configuration in configuration.js:</p>
 
+<pre><code class="lang-javascript">
+SWAC_config.datasources = [
+    {
+        // Simple path as source for all CRUD operations, may a simple docroot path
+        url: "/SWAC/data/[fromName]"
+    },
+    {
+        // Complex configuration, may a REST interface path
+        url: "/SmartData/smartdata/[iface]/[fromName]?storage=smartmonitoring",
+        interfaces: {
+            get: ['GET','records'],         // When fetch a single dataset use method GET and replace [iface] with records
+            list: ['GET','records'],        // When fetch a list of datasets use method GET and replace [iface] with records
+            defs: ['GET','collection'],     // Get definitions on the data from collection interface (special of SmartData)
+            create: ['POST','records'],     // Create new datasets useing POST on the records path
+            update: ['PUT','records'],
+            delete: ['DELETE','records']
+        }
+    }
+];
+            </code></pre>
+            
             <pre><code class="lang-html">
-&lt;div id="data_example6" swa="Present FROM observedobject WHERE filter=id,eq,&#123;&#123;id&#125;&#125;"&gt;&lt;/div&gt;
+&lt;div id="data_example10" swa="Present FROM tbl_observedobject"&gt;&lt;/div&gt;
             </code></pre>
 
-            <div id="data_example6" swa="Present FROM tbl_observedobject WHERE filter=id,eq,{{id}}"></div>
-
+            <div id="data_example10" swa="Present FROM tbl_observedobject"></div>
             <a href="3_data.html">Back to data overview</a>
         </article>
 

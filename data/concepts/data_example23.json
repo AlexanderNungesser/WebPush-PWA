@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Datensatz 1 List",
+        "doubleval": 12.0123,
+        "intval": 1234
+    },
+    {
+        "id": 2,
+        "name": "Datensatz 2",
+        "doubleval": 19.0234,
+        "intval": 2345
+    },
+    {
+        "id": 3,
+        "name": "Datensatz 3",
+        "doubleval": 42.0345,
+        "intval": 3456
+    }
+]

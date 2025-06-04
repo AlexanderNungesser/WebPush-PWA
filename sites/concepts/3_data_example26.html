@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SWAC - Data - Example 18: Datastructures: Array of objects / Datasets</title>
+        <title>SWAC - Data - Example 26: Automatic load new datasets</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
@@ -14,7 +14,8 @@
         <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
-        <script src="../../data/concepts/data_example18.js"></script>
+        <script src="../../js/concepts/3_data_example26.js"></script>
+        <script src="../../data/concepts/data_example26.js"></script>
     </head>
     <body>
         <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
@@ -27,46 +28,39 @@
 
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
-            <h1 class="uk-article-title">Data Example 18: Datastructures: Array of objects / Datasets</h1>
-
-            <p>Most SWAC components do not only support single datasets but also
-                a collection of datasets. You can simply create a collection of 
-                datasets by useing a javascript array or JSON array structure.</p>
-            
-            <fieldset>
-                <legend>VIEW-Requestor</legend>
-                <pre><code class="lang-html">
-&lt;div id="data_example18_js" swa="Present FROM example18_js"&gt;&lt;/div&gt;
-        </code></pre>
-            </fieldset>
-            <fieldset>
-                <legend>CONFIGURATION</legend>
-                <p swac_lang="no_configuraton_needed">No configuration needed</p>
-            </fieldset>
-            <fieldset>
-                <legend>DATASOURCE</legend>
-                <div id="data_example18_js_datasource" swa="Coder FROM ../../data/concepts/data_example18.js"></div>
-            </fieldset>
-
-            <div id="data_example18_js" swa="Present FROM example18_js"></div>
+            <h1 class="uk-article-title">Data Example 26: Automatic load new datasets</h1>
+            <p>Components can use a live mode, where they automatically fetch new data from their known sources. This will not reload the whole component but only request and add new datasets.</p>
 
             <fieldset>
                 <legend>VIEW-Requestor</legend>
                 <pre><code class="lang-html">
-&lt;div id="data_example18_json" swa="Present FROM ../../data/concepts/data_example18.json"&gt;&lt;/div&gt;
+&lt;div id="data_example26" swa="Present FROM data_example26"&gt;&lt;/div&gt;
         </code></pre>
             </fieldset>
             <fieldset>
                 <legend>CONFIGURATION</legend>
-                <p swac_lang="no_configuraton_needed">No configuration needed</p>
+                <div id="data_example26_configuration" swa="Coder FROM ../../js/concepts/3_data_example26.js"></div>
             </fieldset>
             <fieldset>
                 <legend>DATASOURCE</legend>
-                <div id="data_example18_json_datasource" swa="Coder FROM ../../data/concepts/data_example18.json"></div>
+                <div id="data_example26_datasource" swa="Coder FROM ../../data/concepts/data_example26.js"></div>
             </fieldset>
 
-            <div id="data_example18_json" swa="Present FROM ../../data/concepts/data_example18.json"></div>
-
+            <button id="add_dataset">Add a dataset</button>
+            Klick the button to add a new dataset to the datasource (a global variable) it take up to 10 seconds until the component looks for new sets and adds it to the view.
+            <script>
+                let btn = document.querySelector('#add_dataset');
+                btn.addEventListener('click', function () {
+                    let nextid = window['data_example26'].length + 1;
+                    window['data_example26'].push(
+                            {
+                                id: nextid,
+                                name: 'Dataset ' + nextid
+                            }
+                    );
+                });
+            </script>
+            <div id="data_example26" swa="Present FROM data_example26"></div>
             <a href="3_data.html">Back to data overview</a>
         </article>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SWAC - Data - Example 13: Use multiple parameters</title>
+        <title>SWAC - Data - Example 27: Add data per interface</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
@@ -14,9 +14,10 @@
         <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
+        <script src="../../js/concepts/3_data_example27.js"></script>
     </head>
     <body>
-        <!--<header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>-->
+        <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
         <noscript>
         <div class="noscript_nav">
             <a href="sitemap.html" class="uk-button uk-button-primary">Sitemap</a>
@@ -26,14 +27,25 @@
 
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
-            <h1 class="uk-article-title">Data Example 13: Use multiple parameters</h1>
-
-            <pre><code class="lang-html">
-&lt;div id="data_example13" swa="Present FROM tbl_observedobject WHERE filter=id,gt,5 AND filter=id,lt,10"&gt;&lt;/div&gt;
-            </code></pre>
-
-            <div id="data_example13" swa="Present FROM tbl_observedobject WHERE filter=id,gt,5 AND filter=id,lt,10"></div>
-
+            <h1 class="uk-article-title">Data Example 27: Add data per interface</h1>
+            <p>y activateing the showAddDataInput function a input field is shown where 
+                users can add an URL to a datasource file and add the data to the component.</p>
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example27" swa="Present"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <div id="data_example27_configuration" swa="Coder FROM ../../js/concepts/3_data_example27.js"></div>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <p swac_lang="no_datasource">No initial datasource</p>
+            </fieldset>
+            <p>Type the url ../../data/concepts/data_example27.json (or any other datasource url) into the input field to see the datasets presented.</p>
+            <div id="data_example27" swa="Present"></div>
             <a href="3_data.html">Back to data overview</a>
         </article>
 

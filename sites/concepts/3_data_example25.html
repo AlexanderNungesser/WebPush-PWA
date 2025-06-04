@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SWAC - Data - Example 15: Renaming attributes</title>
+        <title>SWAC - Data - Example 25: Automatic reload component data</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
-        <script src="../../js/concepts/3_data_example15.js"></script>
+        <script src="../../js/concepts/3_data_example25.js"></script>
 
     </head>
     <body>
@@ -28,20 +28,25 @@
 
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
-            <h1 class="uk-article-title">Data Example 15: Renaming attributes</h1>
-            <p>Attributes 'job' are added by SWAC to every dataset where its missing.</p>
+            <h1 class="uk-article-title">Data Example 25: Automatic reload component data</h1>
+            <p>Data will be reloaded every 10 seconds. You can see the effect in the networks tab in developer tools.</p>
 
-            <pre><code class="lang-javascript">
-var data_example15_options = {
-    attributeRenames: new Map([['doubleval', 'float'],['intval','long']])
-};
-            </code></pre>
-            
-            <pre><code class="lang-html">
-&lt;div id="data_example15" swa="Edit FROM ../../data/exampledata_list.json"&gt;&lt;/div&gt;
-            </code></pre>
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example25" swa="Present FROM ../../data/concepts/data_example25.json"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <div id="data_example25_configuration" swa="Coder FROM ../../js/concepts/3_data_example25.js"></div>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="data_example25_datasource" swa="Coder FROM ../../data/concepts/data_example25.json"></div>
+            </fieldset>
 
-            <div id="data_example15" swa="Present FROM ../../data/exampledata_list.json"></div>
+            <div id="data_example25" swa="Present FROM ../../data/concepts/data_example25.json"></div>
 
             <a href="3_data.html">Back to data overview</a>
         </article>
