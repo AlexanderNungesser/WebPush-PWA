@@ -27,9 +27,13 @@
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
             <h1 class="uk-article-title">Data Example 5: Data from ical file</h1>
+            <p>SWAC can work with files in ical format, the standard format for calendars. Each event is delivered as one dataset.
+                <br>All normal and recurring events are supported.
+                <br>With use of filter=endDate,lt,MY-DATE you can decide up to wich date events should be used.
+                <br>With use of order=DESC|ASC,startDate you can order the events for your components.</p>
 
             <pre><code class="lang-html">
-&lt;div id="data_example4" swa="Present FROM ../../data/concepts/rss.xml"&gt;&lt;/div&gt;
+&lt;div id="data_example5" swa="Present FROM ../../data/concepts/rss.xml"&gt;&lt;/div&gt;
             </code></pre>
 
             <div id="data_example5" swa="Present FROM ../../data/concepts/data_example5.ics"></div>
