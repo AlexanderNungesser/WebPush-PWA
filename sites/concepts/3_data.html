@@ -200,8 +200,15 @@ SWAC_config.globalparams = {
 
             <table class="uk-table">
                 <tr><th>Parameter</th><th>Example</th><th>Explanation</th></tr>
-                <tr><td>&#123;&#123;date:m-X&#125;&zwnj;&#125;</td><td>{{date:m-1440}}</td><td>Replaced by the current date substracted with X seconds.</td></tr>
-                <tr><td>&#123;&#123;date:m+X&#125;&zwnj;&#125;</td><td>{{date:m+1440}}</td><td>Replaced by the current date added with X seconds.</td></tr>
+                <tr><td>&#123;&#123;date:now&#125;&zwnj;&#125;</td><td>{{date:min-30}}</td><td>Replaced by the current date and time.</td></tr>
+                <tr><td>&#123;&#123;date:min-X&#125;&zwnj;&#125;</td><td>{{date:min-30}}</td><td>Replaced by the current date substracted with X minutes.</td></tr>
+                <tr><td>&#123;&#123;date:min+X&#125;&zwnj;&#125;</td><td>{{date:min+30}}</td><td>Replaced by the current date added with X minutes.</td></tr>
+                <tr><td>&#123;&#123;date:h-X&#125;&zwnj;&#125;</td><td>{{date:h-12}}</td><td>Replaced by the current date substracted with X hours.</td></tr>
+                <tr><td>&#123;&#123;date:h+X&#125;&zwnj;&#125;</td><td>{{date:h+12}}</td><td>Replaced by the current date added with X hours.</td></tr>
+                <tr><td>&#123;&#123;date:day-X&#125;&zwnj;&#125;</td><td>{{date:day-14}}</td><td>Replaced by the current date substracted with X days.</td></tr>
+                <tr><td>&#123;&#123;date:day+X&#125;&zwnj;&#125;</td><td>{{date:day+14}}</td><td>Replaced by the current date added with X days.</td></tr>
+                <tr><td>&#123;&#123;date:mon-X&#125;&zwnj;&#125;</td><td>{{date:mon-12}}</td><td>Replaced by the current date substracted with X month.</td></tr>
+                <tr><td>&#123;&#123;date:mon+X&#125;&zwnj;&#125;</td><td>{{date:mon+12}}</td><td>Replaced by the current date added with X month.</td></tr>
             </table>
 
             <h3>Global filtering</h3>
