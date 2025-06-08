@@ -27,34 +27,24 @@
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
             <h1 class="uk-article-title">Data Example 10: Data with datasource configuration</h1>
-            <p>Global configuration in configuration.js:</p>
 
-<pre><code class="lang-javascript">
-SWAC_config.datasources = [
-    {
-        // Simple path as source for all CRUD operations, may a simple docroot path
-        url: "/SWAC/data/[fromName]"
-    },
-    {
-        // Complex configuration, may a REST interface path
-        url: "/SmartData/smartdata/[iface]/[fromName]?storage=smartmonitoring",
-        interfaces: {
-            get: ['GET','records'],         // When fetch a single dataset use method GET and replace [iface] with records
-            list: ['GET','records'],        // When fetch a list of datasets use method GET and replace [iface] with records
-            defs: ['GET','collection'],     // Get definitions on the data from collection interface (special of SmartData)
-            create: ['POST','records'],     // Create new datasets useing POST on the records path
-            update: ['PUT','records'],
-            delete: ['DELETE','records']
-        }
-    }
-];
-            </code></pre>
-            
-            <pre><code class="lang-html">
-&lt;div id="data_example10" swa="Present FROM tbl_observedobject"&gt;&lt;/div&gt;
-            </code></pre>
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example10" swa="Present FROM concepts/data_example10.json"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <p>Global configuration in configuration.js:</p>
+                <div id="data_example10_appconf_datasource" swa="Coder FROM ../../configuration.js"></div>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="data_example10_datasource" swa="Coder FROM ../../data/concepts/data_example10.json"></div>
+            </fieldset>
 
-            <div id="data_example10" swa="Present FROM tbl_observedobject"></div>
+            <div id="data_example10" swa="Present FROM concepts/data_example10.json"></div>
             <a href="3_data.html">Back to data overview</a>
         </article>
 

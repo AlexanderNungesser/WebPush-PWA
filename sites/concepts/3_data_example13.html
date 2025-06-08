@@ -28,11 +28,27 @@
             <a href="3_data.html">Back to data overview</a>
             <h1 class="uk-article-title">Data Example 13: Use multiple parameters</h1>
 
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example13" swa="Present FROM ../../data/concepts/data_example13.json WHERE filter=id,gt,3 AND filter=id,lt,6"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <p swac_lang="no_configuraton_needed">No configuration needed</p>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="data_example13_datasource" swa="Coder FROM ../../data/concepts/data_example13.json"></div>
+            </fieldset>
+            
+            
             <pre><code class="lang-html">
-&lt;div id="data_example13" swa="Present FROM tbl_observedobject WHERE filter=id,gt,5 AND filter=id,lt,10"&gt;&lt;/div&gt;
+&lt;div id="data_example13" swa="Present FROM tbl_observedobject WHERE filter=id,gt,2 AND filter=id,lt,6"&gt;&lt;/div&gt;
             </code></pre>
 
-            <div id="data_example13" swa="Present FROM tbl_observedobject WHERE filter=id,gt,5 AND filter=id,lt,10"></div>
+            <div id="data_example13" swa="Present FROM ../../data/concepts/data_example13.json WHERE filter=id,gt,2 AND filter=id,lt,6"></div>
 
             <a href="3_data.html">Back to data overview</a>
         </article>

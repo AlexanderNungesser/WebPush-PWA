@@ -27,13 +27,24 @@
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
             <h1 class="uk-article-title">Data Example 12: Use parameters from page URL</h1>
-            <p>Note: <a href="3_data.html?id=1">Call this page with ?id=1</a> to show the effect.</p>
+            <p>Note: <a href="3_data_example12.html?id=1">Call this page with ?id=1</a> to show the effect.</p>
 
-            <pre><code class="lang-html">
-&lt;div id="data_example6" swa="Present FROM observedobject WHERE filter=id,eq,&#123;&#123;id&#125;&#125;"&gt;&lt;/div&gt;
-            </code></pre>
-
-            <div id="data_example12" swa="Present FROM tbl_observedobject WHERE filter=id,eq,{{id}}"></div>
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example12" swa="Present FROM ../../data/concepts/data_example12.json WHERE filter=id,eq,&#123;&#123;id&#125;&#125;"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <p swac_lang="no_configuraton_needed">No configuration needed</p>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="data_example12_datasource" swa="Coder FROM ../../data/concepts/data_example12.json"></div>
+            </fieldset>
+            
+            <div id="data_example12" swa="Present FROM ../../data/concepts/data_example12.json WHERE filter=id,eq,{{id}}"></div>
 
             <a href="3_data.html">Back to data overview</a>
         </article>

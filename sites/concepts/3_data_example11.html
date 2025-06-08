@@ -27,12 +27,26 @@
         <article class="uk-article">
             <a href="3_data.html">Back to data overview</a>
             <h1 class="uk-article-title">Data Example 11: Get data with parameters</h1>
+            <p>Data can be fetched useing parameters with the WHERE clause. All parameters 
+            after WHERE are added to the HTTP request as URL parameters. There are some 
+            parameters interpreted by SWAC when the data API does not support them.</p>
+            
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="data_example11" swa="Present FROM ../../data/concepts/data_example11.json WHERE filter=id,eq,1"&gt;&lt;/div&gt;
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <p swac_lang="no_configuraton_needed">No configuration needed</p>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="data_example11_datasource" swa="Coder FROM ../../data/concepts/data_example11.json"></div>
+            </fieldset>
 
-            <pre><code class="lang-html">
-&lt;div id="data_example11" swa="Present FROM tbl_observedobject WHERE filter=id,eq,1"&gt;&lt;/div&gt;
-            </code></pre>
-
-            <div id="data_example11" swa="Present FROM tbl_observedobject WHERE filter=id,eq,1"></div>
+            <div id="data_example11" swa="Present FROM ../../data/concepts/data_example11.json WHERE filter=id,eq,1"></div>
 
             <a href="3_data.html">Back to data overview</a>
         </article>

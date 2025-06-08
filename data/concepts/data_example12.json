@@ -1,0 +1,16 @@
+{
+    "records": [
+        {
+            "id": 1,
+            "name": "Datensatz 1",
+            "doubleval": 12.0123,
+            "intval": 1234
+        },
+        {
+            "id": 2,
+            "name": "Datensatz 2",
+            "doubleval": 19.0234,
+            "intval": 2345
+        }
+    ]
+}
