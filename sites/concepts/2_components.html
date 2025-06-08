@@ -15,7 +15,9 @@
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/libs/uikit/js/uikit-icons.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
-        <script src="../../js/concepts/2_components.js"></script>
+        <!--<script src="../../js/concepts/2_components_example5.js"></script>-->
+        <script src="../../js/concepts/2_components_example3.js"></script>
+
         <!-- Datasources -->
         <script src="../../data/exampledata_list.js"></script>
         <script src="../../data/exampleoptions.js"></script>
@@ -35,31 +37,34 @@
                 functions. There are two main kinds of components: views and 
                 algorithms.
                 <br>Components are bound to data, they work with the data thats
-                given to them on load or trough operations.
+                given to them. A component can load data at initialisation and 
+                has methods for adding and removeing data.
             </p>
-            
+
             <h2 class="uk-heading-divider">Views</h2>
             <p>Views representing data and / or allowing user interaction with 
-            the data. Views are created trough Requestor Elements. Those contain 
-            a swa attribute that defines the view component.</p>
+                the data. You can build up web applications useing components without
+                the need of writing javascript code.
+                <br>Views are created trough Requestor Elements. Those contain 
+                a swa attribute that defines the view component.</p>
             <pre><code class="lang-html">
-&lt;div id="present_example1" swa="Present FROM routes"&gt;&lt;/div&gt;
+&lt;div id="components_example1" swa="Present FROM ../../data/concepts/components_example1.json"&gt;&lt;/div&gt;
             </code></pre>
             Will create an presentation of example data.
 
-            <div id="present_example1" swa="Present FROM exampledata_list"></div>
-            
+            <div id="components_example1" swa="Present FROM ../../data/concepts/components_example1.json"></div>
+
             <h3>Useing view functions from custom code</h3>
             <p>Most functions of views are public accessable and useable from 
                 custom code.
-            <a href="../progusecomp.html">See details</a></p>
-            
+                <a href="../progusecomp.html">See details</a></p>
+
             <h2 class="uk-heading-divider">Algorithms</h2>
             <p>Algorithms purpose is to serve complex algorithms as standalone 
-            accessable parts, that come without predefined userinterface and can 
-            be integrated into views or custom code.
-            <br>Algorithms can share data with views, so that an algorithmical 
-            operation on the data is instantly shown to the user.</p>
+                accessable parts, that come without predefined userinterface and can 
+                be integrated into views or custom code.
+                <br>Algorithms can share data with views, so that an algorithmical 
+                operation on the data is instantly shown to the user.</p>
             <pre><code class="lang-html">
 // Load an algorithm
 window.swac.loadAlgorithm('AlgorithmsName','IdYouWantForTheAlgorithmInstance').then(function (requestor) {
@@ -69,35 +74,32 @@ window.swac.loadAlgorithm('AlgorithmsName','IdYouWantForTheAlgorithmInstance').t
     // Here the Algorithm can be used
 });
             </code></pre>
-            
-            <h2>Easy to customize</h2>
-            <p>The components are designed to be easy customizable. On the components page
-                are all options listed, that are currently available.</p>
+
+            <h2 class="uk-heading-divider">Component options</h2>
+            <p>There are many more options available at the components. On each 
+                components documentation page all options are listed.</p>
 
             <table class="uk-table">
-                <tr>
-                    <th>Component</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>Present</td>
-                    <td>Option "sortable" makes the presented objects can be sorted.</td>
-                </tr>
-                <tr>
-                    <td>Edit</td>
-                    <td>Option "allowAdd" aktivates the dialog for createing new data objects.</td>
-                </tr>
-                <tr>
-                    <td>Navigation</td>
-                    <td>Has no options</td>
-                </tr>
-                <tr>
-                    <td>...</td>
-                    <td>...</td>
-                </tr>
+                <tr><th>Option</th><th>Explanation</th></tr>
+                <tr class="optCol"><td class="optName"></td><td class="optDesc"></td></tr>
             </table>
+            <script type="module">
+                import View from '/SWAC/swac/View.js';
+                let v = new View();
+                for (let curOpt in v.desc.opts) {
+                    // Only options from view (begining with id 1100)
+                    if (curOpt >= 1000 && curOpt < 1100) {
+                        let optColTpl = document.querySelector('.optCol');
+                        let optColElem = optColTpl.cloneNode(true);
+                        optColElem.classList.remove('optCol');
+                        optColElem.querySelector('.optName').innerHTML = v.desc.opts[curOpt].name;
+                        optColElem.querySelector('.optDesc').innerHTML = v.desc.opts[curOpt].desc;
+                        optColTpl.parentElement.appendChild(optColElem);
+                    }
+                }
+            </script>
 
-            <h3>Customize by object</h3>
+            <h3>Setting options by global object</h3>
             <p>You just have to put the options into an global javascript object, that 
                 is named after the schema YOUR_TAG_ID_options.
                 <br>
@@ -107,85 +109,34 @@ window.swac.loadAlgorithm('AlgorithmsName','IdYouWantForTheAlgorithmInstance').t
                 The available options and a sample of useage you can find with the 
                 SWAC Debugger. Simply click on the debugger button and scrol down.</p>
 
-            <pre><code class="lang-javascript">
-window['customizable_default_options'] = {
-    showWhenNoData: true
-};
-        </code></pre>
+            <div id="components_example3_configuration" swa="Coder FROM ../../js/concepts/2_components_example3.js"></div>
+            <a href="3_components_example3.html">See working example here</a>
 
-            <pre><code class="lang-html">
-&lt;div id="customizable_default_empty" swa="Present FROM ../../data/exampledata_empty.json"&gt;&lt;/div&gt;
-        </code></pre>
-            <div>The next line a message for empty data should be visible:</div>
-            <div id="customizable_default_empty" swa="Present FROM ../../data/exampledata_empty.json">
-                Test
-            </div>
-            <div>Here the empty data requestor ends.</div>
-
-
-            <h3>Options from data</h3>
+            <h3>Setting options from data</h3>
             <p>Another way is to use data as options. Simply add the datasource name 
                 after the OPTIONS keyword in swa statement. It works the same way 
                 as getting data for your component.
                 <br> In this example we use a javascript file as datasource, but it can
                 be every datasource that is supported as datasource for displaying data.</p>
-
-            <pre><code class="lang-javascript">
-var exampleoptions = {
-    showWhenNoData: false,
-    sortable: false
-};
-        </code></pre>
-
+            <div id="components_example4_configuration" swa="Coder FROM ../../js/concepts/2_components_example4.json"></div>
             <pre><code class="lang-html">
-&lt;div id="customizable_data" swa="Present FROM exampledata_list OPTIONS exampleoptions"&gt;&lt;/div&gt;
+&lt;div id="components_example4" swa="Present FROM ../../data/concepts/components_example4.json OPTIONS ../../js/concepts/2_components_example4.json"&gt;&lt;/div&gt;
         </code></pre>
+            <a href="3_components_example4.html">See working example here</a>
 
-            <div id="customizable_data" swa="Present FROM exampledata_list OPTIONS exampleoptions"></div>
-
-            <h3>Global options</h3>
-            <p>SWAC defines some global options, that are available on each component.</p>
-
-            <table class="uk-table">
-                <tr><th>Available on</th><th>Option</th><th>Explanation</th></tr>
-                <tr><td>Component</td><td>attributeOrder (array)</td><td>Let you specify the order in which the attributes are used in the component. Not noted attributes are used after the specified.</td></tr>
-                <tr><td>Component</td><td>attributeDefaults (object)</td><td>Let you specify default values for missing data attributes.</td></tr>
-                <tr><td>Component</td><td>attributeRenames (Map)</td><td>Rename attributes from datasource to a name of your wish. Usefull if a component exepects a specific attribute name.</td></tr>
-                <tr><td>Component</td><td>reloadInterval</td><td>Time in seconds after that a component should automatically reload.</td></tr>
-                <tr><td>View</td><td>showWhenNoData (boolean)</td><td>When set to true the components layout is shown even if there is no data.</td></tr>
-                <tr><td>View</td><td>showWhenNoDataMsg (varchar)</td><td>Message to show, or key of language entry for a custom "There is no data" message.</td></tr>
-            </table>
-
-            <pre><code class="lang-javascript">
-var exampleoptions = {
-    showWhenNoData : false,
-    attributeOrder : [id,title,name],
-    attributeDefaults : new Map([['job', 'programmer']])
-};
-        </code></pre>
-
-            <h2>Plugins</h2>
+            <h2 class="uk-heading-divider">Plugins</h2>
             <p>SWAC components deliver a set of basic features that can be activated 
                 by options or automatically acitvated by data in the datasets. 
                 There are special sets of features "plugins" that can be activated by 
                 the options. See <a href="plugins.html">Plugins</a></p>
-            
-            <h2>Deactivate components by data</h2>
+
+            <h2 class="uk-heading-divider">Activate or deactivate components on conditions</h2>
             <p>When you want components only active in your app, when a condition is filled. 
                 You can use the activeOn option. It allowes definition of a datarequetor 
-            and the component is only is build up, when at least one dataset is returned.</p>
-            
-            <pre><code class="lang-javascript">
-var mycomp_options = {
-    activeOn: {
-        fromName: 'tbl_systemconfiguration', // Name of the datatable
-        fromWheres: {
-            filter: 'ckey,eq,func_objecttagging&filter=active,eq,true'
-        }
-    }
-};
-        </code></pre>
-            
+                and the component is only is build up, when at least one dataset is returned.</p>
+            <div id="components_example5_configuration" swa="Coder FROM ../../js/concepts/2_components_example5.js"></div>
+            <a href="3_components_example5.html">See working example here</a>
+
             <h2 class="uk-heading-divider">Next</h2>
             <p>See next how to use data with components at the <a href="3_data.html">data</a> page.</p>
         </article>
