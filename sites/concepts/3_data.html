@@ -364,11 +364,14 @@ SWAC_config.globalparams = {
             <h2 class="uk-heading-divider">CORS roundtrip</h2>
             <p>SWACs components are universal tools to show and manipulate data. So you can use many
                 datasources from anywhere on the web. But not all sources are directly accessable because of CORS.
-                <br>With the combination of SmartFile you can even add those data to your webapplication.
-                <br>If you give to any of the interfaces a datasource URL and SWAC odemtofoes the CORS error,
-                it can download the file over SmartFile and use the downloaded file instead of the original.
-                <br>Anything neccessery is to deploy the SmartFile on your server and configure the 
-                proxy option.</p>
+                <br>You can avoid CORS problems by useing a proxy.
+                <br><b>Build in php proxy</b>
+                <br>SWAC delivers a simple proxy php script in /swac/api/php/proxy.php.
+                <br><b>SmartFile</b>
+                <br>SmartFile is a java based File downloader and manager you can use with JavaEE servers.
+                <br>
+                <br>With configuration of the proxy option. The proxy is automatically used if a cors error is detected.
+                <br>Of caouse you can use the proxy directly in FROM clause if you know your datasource is CORS activated.</p>
 
             <pre><code class="lang-javascript">
 var SWAC_config = {

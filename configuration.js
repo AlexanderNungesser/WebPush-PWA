@@ -23,7 +23,7 @@ var SWAC_config = {
         {
             url: "/SWACdoc/data/[fromName]"
         },
-        // Used for SmartData REST data sources
+                // Used for SmartData REST data sources
 //        {
 //            url: "/SmartData/smartdata/[iface]/[fromName]?storage=smartmonitoring",
 //            interfaces: {
@@ -38,7 +38,8 @@ var SWAC_config = {
 //        }
     ],
     // Activate for corsavoid mode, see documentation for details
-//    corsavoidurl: 'http://localhost:8080/SmartFile/smartfile/file/download?filespace=map_pictures_Gewaesser&url=%url%',
+//    proxy: 'http://localhost:8080/SmartFile/smartfile/file/download?filespace=map_pictures_Gewaesser&url=%url%',
+    proxy: '/cors.php?url=%url%',
     intallable: true,
     progressive: {
         active: false,
