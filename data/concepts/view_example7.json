@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "name": "Dataset 1"
+    },
+    {
+        "id": 2,
+        "name": "Dataset 1.1",
+        "parent": 1
+    },
+    {
+        "id": 3,
+        "name": "Dataset 1.2",
+        "parent": 1
+    },
+    {
+        "id": 4,
+        "name": "Dataset 1.2.1",
+        "parent": 3
+    },
+    {
+        "id": 5,
+        "name": "Dataset 1.3",
+        "parent": 1
+    },
+    {
+        "id": 6,
+        "name": "Dataset 1.4",
+        "parent": 1
+    },
+    {
+        "id": 7,
+        "name": "Dataset 1.4.1",
+        "parent": 6
+    }
+]

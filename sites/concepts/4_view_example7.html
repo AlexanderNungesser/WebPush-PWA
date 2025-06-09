@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SWAC - View - Example 7: Hierarchical ordering</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../files/icons/32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../files/icons/16x16.png">
+        <link rel="stylesheet" type="text/css" href="../../css/global.css">
+        <noscript>
+        <link rel="stylesheet" type="text/css" href="../../css/noscript.css">
+        </noscript>
+
+        <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
+        <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
+        <script src="/SWAC/swac/swac.js" type="module"></script>
+    </head>
+    <body>
+        <header id="head_navigation" swa="Navigation FROM ../../data/routes.json"></header>
+        <noscript>
+        <div class="noscript_nav">
+            <a href="sitemap.html" class="uk-button uk-button-primary">Sitemap</a>
+            <br>Bitte aktiviere Javascript, um die bestmögliche Ansicht zu haben. / Please activate Javascript for the best experience.
+        </div>
+        </noscript>
+
+        <article class="uk-article">
+            <a href="3_data.html">Back to data overview</a>
+            <h1 class="uk-article-title">View Example 7: Hierarchical ordering</h1>
+            <p>SWAC has the ability to order outputs from datasets hierarchcally.
+                <br>To activate this functionality there are four components needed.
+                <br>1. swac_id attribute. This attribute must be noted at the tag that can be the parent. It contains the id of the dataset.
+                <br>2. swac_parent. This attribute must be noted at the tag. It contains the id of the parent dataset.
+                <br>3. swac_forChilds. This class declears an element as "use this if there are childs and put the childs into there"
+                <br>4. swac_child. This class declares an element as "use this tag as representation, if the set is used as child".
+            </p>
+
+            <fieldset>
+                <legend>VIEW-Requestor</legend>
+                <pre><code class="lang-html">
+&lt;div id="view_example7" swa="Present FROM ../../data/concepts/view_example7.json"&gt;
+    &lt;ol&gt;
+        &lt;li class="swac_repeatForSet" swac_id="{id}" swac_parent="{parent}"&gt;
+            {name}
+            &lt;ol class="swac_forChilds"&gt;
+                &lt;li class="swac_child" swac_id="{id}" swac_parent="{parent}"&gt;
+                    > {name}
+                    &lt;ol class="swac_forChilds"&gt;
+                        &lt;li class="swac_child" swac_id="{id}" swac_parent="{parent}"&gt;
+                            >> {name}
+                        &lt;/li&gt;
+                    &lt;/ol&gt;
+                &lt;/li&gt;
+            &lt;/ol&gt;
+       &lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;  
+        </code></pre>
+            </fieldset>
+            <fieldset>
+                <legend>CONFIGURATION</legend>
+                <p swac_lang="no_configuraton_needed">No configuration needed</p>
+            </fieldset>
+            <fieldset>
+                <legend>DATASOURCE</legend>
+                <div id="view_example7_datasource" swa="Coder FROM ../../data/concepts/view_example7.json"></div>
+            </fieldset>
+
+            <div id="view_example7" swa="Present FROM ../../data/concepts/view_example7.json">
+                <ol>
+                    <li class="swac_repeatForSet" swac_id="{id}" swac_parent="{parent}">
+                        {name}
+                        <ol class="swac_forChilds">
+                            <li class="swac_child" swac_id="{id}" swac_parent="{parent}">
+                                > {name}
+                                <ol class="swac_forChilds">
+                                    <li class="swac_child" swac_id="{id}" swac_parent="{parent}">
+                                        >> {name}
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+
+            <a href="3_data.html">Back to data overview</a>
+        </article>
+
+        <footer>
+            <a href="about/privacy.html">Privacy policy / Datenschutzerklärung</a>
+            <a href="about/imprint.html">Imprint / Impressum</a>
+            <a class="toplink" href="#">Top</a>
+        </footer>
+    </body>
+</html>
