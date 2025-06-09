@@ -4,6 +4,6 @@
         "name": "Dataset 1",
         "image": "../../content/mediaexamples/example.jpg",
         "audio": "../../content/mediaexamples/example.mp3",
-        "video": "../../content/mediaexamples/example.mkv"
+        "video": "../../content/mediaexamples/example.mp4"
     }
 ]
