@@ -72,8 +72,8 @@ window['mycomp_options] = {
             <p>Views have some global options that are available on each view. 
                 These options are setable like the component options.</p>
             <table class="uk-table">
-                <tr><th>Option</th><th>Explanation</th></tr>
-                <tr class="optCol"><td class="optName"></td><td class="optDesc"></td></tr>
+                <tr><th>Option</th><th>Explanation</th><th>Example</th></tr>
+                <tr class="optCol swac_dontdisplay"><td class="optName"></td><td class="optDesc"></td><td><pre><code class="optExample"></code></pre></td></tr>
             </table>
             <script type="module">
                 import View from '/SWAC/swac/View.js';
@@ -84,8 +84,10 @@ window['mycomp_options] = {
                         let optColTpl = document.querySelector('.optCol');
                         let optColElem = optColTpl.cloneNode(true);
                         optColElem.classList.remove('optCol');
+                        optColElem.classList.remove('swac_dontdisplay');
                         optColElem.querySelector('.optName').innerHTML = v.desc.opts[curOpt].name;
                         optColElem.querySelector('.optDesc').innerHTML = v.desc.opts[curOpt].desc;
+                        optColElem.querySelector('.optExample').innerHTML = JSON.stringify(v.desc.opts[curOpt].example);
                         optColTpl.parentElement.appendChild(optColElem);
                     }
                 }
