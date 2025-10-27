@@ -24,6 +24,7 @@ self.addEventListener('install', function (evt) {
         '/SWAC/swac/libs/uikit/js/uikit.min.js',
         '/SWAC/swac/libs/uikit/css/uikit.min.css',
         '/SWAC/swac/libs/uikit/js/uikit-icons.min.js',
+        '/SWAC/swac/WebPush.js',
         '/SWAC/swac/Msg.js',
         '/SWAC/swac/Language.js',
         '/SWAC/swac/ViewHandler.js',
@@ -558,13 +559,26 @@ function sendMessageToPages(msg, toFocused = true) {
 /**
  * Called when a push notification is coming in
  * 
- * @param {PushNotificationEvent} evt Event with push notification data
+ * @param {PushNotificationEvent} event Event with push notification data
  */
-self.addEventListener('push', function (evt) {
-    console.log('ServicewWrker: Recived push message', evt);
-    // Show notification to user
-    var options = event.data.json();
-    evt.waitUntil(self.registration.showNotification(options.title, options));
+self.addEventListener('push', function (event) {
+    console.log('[Service Worker] Push erhalten:', event);
+
+    let data = {};
+    try {
+        data = event.data ? event.data.json() : {};
+    } catch (e) {
+        console.error('Fehler beim Lesen der Push-Daten:', e);
+    }
+
+    const title = data.title || 'Test Push';
+    const body = data.body || 'Dies ist eine Testnachricht.';
+    const options = {
+        body: body,
+        icon: '/WebPush/imgs/taube_logo.png'
+    };
+
+    event.waitUntil(self.registration.showNotification(title, options));
 });
 
 // Below for future use

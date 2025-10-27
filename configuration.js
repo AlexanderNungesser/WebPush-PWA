@@ -42,8 +42,8 @@ var SWAC_config = {
     proxy: '/cors.php?url=%url%',
     intallable: true,
     progressive: {
-        active: false,
-        supportpush: false,
+        active: true,
+        supportpush: true,
         // Add custom files here that are not cached automatically
         cachefiles: [
             '/SWAC/jpars/Jpars.html'
