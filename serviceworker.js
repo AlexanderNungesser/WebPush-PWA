@@ -20,6 +20,7 @@ self.addEventListener('install', function (evt) {
     precacheFiles([
         'configuration.js',
         '/favicon.ico',
+        '/img/logo.png',
         '/SWAC/swac/swac.js',
         '/SWAC/swac/libs/uikit/js/uikit.min.js',
         '/SWAC/swac/libs/uikit/css/uikit.min.css',
@@ -277,7 +278,7 @@ async function precachePage(url, level = 0, basePath) {
                         if (curSourceTpl.interfaces && curSourceTpl.interfaces.get) {
                             testurl = testurl.replace('[iface]', curSourceTpl.interfaces.get);
                         }
-                        let resp = await fetch(testurl, {method: "HEAD"});
+                        let resp = await fetch(testurl, { method: "HEAD" });
                         if (resp.status < 400) {
                             curSource = testurl;
                             break;
@@ -292,7 +293,7 @@ async function precachePage(url, level = 0, basePath) {
                     curSource = curSWAFrom;
                 }
 
-                let resp = await fetch(curSource, {method: "HEAD"});
+                let resp = await fetch(curSource, { method: "HEAD" });
                 if (resp.status < 400) {
                     precacheFiles([curSource]);
                 } else {
@@ -303,7 +304,7 @@ async function precachePage(url, level = 0, basePath) {
             console.error('TEST ERROR ', e);
         }
 
-}
+    }
 }
 
 function precacheFilesFromConfig(files) {
@@ -412,7 +413,7 @@ async function firstFromCacheThenNetwork(request) {
     console.log('ServiceWorker: Did not found >' + request.url + '< from cache or network. And there is no fallback.');
     return new Response('Network error happened', {
         status: 408,
-        headers: {'Content-Type': 'text/plain'}
+        headers: { 'Content-Type': 'text/plain' }
     });
 }
 
@@ -452,7 +453,7 @@ async function firstFromNetworkThenCache(request) {
         // return a Response object
         return new Response('Network error happened', {
             status: 408,
-            headers: {'Content-Type': 'text/plain'}
+            headers: { 'Content-Type': 'text/plain' }
         });
     }
 }
@@ -575,7 +576,7 @@ self.addEventListener('push', function (event) {
     const body = data.body || 'Dies ist eine Testnachricht.';
     const options = {
         body: body,
-        icon: '/WebPush/imgs/taube_logo.png'
+        icon: './img/logo.png'
     };
 
     event.waitUntil(self.registration.showNotification(title, options));
