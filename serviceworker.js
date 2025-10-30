@@ -567,24 +567,51 @@ self.addEventListener('push', function (event) {
 
     let data = {};
     try {
-        data = event.data ? event.data.json() : {};
+        if (event.data) {
+            try {
+                data = event.data.json();
+            } catch (e) {
+                data = { body: event.data.text() };
+            }
+        }
     } catch (e) {
-        console.error('Fehler beim Lesen der Push-Daten:', e);
+        console.error('[Service Worker] Fehler beim Lesen der Push-Daten:', e);
     }
 
     const title = data.title || 'Test Push';
-    const body = data.body || 'Dies ist eine Testnachricht.';
     const options = {
-        body: body,
-        icon: './img/logo.png'
+        body: data.body || 'Dies ist eine Testnachricht.',
+        icon: data.icon || '/img/logo.png',
+        data: data.url || '/WebPush-PWA',
+        actions: data.actions || []
     };
+
+    console.log('[Service Worker] Zeige Benachrichtigung:', title, options);
 
     event.waitUntil(self.registration.showNotification(title, options));
 });
 
 // Below for future use
-self.addEventListener('notificationclick', function (evt) {
-    console.log('Serviceworker notificationclick event!');
+self.addEventListener('notificationclick', event => {
+    console.log('[Service Worker] Notification wurde angeklickt');
+    event.notification.close();
+
+    // Optional: Öffne URL, falls im Payload enthalten
+    const targetUrl = event.notification.data || '/';
+    event.waitUntil(
+        clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
+            // Falls Tab schon offen → Fokus
+            for (const client of windowClients) {
+                if (client.url === targetUrl && 'focus' in client) {
+                    return client.focus();
+                }
+            }
+            // Sonst neuen Tab öffnen
+            if (clients.openWindow) {
+                return clients.openWindow(targetUrl);
+            }
+        })
+    );
 });
 
 self.addEventListener('notificationclose', function (evt) {
