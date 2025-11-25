@@ -2,7 +2,7 @@ let serviceworker_version = 'a1';
 // Import configuration
 self.importScripts('configuration.js');
 //import localforage lib, this libs provides an api for easy key-value indexedDB access
-self.importScripts(SWAC_config.swac_root + '/swac/libs/localforage/localforage.min.js');
+self.importScripts('/SWAC/swac/libs/localforage/localforage.min.js');
 
 /**
  * event listener for the install event 
@@ -10,16 +10,16 @@ self.importScripts(SWAC_config.swac_root + '/swac/libs/localforage/localforage.m
 self.addEventListener('install', function (evt) {
     console.log('SWAC serviceworker is installing...');
     // Add swac.js (not in core components because it woul load itself)
-    SWAC_config.coreComponents.push(SWAC_config.swac_root + "/swac/swac.js");
+    SWAC_config.coreComponents.push('/SWAC/swac/swac.js');
     // Add localforage script used by serviceworker
-    SWAC_config.coreComponents.push(SWAC_config.swac_root + '/swac/libs/localforage/localforage.min.js');
+    SWAC_config.coreComponents.push('/SWAC/swac/libs/localforage/localforage.min.js');
     // Add default pages
     SWAC_config.coreComponents.push(SWAC_config.app_root + "/js/offline.js");
     SWAC_config.coreComponents.push(SWAC_config.app_root + "/sites/offline.html");
     SWAC_config.coreComponents.push(SWAC_config.app_root + "/data/offline.json");
 
     // Install used components
-    self.importScripts(SWAC_config.swac_root + "/swac/Component.js");
+    self.importScripts('/SWAC/swac/Component.js');
     for (let i in SWAC_config.progressive.components) {
         precacheComponent(SWAC_config.progressive.components[i]);
     }
@@ -76,7 +76,7 @@ function precache(files) {
  * @returns {undefined}
  */
 function precacheComponent(componentName) {
-    let component_root = SWAC_config.swac_root + '/swac/components/'
+    let component_root = '/SWAC/swac/components/'
             + componentName + '/';
     let component_url = component_root + componentName + '.js';
     // Include main script

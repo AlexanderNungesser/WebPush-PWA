@@ -15,7 +15,9 @@ var SWAC_config = {
     /* Debugging mode for output of SWAC NOTICE and SWAC WARNING messages */
     debugmode: false,
     debug: '',
+    //swac_root: '/SWAC/',
     // Backend connection settings
+    installable: true,
     datasources: [
         {
             url: "/WebPush-PWA/data/[fromName]"
@@ -34,24 +36,28 @@ var SWAC_config = {
     ],
     // Options for progressive webapp
     progressive: {
-        active: false,
+        active: true,
+        supportpush: true,
         cachetimeout: 30, // Timeout in days after that a reload should be done or unused pages leave the cache
+        cachefiles: [
+            '/SWAC/jpars/Jpars.html'
+        ],
         precache: [
             // List files here that should be available offline for the user after first visit
             // All links below are interpreted from the app_root (e.g. /SWACtemplate)
-            '/css/global.css',
-            '/sites/index.html',
-            '/css/index.css',
+            //'/css/global.css',
+            //'/sites/index.html',
+            //'/css/index.css',
             // basic content (design pictures)
-            '/content/logo.png',
+            //'/content/logo.png',
             // default data
-            '/manifest.json',
-            '/configuration.js',
-            '/data/routes.js'
+            //'/manifest.json',
+            //'/configuration.js',
+            //'/data/routes.js'
         ],
         // List components here that should be precached
         components: [
-            'Navigation'
+           // 'Navigation'
         ]
     },
     // Register OnlineReactions to be used here
