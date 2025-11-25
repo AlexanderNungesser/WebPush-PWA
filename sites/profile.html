@@ -5,8 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" href="content/logo.png">
-        <link rel="stylesheet" type="text/css" href="css/global.css">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="../css/global.css">
         <link rel="manifest" type="text/json" href="site.webmanifest">
         <noscript>
         <link rel="stylesheet" type="text/css" href="css/noscript.css">
@@ -16,24 +15,12 @@
         <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
         <script src="/SWAC/swac/libs/uikit/js/uikit-icons.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
-        <script src="./js/index.js" type="module"></script>
-        <script src="./js/navigation.js" type="module"></script>
+        <script src="../js/navigation.js" type="module"></script>
         <script src="/SWAC/swac/legacybrowser.js"></script>
     </head>
     <body>
         <div id="content">
-            <h1>Web Push Test</h1>
-            <div id="permission_popup">
-                <div class="overlay"></div>
-                <div class="popup">
-                    <p>Please allow notifications to receive test push notifications.</p>
-                    <div class="button_row">
-                        <button class="uk-button uk-button-default" id="allow">Allow</button>
-                        <button class="uk-button uk-button-danger" id="deny">Deny</button>
-                    </div>
-                </div>
-            </div>
-            <button class="uk-button" id="send_btn">Send Test Notification</button>
+            <h1>Profile</h1>
         </div>
         <div id="navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush_mobile"></div>
     </body>

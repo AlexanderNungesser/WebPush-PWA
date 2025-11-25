@@ -13,12 +13,12 @@ var SWAC_config = {
     // Time nodifications should be displayed in miliseconds
     notifyDuration: 5000,
     /* Debugging mode for output of SWAC NOTICE and SWAC WARNING messages */
-    debugmode: true,
+    debugmode: false,
     debug: '',
     // Backend connection settings
     datasources: [
         {
-            url: "/SWACtemplate/data/[fromName]"
+            url: "/WebPush-PWA/data/[fromName]"
         },
         {
             url: "/SmartDataAirquality/smartdata/[iface]/[fromName]?storage=gamification",
@@ -56,10 +56,10 @@ var SWAC_config = {
     },
     // Register OnlineReactions to be used here
     onlinereactions: [
-//    {
-//      path: SWAC_config.swac_root + '/swac/components/Upload/UploadOnReact.js',
-//      config: {}
-//    }
+        //    {
+        //      path: SWAC_config.swac_root + '/swac/components/Upload/UploadOnReact.js',
+        //      config: {}
+        //    }
     ]
 };
 
@@ -78,8 +78,8 @@ user_options.loggedinRedirects.set('user_example3.html', '../sites/user_example2
 
 // Links for footer navigation
 var footerlinks = [
-    {id: 1, rfrom: "*", rto: "datenschutz.html", name: "Datenschutzerklärung"},
-    {id: 2, rfrom: "*", rto: "impressum.html", name: "Impressum"},
-    {id: 3, rfrom: "*", rto: "haftung.html", name: "Haftungsausschluss"},
-    {id: 4, rfrom: "*", rto: "http://git01-ifm-min.ad.fh-bielefeld.de/scl/2015_03_SCL_SmartMonitoring_Frontend/wikis/home", name: "Über SmartMonitoring"}
+    { id: 1, rfrom: "*", rto: "datenschutz.html", name: "Datenschutzerklärung" },
+    { id: 2, rfrom: "*", rto: "impressum.html", name: "Impressum" },
+    { id: 3, rfrom: "*", rto: "haftung.html", name: "Haftungsausschluss" },
+    { id: 4, rfrom: "*", rto: "http://git01-ifm-min.ad.fh-bielefeld.de/scl/2015_03_SCL_SmartMonitoring_Frontend/wikis/home", name: "Über SmartMonitoring" }
 ];

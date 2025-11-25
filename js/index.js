@@ -1,9 +1,8 @@
-import WebPush from './../SWAC/swac/WebPush.js';
+import WebPush from './../../SWAC/swac/WebPush.js';
 
 document.addEventListener('DOMContentLoaded', async (event) => {
     const webpush = new WebPush();
-
-    document.getElementById("permission_container").style.display = 'block';
+    document.getElementById("permission_popup").style.display = 'block';
 
     const handlePermissionClick = async () => {
         try {
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         } catch (err) {
             console.error("Fehler bei Permission/Subscription:", err);
         } finally {
-            document.getElementById("permission_container").style.display = 'none';
+            document.getElementById("permission_popup").style.display = 'none';
         }
     };
 
