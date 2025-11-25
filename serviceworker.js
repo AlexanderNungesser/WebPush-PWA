@@ -341,12 +341,51 @@ function sendMessageToPages(message) {
 //    }
 }
 
+/**
+ * Called when a push notification is coming in
+ * 
+ * @param {PushNotificationEvent} event Event with push notification data
+ */
+self.addEventListener('push', function (event) {
+    console.log('[Service Worker] Push erhalten:', event);
 
-// Below for future use
-self.addEventListener('push', function (evt) {
-    console.log('Serviceworker push event!');
+    let data = {};
+    try {
+        if (event.data) {
+            try {
+                data = event.data.json();
+            } catch (e) {
+                data = { body: event.data.text() };
+            }
+        }
+    } catch (e) {
+        console.error('[Service Worker] Fehler beim Lesen der Push-Daten:', e);
+    }
+    console.log('[Service Worker] Push-Daten:', data);
+    const title = data.title || 'Test Push';
+    const options = {
+        body: data.body ?? 'This is a test message.',
+        icon: data.icon_url ?? undefined,
+        image: data.image_url ?? undefined,
+        badge: data.badge ?? '/favicon.ico',
+        lang: data.lang ?? '',
+        renotify: data.renotify ?? false,
+        requireInteraction: data.requireInteraction ?? false,
+        silent: data.silent ?? false,
+        tag: data.tag ?? undefined,
+        data: data.data ?? undefined,
+        timestamp: data.timestamp ?? Date.now(),
+        actions: data.actions ?? [],
+        vibrate: data.vibrate ?? undefined
+    };
+
+
+    console.log('[Service Worker] Zeige Benachrichtigung:', title, options);
+
+    event.waitUntil(self.registration.showNotification(title, options));
 });
 
+// Below for future use
 self.addEventListener('notificationclick', function (evt) {
     console.log('Serviceworker notificationclick event!');
 });
