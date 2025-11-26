@@ -1,9 +1,3 @@
-#send_btn {
-    height: 80%;
-    width: 100%;
-    margin: auto;
-}
-
 #permission_popup {
     display: none;
     position: fixed;
@@ -42,4 +36,9 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+#leaderboard {
+    height: 100%;
+    overflow: scroll;
 }

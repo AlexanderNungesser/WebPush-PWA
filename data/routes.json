@@ -14,5 +14,13 @@
         "name": "profile",
         "icon": "user",
         "parent": ""
+    },
+    {
+        "id": 20,
+        "rfrom": "*",
+        "rto": "sendDummy.html",
+        "name": "sendDummy",
+        "icon": "comment",
+        "parent": ""
     }
 ]

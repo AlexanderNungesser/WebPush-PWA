@@ -23,10 +23,19 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
     document.getElementById("allow").addEventListener('click', handlePermissionClick);
     document.getElementById("deny").addEventListener('click', handlePermissionClick);
-
-    document.getElementById("send_btn").addEventListener('click', async () => {
-        console.log("Send Test Notification Button pressed");
-        const res = await webpush.send();
-        console.log("Send result:", res);
-    });
 });
+
+document.addEventListener("swac_components_complete", () => {
+    setPlaceHolderImages("content/logo_round.png");
+})
+
+function setPlaceHolderImages(path) {
+    console.log("hier")
+    const images = document.querySelectorAll("td img");
+
+    for (let img of images) {
+        if (!img.getAttribute("src")) {
+            img.src = path;
+        }
+    }
+}

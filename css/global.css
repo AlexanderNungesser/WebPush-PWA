@@ -31,6 +31,7 @@ body {
 
 #content {
     height: 87%;
+    overflow: hidden;
 }
 
 #navigation {

@@ -25,19 +25,19 @@
             <img src="content/logo.png" alt="Logo" class="header_logo">
             <h1 class="header_title">WebPush PWA</h1>
         </div>
-        <div id="content">
-            <div id="permission_popup">
-                <div class="overlay"></div>
-                <div class="popup">
-                    <p>Please allow notifications to receive test push notifications.</p>
-                    <div class="button_row">
-                        <button class="uk-button uk-button-default" id="allow">Allow</button>
-                        <button class="uk-button uk-button-danger" id="deny">Deny</button>
-                    </div>
-                </div>
-            </div>
-            <button class="uk-button" id="send_btn">Send Test Notification</button>
+        <div id="content">  
+            <div id="leaderboard" swa="Present FROM groups WHERE order=xp,DESC TEMPLATE present_leaderboard"></div>
         </div>
         <div id="navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush_mobile"></div>
+        <div id="permission_popup">
+            <div class="overlay"></div>
+            <div class="popup">
+                <p>Please allow notifications to receive test push notifications.</p>
+                <div class="button_row">
+                    <button class="uk-button uk-button-default" id="allow">Allow</button>
+                    <button class="uk-button uk-button-danger" id="deny">Deny</button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

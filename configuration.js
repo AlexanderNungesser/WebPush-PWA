@@ -20,7 +20,8 @@ var SWAC_config = {
     installable: true,
     datasources: [
         {
-            url: "/WebPush-PWA/data/[fromName]"
+            url: "/WebPush-PWA/data/[fromName]",
+            exclude: ['groups']
         },
         {
             url: "/SmartDataAirquality/smartdata/[iface]/[fromName]?storage=gamification",
@@ -57,7 +58,7 @@ var SWAC_config = {
         ],
         // List components here that should be precached
         components: [
-           // 'Navigation'
+            // 'Navigation'
         ]
     },
     // Register OnlineReactions to be used here
