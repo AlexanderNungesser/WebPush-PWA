@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>WebPush-PWA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" type="image/png" href="content/logo.png">
+        <link rel="stylesheet" type="text/css" href="../css/global.css">
+        <link rel="stylesheet" type="text/css" href="../css/sendDummy.css">
+        <link rel="manifest" type="text/json" href="manifest.json">
+        <noscript>
+        <link rel="stylesheet" type="text/css" href="./css/noscript.css">
+        </noscript>
+
+        <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
+        <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
+        <script src="/SWAC/swac/libs/uikit/js/uikit-icons.min.js"></script>
+        <script src="/SWAC/swac/swac.js" type="module"></script>
+        <script src="../js/sendDummy.js" type="module"></script>
+        <script src="../js/navigation.js" type="module"></script>
+        <script src="/SWAC/swac/legacybrowser.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <img src="../content/logo.png" alt="Logo" class="header_logo">
+            <h1 class="header_title">WebPush PWA</h1>
+        </div>
+        <div id="content">
+            <button class="uk-button" id="send_btn">Send Test Notification</button>
+        </div>
+        <div id="navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush_mobile"></div>
+    </body>
+</html>
