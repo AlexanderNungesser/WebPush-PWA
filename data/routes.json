@@ -2,7 +2,7 @@
     {
         "id": 1,
         "rfrom": "*",
-        "rto": "../index.html",
+        "rto": "leaderboard.html",
         "name": "leaderboard",
         "icon": "table",
         "parent": ""

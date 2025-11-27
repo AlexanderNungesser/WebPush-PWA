@@ -17,18 +17,9 @@
         <script src="/SWAC/swac/libs/uikit/js/uikit-icons.min.js"></script>
         <script src="/SWAC/swac/swac.js" type="module"></script>
         <script src="./js/index.js" type="module"></script>
-        <script src="./js/navigation.js" type="module"></script>
         <script src="/SWAC/swac/legacybrowser.js"></script>
     </head>
     <body>
-        <div id="header">
-            <img src="content/logo.png" alt="Logo" class="header_logo">
-            <h1 class="header_title">WebPush PWA</h1>
-        </div>
-        <div id="content">  
-            <div id="leaderboard" swa="Present FROM groups WHERE order=xp,DESC TEMPLATE present_leaderboard"></div>
-        </div>
-        <div id="navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush_mobile"></div>
         <div id="permission_popup">
             <div class="overlay"></div>
             <div class="popup">
@@ -36,6 +27,39 @@
                 <div class="button_row">
                     <button class="uk-button uk-button-default" id="allow">Allow</button>
                     <button class="uk-button uk-button-danger" id="deny">Deny</button>
+                </div>
+            </div>
+        </div>
+       <div id="login">
+            <div id="loginform_wrapper" class="hidden">
+                <h2>Login</h2>
+                <form id="loginForm" class="uk-form-stacked">
+                    <div class="uk-margin">
+                        <input id="username"
+                            name="username"
+                            type="text"
+                            placeholder="Username"
+                            class="uk-input"
+                            required>
+                    </div>
+
+                    <div class="uk-margin">
+                        <select name="group" id="selectGroup" class="uk-select" required>
+                            <option value="">Select Group</option>
+                        </select>
+                    </div>
+
+                    <div class="uk-margin">
+                        <button type="submit" class="uk-button uk-button-default">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div id="loading_screen" class="uk-card uk-text-center">
+                <div class="uk-margin-medium-bottom">
+                    <div uk-spinner="ratio: 5"></div>
+                </div>
+                <div>
+                    <span>Loading…</span>
                 </div>
             </div>
         </div>
