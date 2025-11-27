@@ -28,7 +28,7 @@
     min-width: 260px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-    z-index: 1600;
+    z-index: 2000;
 }
 
 .button_row {
@@ -42,12 +42,10 @@
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
-    z-index: 2;
+    z-index: 1000;
 }
 
 #loginform_wrapper,

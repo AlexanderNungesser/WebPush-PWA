@@ -46,7 +46,7 @@ async function checkSubscription() {
         document.getElementById("loginform_wrapper").classList.remove("hidden");
         document.getElementById("loading_screen").classList.add("hidden");
     } else {
-        localStorage.setItem("user_group_id", data.records[0].id);
+        localStorage.setItem("user_group_id", data.records[0].group_id);
         window.location.assign(`${window.location.origin}/WebPush-PWA/sites/leaderboard.html`);
     }
 }
