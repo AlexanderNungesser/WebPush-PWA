@@ -18,12 +18,17 @@
         <script src="/SWAC/swac/swac.js" type="module"></script>
         <script src="../js/leaderboard.js" type="module"></script>
         <script src="../js/navigation.js" type="module"></script>
+        <script src="../js/headerLoader.js"></script>
         <script src="/SWAC/swac/legacybrowser.js"></script>
     </head>
     <body>
         <div id="header">
             <img src="../content/logo.png" alt="Logo" class="header_logo">
-            <h1 class="header_title">WebPush PWA</h1>
+            <h1 id="group" class="header_title">WebPush PWA</h1>
+            <div class="header_right">
+                <span id="streak" class="right_text">Status</span>
+                <img src="../content/streak.png" alt="icon" class="streak_icon">
+            </div>
         </div>
         <div id="content">  
             <div id="leaderboard" swa="Present FROM groups WHERE order=xp,DESC TEMPLATE present_leaderboard"></div>

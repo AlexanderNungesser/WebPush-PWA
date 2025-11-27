@@ -12,7 +12,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* zentriert den Titel */
     background: #fff;
+    position: relative;
+    /* WICHTIG: ermöglicht absolute Positionierung */
 }
 
 .header_logo {
@@ -27,6 +30,22 @@ body {
     font-weight: bold;
     color: #333;
 }
+
+.header_right {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.streak_icon {
+    height: 22px;
+}
+
+
 
 
 #content {
