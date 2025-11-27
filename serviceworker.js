@@ -386,12 +386,25 @@ self.addEventListener('push', function (event) {
 });
 
 // Below for future use
-self.addEventListener('notificationclick', function (evt) {
+self.addEventListener('notificationclick', function (event) {
     console.log('Serviceworker notificationclick event!');
+    const notification = event.notification;
+    const action = event.action; 
+
+    if (!action) {
+        // Main-Click on Notification
+        handleMainClick(notification);
+    } else {
+        // Action-Click on Notification
+        handleActionClick(notification, action);
+    }
+
+    event.notification.close();
 });
 
 self.addEventListener('notificationclose', function (evt) {
     console.log('Serviceworker notificationclose event!');
+    handleCloseClick(evt.notification);
 });
 
 self.addEventListener('sync', function (evt) {
@@ -413,3 +426,51 @@ self.addEventListener('message', function (evt) {
 self.addEventListener('messageerror', function (evt) {
     console.log('Serviceworker messageerror event!');
 });
+
+async function handleMainClick(notification) {
+    console.log('Serviceworker handleMainClick!');
+    const notificationData = notification.data;
+    updateStatistics(notificationData, 'event_types', 'click');
+    
+}
+
+function handleActionClick(notification, action) {
+    console.log('Serviceworker handleActionClick! Action: ' + action);
+    const notificationData = notification.data;
+    updateStatistics(notificationData, 'actions', action);
+}
+
+function handleCloseClick(notification) {
+    console.log('Serviceworker handleCloseClick!');
+    const notificationData = notification.data;
+    updateStatistics(notificationData, 'event_types', 'close');
+}
+
+async function updateStatistics(notificationData, table, eventType) {
+    console.log('Serviceworker updateStatistics! EventType: ' + eventType);
+    if (notificationData && notificationData.history_id) {
+        const historyId = notificationData.history_id;
+        let response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/${table}?storage=gamification?filter=name,eq,${eventType}`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        });
+        if (!response.ok) {
+            console.error("Server error: " + response.status);
+        }
+        const data = await response.json();
+        if (data.records.length === 0) {
+            console.error("No event type '" + eventType + "' found.");
+            return;
+        }
+        const eventTypeId = data.records[0].id;
+
+        const idField = table.slice(0, -1) + '_id';
+        const payload = { history_id: historyId };
+        payload[idField] = eventTypeId;
+        const res = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/statistics?storage=gamification`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload)
+        });
+    }
+}
