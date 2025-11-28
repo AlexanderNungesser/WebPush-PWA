@@ -5,7 +5,7 @@ document.addEventListener('swac_components_complete', () => {
 async function setGroupInfo() {
     try {
         const group_id = localStorage.getItem("user_group_id");
-        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/groups/${group_id}?storage=gamification`);
+        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/group/${group_id}?storage=gamification`);
 
         if (!response.ok) {
             throw new Error('Error setting group header: ' + response.status);

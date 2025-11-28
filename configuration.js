@@ -21,7 +21,7 @@ var SWAC_config = {
     datasources: [
         {
             url: "/WebPush-PWA/data/[fromName]",
-            exclude: ['groups']
+            exclude: ['view_leaderboard']
         },
         {
             url: "/SmartDataAirquality/smartdata/[iface]/[fromName]?storage=gamification",

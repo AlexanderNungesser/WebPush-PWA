@@ -54,7 +54,7 @@ async function checkSubscription() {
 async function loadGroups() {
     const sel = document.getElementById("selectGroup");
     try {
-        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/groups?storage=gamification`);
+        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/group?storage=gamification`);
 
         if (!response.ok) {
             throw new Error("Server error: " + response.status);
