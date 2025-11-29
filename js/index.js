@@ -12,7 +12,7 @@ function askNotificationPermission() {
         checkSubscription();
         return;
     }
-    document.getElementById("permission_popup").style.display = 'block'
+    document.getElementById("popup").style.display = 'block'
     document.getElementById("allow").addEventListener('click', handlePermissionClick);
     document.getElementById("deny").addEventListener('click', handlePermissionClick);
 }
@@ -29,7 +29,7 @@ async function handlePermissionClick() {
     } catch (err) {
         console.error("Error at permission/subscription:", err);
     } finally {
-        document.getElementById("permission_popup").style.display = 'none';
+        document.getElementById("popup").style.display = 'none';
     }
 }
 

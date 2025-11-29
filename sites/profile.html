@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png" href="../content/logo.png">
         <link rel="stylesheet" type="text/css" href="../css/global.css">
+        <link rel="stylesheet" type="text/css" href="../css/profile.css">
         <link rel="manifest" type="text/json" href="../manifest.json">
         <noscript>
         <link rel="stylesheet" type="text/css" href="../css/noscript.css">
@@ -17,6 +18,7 @@
         <script src="/SWAC/swac/swac.js" type="module"></script>
         <script src="../js/navigation.js" type="module"></script>
         <script src="../js/headerLoader.js"></script>
+        <script src="../js/profile.js"></script>
         <script src="/SWAC/swac/legacybrowser.js"></script>
     </head>
     <body>
@@ -28,7 +30,26 @@
                 <img src="../content/streak.png" alt="icon" class="streak_icon">
             </div>
         </div>
-        <div id="content"> </div>
+        <div id="content"> 
+            <div id="profile-section" class="uk-flex uk-flex-middle uk-flex-center">    
+                <div id="level-text">Lvl 12</div>
+                <div class="profile-wrapper">
+                    <svg class="progress-ring" width="180" height="180">
+                        <circle class="progress-ring__bg" r="84" cx="90" cy="90"/>
+                        <circle class="progress-ring__progress" r="84" cx="90" cy="90" stroke-dasharray="528" stroke-dashoffset="528"/>
+                    </svg>
+                    <img src="../content/profile/profile_icon_4.png" id="profile-image"class=" uk-border-circle">
+                </div>
+            </div>
+            <div id="achievement-section" class="uk-section uk-section-default" style="min-height: 40vh;">
+            </div>
+        </div>
         <div id="navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush_mobile"></div>
-    </body>
+        <div id="popup">
+            <div id="popup-overlay"></div>
+            <div id="popup-content">               
+                <div id="present_pictures" swa="Present FROM group_picture TEMPLATE present_webPush_images"></div>
+            </div>
+        </div>
+    </body>  
 </html>

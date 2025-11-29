@@ -20,16 +20,6 @@
         <script src="/SWAC/swac/legacybrowser.js"></script>
     </head>
     <body>
-        <div id="permission_popup">
-            <div class="overlay"></div>
-            <div class="popup">
-                <p>Please allow notifications to receive test push notifications.</p>
-                <div class="button_row">
-                    <button class="uk-button uk-button-default" id="allow">Allow</button>
-                    <button class="uk-button uk-button-danger" id="deny">Deny</button>
-                </div>
-            </div>
-        </div>
        <div id="login">
             <div id="loginform_wrapper" class="hidden">
                 <h2>Login</h2>
@@ -60,6 +50,16 @@
                 </div>
                 <div>
                     <span>Loading…</span>
+                </div>
+            </div>
+        </div>
+        <div id="popup">
+            <div id="popup-overlay"></div>
+            <div id="popup-content">
+                <p>Please allow notifications to receive test push notifications.</p>
+                <div class="button_row">
+                    <button class="uk-button uk-button-default" id="allow">Allow</button>
+                    <button class="uk-button uk-button-danger" id="deny">Deny</button>
                 </div>
             </div>
         </div>

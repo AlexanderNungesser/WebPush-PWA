@@ -20,10 +20,6 @@ var SWAC_config = {
     installable: true,
     datasources: [
         {
-            url: "/WebPush-PWA/data/[fromName]",
-            exclude: ['view_leaderboard']
-        },
-        {
             url: "/SmartDataAirquality/smartdata/[iface]/[fromName]?storage=gamification",
             interfaces: {
                 get: ['GET', 'records'],
@@ -33,6 +29,10 @@ var SWAC_config = {
                 update: ['PUT', 'records'],
                 delete: ['DELETE', 'records']
             }
+        },
+        {
+            url: "/WebPush-PWA/data/[fromName]",
+            exclude: ['view_leaderboard']
         }
     ],
     // Options for progressive webapp
