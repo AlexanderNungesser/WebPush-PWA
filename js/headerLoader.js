@@ -4,7 +4,7 @@ window.addEventListener('group_reload', () => {
 
 async function setGroupInfo() {
     const groupDisplay = document.getElementById("group");
-    groupDisplay.textContent = groupData.name;
+    groupDisplay.textContent = groupData.group_name;
 
     const streakDisplay = document.getElementById("streak")
     streakDisplay.textContent = groupData.streak
