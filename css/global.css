@@ -16,7 +16,7 @@ body {
     position: relative;
 }
 
-.header_logo {
+#header_logo {
     height: 40px;
     position: absolute;
     left: 15px;
