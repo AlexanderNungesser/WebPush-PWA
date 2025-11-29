@@ -27,23 +27,30 @@
             <img src="../content/logo.png" alt="Logo" id="header_logo">
             <h1 class="header_title">Profile</h1>
             <div class="header_right">
-                <span id="streak" class="right_text"></span>
-                <img src="../content/streak.png" alt="icon" class="streak_icon">
+                <span id="header_streak" class="right_text"></span>
+                <img src="../content/streak.png" alt="icon" class="header_streak_icon">
             </div>
         </div>
         <div id="content"> 
-            <div id="profile-section" class="uk-flex uk-flex-middle uk-flex-center">    
-                <div id="level-text">Lvl 12</div>
+           <div id="profile-section" class="uk-flex uk-flex-middle uk-flex-center">    
                 <div class="profile-wrapper">
                     <svg class="progress-ring" width="180" height="180">
                         <circle class="progress-ring__bg" r="84" cx="90" cy="90"/>
                         <circle class="progress-ring__progress" r="84" cx="90" cy="90" stroke-dasharray="528" stroke-dashoffset="528"/>
                     </svg>
-                    <img src="../content/profile/profile_icon_4.png" id="profile-image" class=" uk-border-circle">
+                    <img src="../content/profile/profile_icon_4.png" id="profile-image" class=" uk-border-circle">      
+                    <div id="group_name"></div>
+                </div>
+                <div class="profile-side-info">
+                    <div class="side_info" id="level_wrapper"><span id="level">Lvl 12</span></div>
+                    <div class="side_info" id="streak_wrapper">
+                        <img src="../content/streak.png" id="streak_icon">
+                        <span id="streak"></span>
+                    </div>
                 </div>
             </div>
-            <div id="achievement-section" class="uk-section uk-section-default" style="min-height: 40vh;">
-            </div>
+        </div>
+        <div id="achievement-section" class="uk-section uk-section-default" style="min-height: 40vh;"></div>
         </div>
         <div id="navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush_mobile"></div>
         <div id="popup">

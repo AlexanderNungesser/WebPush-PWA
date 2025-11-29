@@ -1,13 +1,28 @@
 #profile-section {
-    padding-top: 5%;
-    min-height: 20%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 35%;
+    border-bottom: 1px solid #ddd;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    overflow: hidden;
+}
+
+.profile-side-info {
+    position: absolute;
+    left: calc(50% + 100px);
+    top: 40%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 15px;
 }
 
 
 .profile-wrapper {
+    margin-top: 5%;
     position: relative;
     width: 180px;
     height: 180px;
@@ -44,10 +59,55 @@
     min-height: 75%;
 }
 
-#level-text {
-    font-size: 1.2rem;
+#level_wrapper {
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #1e87f0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#level {
+    font-size: 1.3rem;
     font-weight: bold;
-    color: #1e87f0;
+}
+
+#group_name {
+    font-size: 2rem;
+    font-weight: bold;
     margin-bottom: 8px;
     text-align: center;
+}
+
+#streak_wrapper {
+    background: #f54b2c;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#streak_icon {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    padding: 2px;
+    margin-left: 5px;
+}
+
+#streak {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.side_info {
+    padding: 8px 16px;
+    color: white;
+    border-radius: 50% / 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    align-items: center
+}
+
+.side_info span {
+    line-height: 1;
 }

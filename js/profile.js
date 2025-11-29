@@ -10,7 +10,7 @@ document.addEventListener("swac_components_complete", () => {
 });
 
 window.addEventListener("group_reload", () => {
-    loadProfilePicture();
+    loadProfileInfos();
 });
 
 function setXPprogress() {
@@ -55,8 +55,10 @@ async function selectProfilePicture(id) {
     closePopup();
 }
 
-function loadProfilePicture() {
-    document.getElementById("profile-image").src = `../content/profile/${groupData.picture}`
+function loadProfileInfos() {
+    document.getElementById("profile-image").src = `../content/profile/${groupData.picture}`;
+    document.getElementById("group_name").textContent = groupData.group_name;
+    document.getElementById("streak").textContent = groupData.streak;
 }
 
 function openPopup() {
