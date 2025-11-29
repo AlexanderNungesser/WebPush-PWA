@@ -1,26 +1,11 @@
-document.addEventListener('swac_components_complete', () => {
+window.addEventListener('group_reload', () => {
     setGroupInfo();
 });
 
 async function setGroupInfo() {
-    try {
-        const group_id = localStorage.getItem("user_group_id");
-        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/group/${group_id}?storage=gamification`);
+    const groupDisplay = document.getElementById("group");
+    groupDisplay.textContent = groupData.name;
 
-        if (!response.ok) {
-            throw new Error('Error setting group header: ' + response.status);
-        }
-
-        const data = await response.json();
-
-
-        const groupDisplay = document.getElementById("group");
-        groupDisplay.textContent = data.records[0].name;
-
-        const streakDisplay = document.getElementById("streak")
-        streakDisplay.textContent = data.records[0].streak
-
-    } catch (error) {
-        console.error(error);
-    }
+    const streakDisplay = document.getElementById("streak")
+    streakDisplay.textContent = groupData.streak
 }

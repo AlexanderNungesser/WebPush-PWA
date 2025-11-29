@@ -28,11 +28,11 @@ var SWAC_config = {
                 create: ['POST', 'records'],
                 update: ['PUT', 'records'],
                 delete: ['DELETE', 'records']
-            }
+            },
+            exclude: ['routes.json']
         },
         {
-            url: "/WebPush-PWA/data/[fromName]",
-            exclude: ['view_leaderboard']
+            url: "/WebPush-PWA/data/[fromName]"
         }
     ],
     // Options for progressive webapp

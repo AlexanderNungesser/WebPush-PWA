@@ -1,9 +1,16 @@
+window["present_pictures_options"] = {
+    attributeRenames: new Map([["id", "p_id"]])
+}
 
 document.addEventListener("swac_components_complete", () => {
     setXPprogress();
-    initProfilePictures();
+    initProfilePictureSelection();
     document.getElementById("profile-image").addEventListener("click", openPopup)
     document.getElementById("popup-overlay").addEventListener("click", closePopup)
+});
+
+window.addEventListener("group_reload", () => {
+    loadProfilePicture();
 });
 
 function setXPprogress() {
@@ -20,20 +27,38 @@ function setXPprogress() {
 
 }
 
-function initProfilePictures() {
+function initProfilePictureSelection() {
     const pictures = document.querySelectorAll(".uk-card img");
-    console.log(pictures)
     pictures.forEach(img => {
         if (img.dataset.picture != "{picture}") {
             img.src = `../content/profile/${img.dataset.picture}`
-            img.addEventListener("click", () => { selectProfilePicture(img.src) })
+            img.addEventListener("click", () => { selectProfilePicture(img.dataset.p_id) })
         }
     });
 }
-function selectProfilePicture(src) {
-    document.getElementById("profile-image").src = src;
+
+async function selectProfilePicture(id) {
+    try {
+        const res = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/group/${group_id}?storage=gamification`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ picture_id: id })
+        });
+        if (!res.ok) {
+            throw new Error(`PUT /group: ${res.status} ${res.statusText}`);
+        }
+        window.dispatchEvent(new Event("group_changed"));
+    }
+    catch {
+        console.error(error);
+    }
     closePopup();
 }
+
+function loadProfilePicture() {
+    document.getElementById("profile-image").src = `../content/profile/${groupData.picture}`
+}
+
 function openPopup() {
     document.getElementById("popup").style.display = 'block'
 }
