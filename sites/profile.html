@@ -34,23 +34,28 @@
         <div id="content"> 
            <div id="profile-section" class="uk-flex uk-flex-middle uk-flex-center">    
                 <div class="profile-wrapper">
-                    <svg class="progress-ring" width="180" height="180">
-                        <circle class="progress-ring__bg" r="84" cx="90" cy="90"/>
-                        <circle class="progress-ring__progress" r="84" cx="90" cy="90" stroke-dasharray="528" stroke-dashoffset="528"/>
-                    </svg>
-                    <img src="../content/profile/profile_icon_4.png" id="profile-image" class=" uk-border-circle">      
+                    <div class="profile-image-wrapper">
+                        <svg class="progress-ring" viewBox="0 0 180 180" preserveAspectRatio="xMidYMid meet">
+                            <circle class="progress-ring__bg" r="84" cx="90" cy="90"/>
+                            <circle class="progress-ring__progress" r="84" cx="90" cy="90" stroke-dasharray="528" stroke-dashoffset="528"/>
+                        </svg>
+                        <img src="../content/profile/profile_icon_4.png" id="profile-image" class=" uk-border-circle">     
+                    </div> 
                     <div id="group_name"></div>
                 </div>
                 <div class="profile-side-info">
-                    <div class="side_info" id="level_wrapper"><span id="level">Lvl 12</span></div>
+                    <div class="side_info" id="level_wrapper">
+                        <img src="../content/level.png" class="side_info_icon">
+                        <span id="level"> 12</span>
+                    </div>
                     <div class="side_info" id="streak_wrapper">
-                        <img src="../content/streak.png" id="streak_icon">
+                        <img src="../content/streak.png" class="side_info_icon">
                         <span id="streak"></span>
                     </div>
                 </div>
             </div>
+            <div id="achievement-section" class="uk-section uk-section-default" style="min-height: 40vh;"></div>
         </div>
-        <div id="achievement-section" class="uk-section uk-section-default" style="min-height: 40vh;"></div>
         </div>
         <div id="navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush_mobile"></div>
         <div id="popup">
