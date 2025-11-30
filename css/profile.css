@@ -72,14 +72,10 @@
 }
 
 #level_wrapper {
-    padding-left: 10px;
-    padding-right: 10px;
     background: #1e87f0;
     margin-bottom: 15px;
     text-align: center;
 }
-
-
 
 #group_name {
     margin-top: 1%;
@@ -97,22 +93,10 @@
     height: 25px;
     background-color: white;
     border-radius: 50%;
-    padding: 2px;
-    margin-left: 5px;
-}
-
-#streak {
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-#level {
-    font-size: 1.3rem;
-    font-weight: bold;
 }
 
 .side_info {
-    padding: 10px 16px;
+    padding: 4px;
     color: white;
     border-radius: 50% / 100%;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -123,4 +107,7 @@
 
 .side_info span {
     line-height: 1;
+    padding-right: 4px;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
