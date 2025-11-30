@@ -386,20 +386,18 @@ self.addEventListener('push', function (event) {
 });
 
 // Below for future use
-self.addEventListener('notificationclick', function (event) {
+self.addEventListener('notificationclick', async function (event) {
     console.log('Serviceworker notificationclick event!');
     const notification = event.notification;
     const action = event.action; 
 
     if (!action) {
         // Main-Click on Notification
-        handleMainClick(notification);
+        await handleMainClick(notification);
     } else {
         // Action-Click on Notification
-        handleActionClick(notification, action);
+        await handleActionClick(notification, action);
     }
-
-    event.notification.close();
 });
 
 self.addEventListener('notificationclose', function (evt) {
@@ -430,27 +428,28 @@ self.addEventListener('messageerror', function (evt) {
 async function handleMainClick(notification) {
     console.log('Serviceworker handleMainClick!');
     const notificationData = notification.data;
-    updateStatistics(notificationData, 'event_types', 'click');
+    console.log(notification);
+    await updateStatistics(notificationData, 'event_type', 'name,eq,click');
     
 }
 
-function handleActionClick(notification, action) {
+async function handleActionClick(notification, action) {
     console.log('Serviceworker handleActionClick! Action: ' + action);
     const notificationData = notification.data;
-    updateStatistics(notificationData, 'actions', action);
+    await updateStatistics(notificationData, 'action', 'action_type,eq,' + action);
 }
 
-function handleCloseClick(notification) {
+async function handleCloseClick(notification) {
     console.log('Serviceworker handleCloseClick!');
     const notificationData = notification.data;
-    updateStatistics(notificationData, 'event_types', 'close');
+    await updateStatistics(notificationData, 'event_type', 'name,eq,close');
 }
 
-async function updateStatistics(notificationData, table, eventType) {
-    console.log('Serviceworker updateStatistics! EventType: ' + eventType);
+async function updateStatistics(notificationData, table, filter) {
+    console.log('Serviceworker updateStatistics! EventType: ' + table + ', Filter: ' + filter);
     if (notificationData && notificationData.history_id) {
-        const historyId = notificationData.history_id;
-        let response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/${table}?storage=gamification?filter=name,eq,${eventType}`, {
+        let historyId = notificationData.history_id;
+        let response = await fetch(`${self.location.origin}/SmartDataAirquality/smartdata/records/${table}?storage=gamification&filter=${filter}`, {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         });
@@ -463,14 +462,16 @@ async function updateStatistics(notificationData, table, eventType) {
             return;
         }
         const eventTypeId = data.records[0].id;
-
-        const idField = table.slice(0, -1) + '_id';
+        const idField = table + '_id';
         const payload = { history_id: historyId };
         payload[idField] = eventTypeId;
-        const res = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/statistics?storage=gamification`, {
+        const res = await fetch(`${self.location.origin}/SmartDataAirquality/smartdata/records/statistic?storage=gamification`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
         });
+        if (!res.ok) {
+            console.error("Server error: " + res.status);
+        }
     }
 }
