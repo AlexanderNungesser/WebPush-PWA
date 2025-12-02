@@ -31,7 +31,7 @@ function initProfilePictureSelection() {
     const pictures = document.querySelectorAll(".uk-card img");
     pictures.forEach(img => {
         if (img.dataset.picture != "{picture}") {
-            img.src = `../content/profile/${img.dataset.picture}`
+            img.src = `../files/icons/profile/${img.dataset.picture}`
             img.addEventListener("click", () => { selectProfilePicture(img.dataset.p_id) })
         }
     });
@@ -56,7 +56,7 @@ async function selectProfilePicture(id) {
 }
 
 function loadProfileInfos() {
-    document.getElementById("profile-image").src = `../content/profile/${groupData.picture}`;
+    document.getElementById("profile-image").src = `../files/icons/profile/${groupData.picture}`;
     document.getElementById("group_name").textContent = groupData.group_name;
     document.getElementById("streak").textContent = groupData.streak;
 }

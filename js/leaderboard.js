@@ -10,7 +10,7 @@ async function loadGroups() {
         const current_id = row.dataset.g_id;
         const img = row.querySelector("img");
         const record = group_info.find(r => r.group_id == current_id);
-        const path = record ? `../content/profile/${record.picture}` : ""
+        const path = record ? `../files/icons/profile/${record.picture}` : ""
         img.src = path
         if (row.dataset.g_id == group_id) {
             row.classList.add("highlight");
