@@ -3,17 +3,19 @@ window["present_pictures_options"] = {
 }
 
 document.addEventListener("swac_components_complete", () => {
-    setXPprogress();
+    setXPProgress();
     initProfilePictureSelection();
+    loadAchievements();
     document.getElementById("profile-image").addEventListener("click", openPopup)
     document.getElementById("popup-overlay").addEventListener("click", closePopup)
 });
 
 window.addEventListener("group_reload", () => {
     loadProfileInfos();
+    loadAchievements();
 });
 
-function setXPprogress() {
+function setXPProgress() {
     const progressValue = 69;
 
     const circle = document.querySelector('.progress-ring__progress');
@@ -59,6 +61,34 @@ function loadProfileInfos() {
     document.getElementById("profile-image").src = `../files/icons/profile/${groupData.picture}`;
     document.getElementById("group_name").textContent = groupData.group_name;
     document.getElementById("streak").textContent = groupData.streak;
+}
+
+function setAchievementIcons(){
+    let iconImgs = document.querySelectorAll('.achv-icon-img');
+    iconImgs.forEach(img =>{
+        if(img.src !== "{achievement_image_url}"){
+            img.src = "../files/icons/achievements/placeholder.png";
+        }
+    });
+}
+
+async function loadAchievements(){
+    const swacElem = document.getElementById('present-achievements');
+    const achievementComp = swacElem.swac_comp;
+    if(!swacElem || !achievementComp) return;
+    try {
+        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/view_group_achievements?storage=gamification&filter=group_id,eq,${group_id}`);
+        if (!response.ok) {
+            throw new Error('Error getting group info: ' + response.status);
+        }
+        achievementComp.removeAllData();    
+        const data = await response.json().then(data => data.records);
+        achievementComp.addData('view_group_achievements', data);    
+        setAchievementIcons();
+
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function openPopup() {
