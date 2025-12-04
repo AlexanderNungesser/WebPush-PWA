@@ -3,9 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 35%;
+  height: 25%;
   overflow: hidden;
-  border-bottom: 2px solid #ddd;
 }
 
 .profile-side-info {
@@ -84,6 +83,7 @@
 }
 
 #group_name {
+  height: 10%;
   margin-top: 1%;
   font-size: 2rem;
   font-weight: bold;
@@ -119,13 +119,14 @@
 }
 
 #achievement_header {
+  text-align: center;
   color: #555;
-  font-size: 1.2rem;
+  font-size: .8rem;
   font-weight: bold;
   padding: 10px 15px;
-  border-bottom-left-radius: 1%;
-  border-bottom-right-radius: 1%;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   flex-shrink: 0;
 }
 
