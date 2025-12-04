@@ -61,10 +61,33 @@
         </div>
         </div>
         <div id="navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush_mobile"></div>
-        <div id="popup">
-            <div id="popup-overlay"></div>
-            <div id="popup-content">               
+        <div class="popup" id="profile_popup">
+            <div class="popup-overlay" id="profile_overlay"></div>
+            <div class="popup-content">               
                 <div id="present_pictures" swa="Present FROM group_picture TEMPLATE present_webPush_images"></div>
+            </div>
+        </div>
+        <div class="popup" id="achievement_popup">
+            <div class="popup-overlay" id="achievement_overlay"></div>
+            <div class="popup-content" id="achievement_popup_content">      
+                <div class="img-row">
+                    <div class="img-box">
+                        <img src="" alt="">
+                        <span class="xp-label"></span>
+                    </div>
+
+                    <div class="img-box img-box-center">
+                        <img src="" alt="">
+                        <span class="xp-label"></span>
+                    </div>
+
+                    <div class="img-box">
+                        <img src="" alt="">
+                        <span class="xp-label"></span>
+                    </div>
+                </div>         
+                <h1 id="achievement_popup_title"></h1>
+                <p id="achievement_popup_description"></p>
             </div>
         </div>
     </body>  

@@ -2,12 +2,11 @@ window["present_pictures_options"] = {
     attributeRenames: new Map([["id", "p_id"]])
 }
 
-document.addEventListener("swac_components_complete", () => {
+document.addEventListener("swac_components_complete", async () => {
     setXPProgress();
     initProfilePictureSelection();
-    loadAchievements();
-    document.getElementById("profile-image").addEventListener("click", openPopup)
-    document.getElementById("popup-overlay").addEventListener("click", closePopup)
+    await loadAchievements();
+    initPopups();
 });
 
 window.addEventListener("group_reload", () => {
@@ -93,10 +92,57 @@ async function loadAchievements() {
     }
 }
 
-function openPopup() {
-    document.getElementById("popup").style.display = 'block'
+function initPopups() {
+    const achievementCards = document.querySelectorAll('.achievement-card');
+    achievementCards.forEach(card => {
+        card.addEventListener('click', async () => {
+            loadAchievementPopup(card.dataset.a_id)
+        });
+    });
+
+    document.getElementById("profile-image").addEventListener("click", () => {
+        document.getElementById("profile_popup").style.display = 'block'
+    })
+    document.getElementById("profile_overlay").addEventListener("click", closePopup)
+    document.getElementById("achievement_overlay").addEventListener("click", closePopup)
+}
+
+async function loadAchievementPopup(a_id) {
+    const imgBoxes = document.querySelectorAll('.img-box');
+    const data = await loadAchievementData(a_id);
+    for (let i = 0; i < imgBoxes.length; i++) {
+        const currentBox = imgBoxes[i];
+        const currentXP = currentBox.querySelector('span');
+        const currentImg = currentBox.querySelector('img');
+        if (!data.tiers[i].achieved) {
+            currentImg.src = `../files/icons/achievements/placeholder.png`
+            currentXP.textContent = '';
+            continue;
+        }
+        currentImg.src = `../files/icons/achievements/${data.tiers[i].img_url}`
+        currentXP.textContent = `${data.tiers[i].reward_xp} XP`
+    }
+
+    document.getElementById('achievement_popup_title').textContent = data.achievement_title;
+    document.getElementById('achievement_popup_description').textContent = data.description;
+    document.getElementById("achievement_popup").style.display = 'block';
+}
+
+async function loadAchievementData(a_id) {
+    try {
+        const response = await fetch("../data/example_achievement_specific.json");
+        if (!response.ok) {
+            throw new Error('Error getting group info: ' + response.status);
+        }
+        const data = await response.json();
+        return data.find(a => a.achievement_id == a_id);
+
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function closePopup() {
-    document.getElementById("popup").style.display = 'none'
+    document.getElementById("profile_popup").style.display = 'none'
+    document.getElementById("achievement_popup").style.display = 'none'
 }

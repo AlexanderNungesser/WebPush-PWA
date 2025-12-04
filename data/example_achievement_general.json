@@ -1,11 +1,11 @@
 [
     {
         "achievement_id": 1,
-        "level": 0,
-        "img_url": "placeholder.png",
+        "level": 2,
+        "img_url": "FDS_2.png",
         "achievement_title": "Fine Dust Sentinel",
         "achievement_description": "Tracks fine dust levels in monitored areas.",
-        "achievement_reward_xp": 0
+        "achievement_reward_xp": 250
     },
     {
         "achievement_id": 2,
