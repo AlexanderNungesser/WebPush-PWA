@@ -63,27 +63,29 @@ function loadProfileInfos() {
     document.getElementById("streak").textContent = groupData.streak;
 }
 
-function setAchievementIcons(){
+function setAchievementIcons() {
     let iconImgs = document.querySelectorAll('.achv-icon-img');
-    iconImgs.forEach(img =>{
-        if(img.src !== "{achievement_image_url}"){
-            img.src = "../files/icons/achievements/placeholder.png";
+    iconImgs.forEach(img => {
+        if (img.dataset.image !== "{achievement_image_url}") {
+            img.src = `../files/icons/achievements/${img.dataset.image}`;
         }
     });
 }
 
-async function loadAchievements(){
+async function loadAchievements() {
     const swacElem = document.getElementById('present-achievements');
     const achievementComp = swacElem.swac_comp;
-    if(!swacElem || !achievementComp) return;
+    if (!swacElem || !achievementComp) return;
     try {
-        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/view_group_achievements?storage=gamification&filter=group_id,eq,${group_id}`);
+        const response = await fetch("../data/example_achievement_general.json");
+        //const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/view_group_achievements?storage=gamification&filter=group_id,eq,${group_id}`);
         if (!response.ok) {
             throw new Error('Error getting group info: ' + response.status);
         }
-        achievementComp.removeAllData();    
-        const data = await response.json().then(data => data.records);
-        achievementComp.addData('view_group_achievements', data);    
+        achievementComp.removeAllData();
+        //const data = await response.json().then(data => data.records);
+        const data = await response.json()
+        achievementComp.addData('view_group_achievements', data);
         setAchievementIcons();
 
     } catch (error) {

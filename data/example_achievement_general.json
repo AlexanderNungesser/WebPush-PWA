@@ -1,0 +1,82 @@
+[
+    {
+        "achievement_id": 1,
+        "level": 0,
+        "img_url": "placeholder.png",
+        "achievement_title": "Fine Dust Sentinel",
+        "achievement_description": "Tracks fine dust levels in monitored areas.",
+        "achievement_reward_xp": 0
+    },
+    {
+        "achievement_id": 2,
+        "level": 1,
+        "img_url": "PAG_1.png",
+        "achievement_title": "Pure Air Guardian",
+        "achievement_description": "Indicates consistently clean air readings.",
+        "achievement_reward_xp": 100
+    },
+    {
+        "achievement_id": 3,
+        "level": 2,
+        "img_url": "DPD_2.png",
+        "achievement_title": "Dust Peak Detector",
+        "achievement_description": "Recognizes detection of significant dust peaks.",
+        "achievement_reward_xp": 250
+    },
+    {
+        "achievement_id": 4,
+        "level": 3,
+        "img_url": "CAS_3.png",
+        "achievement_title": "Clean Air Spotter",
+        "achievement_description": "Rewards frequent identification of clean-air intervals.",
+        "achievement_reward_xp": 500
+    },
+    {
+        "achievement_id": 5,
+        "level": 0,
+        "img_url": "placeholder.png",
+        "achievement_title": "Marathon Mapper",
+        "achievement_description": "Represents extended mapping activity over long durations.",
+        "achievement_reward_xp": 0
+    },
+    {
+        "achievement_id": 6,
+        "level": 1,
+        "img_url": "UF_1.png",
+        "achievement_title": "Unbroken Flame",
+        "achievement_description": "Signifies persistent operation under challenging conditions.",
+        "achievement_reward_xp": 100
+    },
+    {
+        "achievement_id": 7,
+        "level": 3,
+        "img_url": "DFE_3.png",
+        "achievement_title": "Deep Freeze Explorer",
+        "achievement_description": "Awarded for measurements taken in very low-temperature environments.",
+        "achievement_reward_xp": 500
+    },
+    {
+        "achievement_id": 8,
+        "level": 2,
+        "img_url": "EHS_2.png",
+        "achievement_title": "Extreme Heat Scout",
+        "achievement_description": "Acknowledges activity recorded under high-temperature conditions.",
+        "achievement_reward_xp": 250
+    },
+    {
+        "achievement_id": 9,
+        "level": 1,
+        "img_url": "NSM_1.png",
+        "achievement_title": "Night Shift Monitor",
+        "achievement_description": "Given for consistent night-time monitoring sessions.",
+        "achievement_reward_xp": 100
+    },
+    {
+        "achievement_id": 10,
+        "level": 0,
+        "img_url": "placeholder.png",
+        "achievement_title": "Dawn Tracker",
+        "achievement_description": "Captures early-morning measurement patterns.",
+        "achievement_reward_xp": 0
+    }
+]
