@@ -29,9 +29,9 @@ function setXPProgress() {
 }
 
 function initProfilePictureSelection() {
-    const pictures = document.querySelectorAll(".uk-card img");
+    const pictures = document.querySelectorAll(".selectable_profile_picture");
     pictures.forEach(img => {
-        if (img.dataset.picture != "{picture}") {
+        if (img.dataset.picture !== "{picture}") {
             img.src = `../files/icons/profile/${img.dataset.picture}`
             img.addEventListener("click", () => { selectProfilePicture(img.dataset.p_id) })
         }
@@ -65,7 +65,7 @@ function loadProfileInfos() {
 function setAchievementIcons() {
     let iconImgs = document.querySelectorAll('.achv-icon-img');
     iconImgs.forEach(img => {
-        if (img.dataset.image !== "{achievement_image_url}") {
+        if (img.dataset.image !== "{img_url}") {
             img.src = `../files/icons/achievements/${img.dataset.image}`;
         }
     });
