@@ -12,6 +12,7 @@ document.addEventListener("swac_components_complete", async () => {
 window.addEventListener("group_reload", () => {
     loadProfileInfos();
     loadAchievements();
+    loadAchievementData();
 });
 
 function setXPProgress() {
@@ -66,7 +67,11 @@ function setAchievementIcons() {
     let iconImgs = document.querySelectorAll('.achv-icon-img');
     iconImgs.forEach(img => {
         if (img.dataset.image !== "{img_url}") {
-            img.src = `../files/icons/achievements/${img.dataset.image}`;
+            let imgPath = img.dataset.image;
+            if (imgPath === "") {
+                imgPath = "placeholder.png";
+            }
+            img.src = `../files/icons/achievements/${imgPath}`;
         }
     });
 }
@@ -76,14 +81,12 @@ async function loadAchievements() {
     const achievementComp = swacElem.swac_comp;
     if (!swacElem || !achievementComp) return;
     try {
-        const response = await fetch("../data/example_achievement_general.json");
-        //const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/view_group_achievements?storage=gamification&filter=group_id,eq,${group_id}`);
+        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/view_group_achievement_progress?storage=gamification&filter=group_id,eq,${group_id}`);
         if (!response.ok) {
             throw new Error('Error getting group info: ' + response.status);
         }
         achievementComp.removeAllData();
-        //const data = await response.json().then(data => data.records);
-        const data = await response.json()
+        const data = await response.json().then(data => data.records);
         achievementComp.addData('view_group_achievements', data);
         setAchievementIcons();
 
@@ -109,7 +112,7 @@ function initPopups() {
 
 async function loadAchievementPopup(a_id) {
     const imgBoxes = document.querySelectorAll('.img-box');
-    const data = await loadAchievementData(a_id);
+    const data = achievementTierData.find(a => a.achievement_set_id == a_id);
     for (let i = 0; i < imgBoxes.length; i++) {
         const currentBox = imgBoxes[i];
         const currentXP = currentBox.querySelector('span');
@@ -124,18 +127,19 @@ async function loadAchievementPopup(a_id) {
     }
 
     document.getElementById('achievement_popup_title').textContent = data.achievement_title;
-    document.getElementById('achievement_popup_description').textContent = data.description;
+    document.getElementById('achievement_popup_description').textContent = data.achievement_description;
     document.getElementById("achievement_popup").style.display = 'block';
 }
 
-async function loadAchievementData(a_id) {
+let achievementTierData = [];
+async function loadAchievementData() {
     try {
-        const response = await fetch("../data/example_achievement_specific.json");
+        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/view_group_achievement_tiers?storage=gamification&filter=group_id,eq,${group_id}`);
         if (!response.ok) {
             throw new Error('Error getting group info: ' + response.status);
         }
-        const data = await response.json();
-        return data.find(a => a.achievement_id == a_id);
+        achievementTierData = await response.json().then(data => data.records);
+
 
     } catch (error) {
         console.error(error);
