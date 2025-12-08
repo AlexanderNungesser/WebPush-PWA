@@ -3,20 +3,20 @@ window["present_pictures_options"] = {
 }
 
 document.addEventListener("swac_components_complete", async () => {
-    setXPProgress();
     initProfilePictureSelection();
     await loadAchievements();
     initPopups();
 });
 
 window.addEventListener("group_reload", () => {
+    setXPProgress();
     loadProfileInfos();
     loadAchievements();
     loadAchievementData();
 });
 
 function setXPProgress() {
-    const progressValue = 69;
+    const progressValue = groupData.progress;
 
     const circle = document.querySelector('.progress-ring__progress');
     const radius = parseFloat(circle.getAttribute('r'));
@@ -61,6 +61,7 @@ function loadProfileInfos() {
     document.getElementById("profile-image").src = `../files/icons/profile/${groupData.picture}`;
     document.getElementById("group_name").textContent = groupData.group_name;
     document.getElementById("streak").textContent = groupData.streak;
+    document.getElementById("level").textContent = groupData.level;
 }
 
 function setAchievementIcons() {
