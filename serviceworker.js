@@ -386,19 +386,20 @@ self.addEventListener('push', function (event) {
 });
 
 // Below for future use
-self.addEventListener('notificationclick', async function (event) {
-    console.log('Serviceworker notificationclick event!');
-    const notification = event.notification;
-    const action = event.action; 
+self.addEventListener('notificationclick', function(event) {
+    event.waitUntil((async () => {
+        console.log('Serviceworker notificationclick event!');
+        const notification = event.notification;
+        const action = event.action;
 
-    if (!action) {
-        // Main-Click on Notification
-        await handleMainClick(notification);
-    } else {
-        // Action-Click on Notification
-        await handleActionClick(notification, action);
-    }
+        if (!action) {
+            await handleMainClick(notification);
+        } else {
+            await handleActionClick(notification, action);
+        }
+    })());
 });
+
 
 self.addEventListener('notificationclose', function (evt) {
     console.log('Serviceworker notificationclose event!');
@@ -428,9 +429,13 @@ self.addEventListener('messageerror', function (evt) {
 async function handleMainClick(notification) {
     console.log('Serviceworker handleMainClick!');
     const notificationData = notification.data;
-    console.log(notification);
+
     await updateStatistics(notificationData, 'event_type', 'name,eq,click');
-    
+
+    const urlToOpen = `${self.location.origin}/WebPush-PWA/sites/profile.html`;
+    await openOrFocusPage(urlToOpen);
+
+    notification.close();
 }
 
 async function handleActionClick(notification, action) {
@@ -444,6 +449,27 @@ async function handleCloseClick(notification) {
     const notificationData = notification.data;
     await updateStatistics(notificationData, 'event_type', 'name,eq,close');
 }
+
+async function openOrFocusPage(url) {
+    console.log('Serviceworker openOrFocusPage: ' + url);
+
+    const allClients = await self.clients.matchAll({
+        type: 'window',
+        includeUncontrolled: true
+    });
+
+    for (const client of allClients) {
+        if (client.url === url || client.url.startsWith(url)) {
+            console.log('Site already open, focusing...');
+            await client.focus();
+            return;
+        }
+    }
+
+    console.log('Site not open yet, opening new window...');
+    await self.clients.openWindow(url);
+}
+
 
 async function updateStatistics(notificationData, table, filter) {
     console.log('Serviceworker updateStatistics! EventType: ' + table + ', Filter: ' + filter);
