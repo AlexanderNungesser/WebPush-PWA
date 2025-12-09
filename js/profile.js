@@ -70,9 +70,9 @@ function setAchievementIcons() {
         if (img.dataset.image !== "{img_url}") {
             let imgPath = img.dataset.image;
             if (imgPath === "") {
-                imgPath = "placeholder.png";
+                imgPath = "../files/icons/achievements/placeholder.png";
             }
-            img.src = `../files/icons/achievements/${imgPath}`;
+            img.src = imgPath;
         }
     });
 }
@@ -123,7 +123,7 @@ async function loadAchievementPopup(a_id) {
             currentXP.textContent = '';
             continue;
         }
-        currentImg.src = `../files/icons/achievements/${data.tiers[i].img_url}`
+        currentImg.src = data.tiers[i].img_url;
         currentXP.textContent = `${data.tiers[i].reward_xp} XP`
     }
 
