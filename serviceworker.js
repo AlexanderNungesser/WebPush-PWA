@@ -385,25 +385,16 @@ self.addEventListener('push', function (event) {
     event.waitUntil(self.registration.showNotification(title, options));
 });
 
-// Below for future use
-self.addEventListener('notificationclick', function(event) {
-    event.waitUntil((async () => {
-        console.log('Serviceworker notificationclick event!');
-        const notification = event.notification;
-        const action = event.action;
-
-        if (!action) {
-            await handleMainClick(notification);
-        } else {
-            await handleActionClick(notification, action);
-        }
-    })());
-});
-
-
 self.addEventListener('notificationclose', function (evt) {
-    console.log('Serviceworker notificationclose event!');
-    handleCloseClick(evt.notification);
+    const notification = evt.notification;
+
+    if (notification.data?.closedByAction) {
+        console.log('Notification closed by action - statistics ignored');
+        return;
+    }
+
+    console.log('Notification closed by close button');
+    handleCloseClick(notification);
 });
 
 self.addEventListener('sync', function (evt) {
@@ -426,6 +417,27 @@ self.addEventListener('messageerror', function (evt) {
     console.log('Serviceworker messageerror event!');
 });
 
+self.addEventListener('notificationclick', function(event) {
+    event.waitUntil((async () => {
+        const notification = event.notification;
+        const action = event.action;
+
+        if (action) {
+            notification.data = {
+                ...notification.data,
+                closedByAction: true
+            };
+        }
+
+        if (!action) {
+            await handleMainClick(notification);
+        } else {
+            await handleActionClick(notification, action);
+        }
+    })());
+});
+
+
 async function handleMainClick(notification) {
     console.log('Serviceworker handleMainClick!');
     const notificationData = notification.data;
@@ -442,6 +454,26 @@ async function handleActionClick(notification, action) {
     console.log('Serviceworker handleActionClick! Action: ' + action);
     const notificationData = notification.data;
     await updateStatistics(notificationData, 'action', 'action_type,eq,' + action);
+
+    const urlToOpen = `${self.location.origin}`;
+    switch(action) {
+        case 'open':
+            urlToOpen += '/WebPush-PWA/sites/profile.html';
+            break;
+        case 'dismiss':
+            urlToOpen = null;
+            break;
+        case 'measure':
+            urlToOpen += '/WebPush-PWA/sites/profile.html';
+            break;
+        case 'leaderboard':
+            urlToOpen += '/WebPush-PWA/sites/leaderboard.html';
+            break;
+        default:
+            console.warn("Unbekannte Action:", action);
+    }
+    await openOrFocusPage(urlToOpen);
+    notification.close();
 }
 
 async function handleCloseClick(notification) {
@@ -451,6 +483,11 @@ async function handleCloseClick(notification) {
 }
 
 async function openOrFocusPage(url) {
+    if (url === null) {
+        console.log('No URL to open, returning.');
+        return;
+    }
+
     console.log('Serviceworker openOrFocusPage: ' + url);
 
     const allClients = await self.clients.matchAll({
@@ -469,7 +506,6 @@ async function openOrFocusPage(url) {
     console.log('Site not open yet, opening new window...');
     await self.clients.openWindow(url);
 }
-
 
 async function updateStatistics(notificationData, table, filter) {
     console.log('Serviceworker updateStatistics! EventType: ' + table + ', Filter: ' + filter);
