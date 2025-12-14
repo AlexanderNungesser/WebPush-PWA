@@ -455,7 +455,7 @@ async function handleActionClick(notification, action) {
     const notificationData = notification.data;
     await updateStatistics(notificationData, 'action', 'action_type,eq,' + action);
 
-    const urlToOpen = `${self.location.origin}`;
+    var urlToOpen = `${self.location.origin}`;
     switch(action) {
         case 'open':
             urlToOpen += '/WebPush-PWA/sites/profile.html';
