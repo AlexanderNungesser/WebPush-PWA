@@ -6,6 +6,18 @@ async function loadGroups() {
     const group_info = await getGroupInfo();
     const group_id = localStorage.getItem("user_group_id")
     const rows = document.querySelectorAll("tr");
+    if (rows[1]) {
+        const firstRank = rows[1].querySelector(".lb-rank");
+        if (firstRank) firstRank.style.setProperty("--rank-bg", 'url("/WebPush-PWA/files/icons/leaderboard/first.png")');
+    }
+    if (rows[2]) {
+        const secondRank = rows[2].querySelector(".lb-rank");
+        if (secondRank) secondRank.style.setProperty("--rank-bg", 'url("/WebPush-PWA/files/icons/leaderboard/second.png")');
+    }
+    if (rows[3]) {
+        const thirdRank = rows[3].querySelector(".lb-rank");
+        if (thirdRank) thirdRank.style.setProperty("--rank-bg", 'url("/WebPush-PWA/files/icons/leaderboard/third.png")');
+    }
     for (const row of rows) {
         const current_id = row.dataset.g_id;
         const img = row.querySelector("img");
