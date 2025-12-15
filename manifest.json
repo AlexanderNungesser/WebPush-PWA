@@ -1,14 +1,14 @@
 {
   "name": "SmartWebApplicationComponents",
-  "short_name": "SWAC",
+  "short_name": "WebPush-PWA",
   "display": "standalone",
-  "start_url": "index.html",
+  "start_url": "sites/profile.html",
   "background_color": "#34495e",
   "theme_color": "#8e44ad",
   "icons": [
     {
-      "src": "content/logo.jpg",
-      "type": "image/jpg",
+      "src": "files/icons/logo.png",
+      "type": "image/png",
       "sizes": "256x256"
     }
   ]
