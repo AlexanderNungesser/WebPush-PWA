@@ -14,12 +14,12 @@ self.addEventListener('install', function (evt) {
     // Add localforage script used by serviceworker
     SWAC_config.coreComponents.push('/SWAC/swac/libs/localforage/localforage.min.js');
     // Add default pages
-    SWAC_config.coreComponents.push(SWAC_config.app_root + "/js/offline.js");
-    SWAC_config.coreComponents.push(SWAC_config.app_root + "/sites/offline.html");
-    SWAC_config.coreComponents.push(SWAC_config.app_root + "/data/offline.json");
+    // SWAC_config.coreComponents.push(SWAC_config.app_root + "/js/offline.js");
+    // SWAC_config.coreComponents.push(SWAC_config.app_root + "/sites/offline.html");
+    // SWAC_config.coreComponents.push(SWAC_config.app_root + "/data/offline.json");
 
     // Install used components
-    self.importScripts('/SWAC/swac/Component.js');
+    // self.importScripts('/SWAC/swac/Component.js');
     for (let i in SWAC_config.progressive.components) {
         precacheComponent(SWAC_config.progressive.components[i]);
     }
@@ -170,7 +170,7 @@ self.addEventListener('fetch', function (evt) {
     // Check if request is datarequest
     let isDataRequest = false;
     for (let curSource of SWAC_config.datasources) {
-        let curSourceMain = curSource.replace('[fromName]', '');
+        let curSourceMain = curSource.url.replace('[fromName]', '');
         if (evt.request.url.includes(curSourceMain)) {
             isDataRequest = true;
         }

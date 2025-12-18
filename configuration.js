@@ -18,6 +18,7 @@ var SWAC_config = {
     //swac_root: '/SWAC/',
     // Backend connection settings
     installable: true,
+    coreComponents: [],
     datasources: [
         {
             url: "/SmartDataAirquality/smartdata/[iface]/[fromName]?storage=gamification",

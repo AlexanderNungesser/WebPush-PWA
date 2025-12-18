@@ -1,5 +1,5 @@
 {
-  "name": "SmartWebApplicationComponents",
+  "name": "WebPush",
   "short_name": "WebPush-PWA",
   "display": "standalone",
   "start_url": "sites/profile.html",
