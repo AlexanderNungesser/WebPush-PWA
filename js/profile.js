@@ -114,6 +114,7 @@ function initPopups() {
 async function loadAchievementPopup(a_id) {
     const imgBoxes = document.querySelectorAll('.img_box');
     const data = achievementTierData.find(a => a.achievement_set_id == a_id);
+    let progressDisplayed = false;
     for (let i = 0; i < imgBoxes.length; i++) {
         const currentBox = imgBoxes[i];
         const currentXP = currentBox.querySelector('span');
@@ -121,15 +122,67 @@ async function loadAchievementPopup(a_id) {
         if (!data.tiers[i].achieved) {
             currentImg.src = `../files/icons/achievements/placeholder.png`
             currentXP.textContent = '';
+            if (!progressDisplayed) {
+                await loadAchievementProgress(data.tiers[i].trigger);
+                progressDisplayed = true;
+            }
             continue;
         }
         currentImg.src = data.tiers[i].img_url;
         currentXP.textContent = `${data.tiers[i].reward_xp} XP`
     }
-
+    if (!progressDisplayed) {
+        const highestTier = data.tiers[data.tiers.length - 1];
+        loadAchievementProgress(highestTier.trigger);
+    }
     document.getElementById('achievement_popup_title').textContent = data.achievement_title;
     document.getElementById('achievement_popup_description').textContent = data.achievement_description;
     document.getElementById("achievement_popup").style.display = 'block';
+}
+
+async function loadAchievementProgress(trigger_id) {
+    try {
+        const response = await fetch(`${window.location.origin}/WebPush/webpush/condition/progress/${trigger_id}?smartdataurl=/SmartDataAirquality&groupId=${group_id}`);
+        if (!response.ok) {
+            throw new Error('Error getting group info: ' + response.status);
+        }
+        const conditions = await response.json().then(data => data.progress);
+
+        document.getElementById('achievement_progress_section').innerHTML = '';
+        conditions.forEach(cond => {
+            const progressWrapper = document.createElement('div');
+            progressWrapper.classList.add('progress_wrapper', 'uk-flex', 'uk-flex-column', 'uk-flex-start');
+
+            let progress = 0;
+            let style = '';
+            let value = '';
+            if (cond.value == null) {
+                style = 'progress_null';
+            } else if (checkComplete(cond.value, cond.threshold, cond.operator)) {
+                progress = 100;
+                style = 'progress_done';
+            } else {
+                progress = calculateProgress(cond);
+                value = `${cond.value}`;
+                style = 'progress_striped';
+            }
+            const progressDisplay = `              
+                <span class="uk-text-meta uk-text-left uk-width-1-1 uk-margin-small-top"> 
+                    ${cond.type}
+                </span>
+                <div class="progress_row">
+                    <div class="progress ${style}" >
+                        <div class="progress_bar" style="width: ${progress}%;"> ${value} </div>
+                    </div >
+                    <span class="progress_target">${cond.threshold}</span>
+                </div>
+            `;
+            progressWrapper.innerHTML = progressDisplay;
+            document.getElementById('achievement_progress_section').appendChild(progressWrapper);
+        });
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 let achievementTierData = [];
@@ -150,4 +203,60 @@ async function loadAchievementData() {
 function closePopup() {
     document.getElementById("profile_popup").style.display = 'none'
     document.getElementById("achievement_popup").style.display = 'none'
+}
+
+function calculateProgress(value, threshold, operator) {
+    value = Number(value);
+    threshold = Number(threshold);
+
+    if (isNaN(value) || isNaN(threshold)) return 0;
+
+    let progress = 0;
+
+    switch (operator) {
+        case '>':
+        case '>=':
+            if (value >= threshold) return 100;
+            progress = (value / threshold) * 100;
+            break;
+
+        case '<':
+        case '<=':
+            if (value <= threshold) return 100;
+            progress = (threshold / value) * 100;
+            break;
+
+        case '==':
+            if (value === threshold) return 100;
+            progress = 100 - (Math.abs(value - threshold) / Math.abs(threshold)) * 100;
+            break;
+
+        case '!=':
+            if (value !== threshold) return 100;
+            return 0;
+
+        default:
+            return 0;
+    }
+    return Math.max(0, Math.min(100, progress));;
+}
+
+function checkComplete(val1, val2, operator) {
+    switch (operator) {
+        case '>':
+            return val1 > val2;
+        case '<':
+            return val1 < val2;
+        case '>=':
+            return val1 >= val2;
+        case '<=':
+            return val1 <= val2;
+        case '==':
+            return val1 == val2;
+        case '!=':
+            return val1 != val2;
+        default:
+            return false;
+    }
+
 }
