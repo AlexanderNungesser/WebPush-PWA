@@ -6,6 +6,7 @@ document.addEventListener("swac_components_complete", async () => {
     initProfilePictureSelection();
     await loadAchievements();
     initPopups();
+    addLogoutEventListener();
 });
 
 window.addEventListener("group_reload", () => {
@@ -65,6 +66,32 @@ function loadProfileInfos() {
     document.getElementById("group_name").textContent = groupData.group_name;
     document.getElementById("streak").textContent = groupData.streak;
     document.getElementById("level").textContent = groupData.level;
+}
+
+function addLogoutEventListener() {
+    document.getElementById("logout_btn")?.addEventListener("click", () => logoutUser());
+}
+
+async function logoutUser() {
+    const userId = localStorage.getItem("user_member_id", null);
+    if(!userId) {
+        console.warn("logout failed: no user id found");
+        return;
+    }
+    const btn = document.getElementById("logout_btn");
+    btn?.setAttribute("disabled", "true");
+    try {
+        await fetch(
+            `${window.location.origin}/SmartDataAirquality/smartdata/records/member/${userId}?storage=gamification`,
+            { method: "DELETE" }
+        );
+    } catch (err) {
+        console.warn("Logout cleanup failed:", err);
+    } finally {
+        localStorage.clear();
+        btn?.setAttribute("disabled", "false");
+        window.location.assign(`${window.location.origin}/WebPush-PWA`);
+    }
 }
 
 function setAchievementIcons() {

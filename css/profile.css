@@ -64,6 +64,33 @@
   transition: stroke-dashoffset 1s ease;
 }
 
+.logout-btn {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  gap: 5px;
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(255, 77, 79, 0.35);
+}
+
+.logout-icon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+.logout-btn:active {
+  background: var(#bb3a3c);
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
+}
+
 #achievement_section {
   height: 65%;
   display: flex;
