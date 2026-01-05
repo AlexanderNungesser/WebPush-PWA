@@ -123,7 +123,7 @@ async function loadAchievementPopup(a_id) {
             currentImg.src = `../files/icons/achievements/placeholder.png`
             currentXP.textContent = '';
             if (!progressDisplayed) {
-                await loadAchievementProgress(data.tiers[i].trigger);
+                await loadAchievementProgress(data.tiers[i].trigger_id);
                 progressDisplayed = true;
             }
             continue;
@@ -133,7 +133,7 @@ async function loadAchievementPopup(a_id) {
     }
     if (!progressDisplayed) {
         const highestTier = data.tiers[data.tiers.length - 1];
-        loadAchievementProgress(highestTier.trigger);
+        loadAchievementProgress(highestTier.trigger_id);
     }
     document.getElementById('achievement_popup_title').textContent = data.achievement_title;
     document.getElementById('achievement_popup_description').textContent = data.achievement_description;
@@ -144,7 +144,7 @@ async function loadAchievementProgress(trigger_id) {
     try {
         const response = await fetch(`${window.location.origin}/WebPush/webpush/condition/progress/${trigger_id}?smartdataurl=/SmartDataAirquality&groupId=${group_id}`);
         if (!response.ok) {
-            throw new Error('Error getting group info: ' + response.status);
+            throw new Error('Error getting achievement progress: ' + response.status);
         }
         const conditions = await response.json().then(data => data.progress);
 
