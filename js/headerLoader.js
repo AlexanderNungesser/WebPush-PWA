@@ -1,9 +1,11 @@
 window.addEventListener('group_reload', () => {
+    
     setGroupInfo();
 });
 
 async function setGroupInfo() {
     const groupDisplay = document.getElementById("header_logo");
+    const groupData = JSON.parse(localStorage.getItem("groupData"));
     groupDisplay.src = `../files/icons/profile/${groupData.picture}`;
 
     const streakDisplay = document.getElementById("header_streak")

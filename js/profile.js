@@ -16,6 +16,7 @@ window.addEventListener("group_reload", () => {
 });
 
 function setXPProgress() {
+    const groupData = JSON.parse(localStorage.getItem("groupData"));
     const progressValue = groupData.progress;
 
     const circle = document.querySelector('.progress_ring_progress');
@@ -41,6 +42,7 @@ function initProfilePictureSelection() {
 
 async function selectProfilePicture(id) {
     try {
+        const group_id = localStorage.getItem("user_group_id");
         const res = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/group/${group_id}?storage=gamification`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -58,6 +60,7 @@ async function selectProfilePicture(id) {
 }
 
 function loadProfileInfos() {
+    const groupData = JSON.parse(localStorage.getItem("groupData"));
     document.getElementById("profile_image").src = `../files/icons/profile/${groupData.picture}`;
     document.getElementById("group_name").textContent = groupData.group_name;
     document.getElementById("streak").textContent = groupData.streak;
@@ -82,6 +85,7 @@ async function loadAchievements() {
     const achievementComp = swacElem.swac_comp;
     if (!swacElem || !achievementComp) return;
     try {
+        const group_id = localStorage.getItem("user_group_id");
         const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/view_group_achievement_progress?storage=gamification&filter=group_id,eq,${group_id}`);
         if (!response.ok) {
             throw new Error('Error getting group info: ' + response.status);
@@ -142,6 +146,7 @@ async function loadAchievementPopup(a_id) {
 
 async function loadAchievementProgress(trigger_id) {
     try {
+        const group_id = localStorage.getItem("user_group_id");
         const response = await fetch(`${window.location.origin}/WebPush/webpush/condition/progress/${trigger_id}?smartdataurl=/SmartDataAirquality&groupId=${group_id}`);
         if (!response.ok) {
             throw new Error('Error getting achievement progress: ' + response.status);
@@ -188,6 +193,7 @@ async function loadAchievementProgress(trigger_id) {
 let achievementTierData = [];
 async function loadAchievementData() {
     try {
+        const group_id = localStorage.getItem("user_group_id");
         const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/view_group_achievement_tiers?storage=gamification&filter=group_id,eq,${group_id}`);
         if (!response.ok) {
             throw new Error('Error getting group info: ' + response.status);
