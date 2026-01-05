@@ -18,17 +18,23 @@ async function init() {
 
     document.getElementById("allow").addEventListener('click', async (event) => { await handlePermissionClick(event) }, { once: true });
     document.getElementById("deny").addEventListener('click', async (event) => { await handlePermissionClick(event) }, { once: true });
-    document.getElementById("loginForm").addEventListener("submit", (event) => { login(event) });
+    document.getElementById("loginForm").addEventListener("submit", async (event) => { await login(event) }, { once: true });
 
     loadGroups();
 
-    if (!("Notification" in window)) return;
+    if (!("Notification" in window)) {
+        await showError("This browser does not support notifications. You cannot use this app.");
+        return;
+    }
 
     if (Notification.permission === "granted") {
+        permissionState = "granted";
         await checkSubscription();
     } else if (Notification.permission === "denied") {
-        await showError("You have denied notification permissions. Please enable them in your browser settings to use this app.");
+        permissionState = "denied";
+        await showError("You have denied notification permissions. Please enable them in your browser or OS settings to use this app.");
     } else {
+        permissionState = "default";
         document.getElementById("popup").style.display = 'block'
     }
 }
@@ -37,11 +43,13 @@ async function handlePermissionClick() {
     try {
         const permission = await Notification.requestPermission();
         if (permission === "granted") {
+            permissionState = "granted";
             console.log("✅ User agreed to notifications");
             await checkSubscription();
         } else if (permission === "denied") {
+            permissionState = "denied";
             console.log("❌ User disagreed to notifications");
-            showError("You have denied notification permissions. Please enable them in your browser settings to use this app.");
+            await showError("You have denied notification permissions. Please enable them in your browser or OS settings to use this app.");
         }
     } catch (err) {
         console.error("Error at permission/subscription:", err);
@@ -53,12 +61,12 @@ async function handlePermissionClick() {
 async function checkSubscription() {
     const id = await ensureMemberId();
     if (!id) {
-        showError("Could not subscribe to notifications.");
+        await showError("Could not subscribe to notifications. You cannot use this app.");
         return;
     }
     const response = await fetch(`${API_BASE}/group_member/?${STORAGE}&filter=member_id,eq,${id}`);
     if (!response.ok) {
-        showError("Error checking group membership: " + response.status);
+        await showError("Error checking group membership: " + response.status + " Check your network connection and try again.");
         return;
     }
     const data = await response.json();
@@ -76,9 +84,6 @@ async function ensureMemberId() {
     const member_id = localStorage.getItem("user_member_id");
     if (member_id) return member_id;
 
-    if (!("Notification" in window)) return null;
-    if (Notification.permission !== "granted") return null;
-
     try {
         const webpush = new WebPush();
         const data = await webpush.subscribe();
@@ -86,7 +91,7 @@ async function ensureMemberId() {
         if (id) localStorage.setItem("user_member_id", id);
         return id;
     } catch (e) {
-        console.log("Push subscription failed (continuing without push): " + e);
+        console.log("Push subscription failed: " + e);
         return null;
     }
 }
@@ -181,7 +186,7 @@ function setuptUI() {
     document.getElementById("retry-popup").style.display = "none";
 }
 
-document.addEventListener('swac_components_complete', init);
+document.addEventListener('swac_components_complete', async () => await init());
 window.addEventListener("focus", async () => await syncPermissionState());
 document.addEventListener("visibilitychange", async () => {
   if (!document.hidden) await syncPermissionState();
