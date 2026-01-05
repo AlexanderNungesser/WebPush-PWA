@@ -4,6 +4,8 @@ const API_BASE = `${window.location.origin}/SmartDataAirquality/smartdata/record
 const STORAGE = `storage=gamification`;
 const LEADERBOARD_URL = `${window.location.origin}/WebPush-PWA/sites/leaderboard.html`;
 
+let permissionState = null;
+
 let navigated = false;
 function navigateOnce(url) {
   if (navigated) return;
@@ -12,18 +14,20 @@ function navigateOnce(url) {
 }
 
 async function init() {
-    document.getElementById("retry-popup").style.display = "none";
+    setuptUI();
 
-    document.getElementById("allow").addEventListener('click', handlePermissionClick, { once: true });
-    document.getElementById("deny").addEventListener('click', handlePermissionClick, { once: true });
+    document.getElementById("allow").addEventListener('click', async (event) => { await handlePermissionClick(event) }, { once: true });
+    document.getElementById("deny").addEventListener('click', async (event) => { await handlePermissionClick(event) }, { once: true });
     document.getElementById("loginForm").addEventListener("submit", (event) => { login(event) });
 
     loadGroups();
 
+    if (!("Notification" in window)) return;
+
     if (Notification.permission === "granted") {
-        checkSubscription();
+        await checkSubscription();
     } else if (Notification.permission === "denied") {
-        showError("You have denied notification permissions. Please enable them in your browser settings to use this app.");
+        await showError("You have denied notification permissions. Please enable them in your browser settings to use this app.");
     } else {
         document.getElementById("popup").style.display = 'block'
     }
@@ -34,7 +38,7 @@ async function handlePermissionClick() {
         const permission = await Notification.requestPermission();
         if (permission === "granted") {
             console.log("✅ User agreed to notifications");
-            checkSubscription();
+            await checkSubscription();
         } else if (permission === "denied") {
             console.log("❌ User disagreed to notifications");
             showError("You have denied notification permissions. Please enable them in your browser settings to use this app.");
@@ -118,7 +122,8 @@ async function login(event) {
     if (submitBtn) submitBtn.disabled = true;
 
     const formData = new FormData(form)
-    const member_id = localStorage.getItem("user_member_id");
+    const member_id = await ensureMemberId();
+    if (!member_id) return;
     localStorage.setItem("user_group_id", formData.get("group"));
     try {
         const res1 = await fetch(`${API_BASE}/group_member?${STORAGE}`, {
@@ -149,16 +154,35 @@ async function login(event) {
     }
 }
 
+async function syncPermissionState() {
+  if (Notification.permission !== permissionState) {
+    permissionState = Notification.permission;
+    console.log("Permission changed:", permissionState);
+    await init();
+  }
+}
+
 async function showError(errorMessage) {
     document.getElementById("loading_screen").classList.add("hidden");
     const retryPopup = document.getElementById("retry-popup");
     retryPopup.querySelector("p").textContent = errorMessage;
     retryPopup.style.display = "block";
     const retryButton = document.getElementById("retry");
-    retryButton.addEventListener("click", () => {
+    retryButton.onclick = () => {
         retryPopup.style.display = "none";
         location.reload();
-    });
+    };
+}
+
+function setuptUI() {
+    document.getElementById("loginform_wrapper").classList.add("hidden");
+    document.getElementById("loading_screen").classList.remove("hidden");
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("retry-popup").style.display = "none";
 }
 
 document.addEventListener('swac_components_complete', init);
+window.addEventListener("focus", async () => await syncPermissionState());
+document.addEventListener("visibilitychange", async () => {
+  if (!document.hidden) await syncPermissionState();
+});
