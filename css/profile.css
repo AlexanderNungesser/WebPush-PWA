@@ -1,4 +1,4 @@
-#profile-section {
+#profile_section {
   position: relative;
   display: flex;
   justify-content: center;
@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-.profile-side-info {
+.profile_side_info {
   height: 50%;
   position: absolute;
   left: 75%;
@@ -17,14 +17,14 @@
   gap: 15px;
 }
 
-.profile-wrapper {
+.profile_wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 40%;
 }
 
-.profile-image-wrapper {
+.profile_image_wrapper {
   position: relative;
   margin-top: 10%;
   width: 100%;
@@ -34,13 +34,13 @@
   align-items: center;
 }
 
-.progress-ring {
+.progress_ring {
   width: 100%;
   height: 100%;
   transform: rotate(-90deg);
 }
 
-#profile-image {
+#profile_image {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -50,13 +50,13 @@
   border-radius: 50%;
 }
 
-.progress-ring__bg {
+.progress_ring_bg {
   stroke: #e5e5e5;
   stroke-width: 8;
   fill: transparent;
 }
 
-.progress-ring__progress {
+.progress_ring_progress {
   stroke: #1e87f0;
   stroke-width: 8;
   fill: transparent;
@@ -64,13 +64,13 @@
   transition: stroke-dashoffset 1s ease;
 }
 
-#achievement-section {
+#achievement_section {
   height: 65%;
   display: flex;
   flex-direction: column;
 }
 
-#present-achievements {
+#present_achievements {
   flex-grow: 1;
   overflow-y: auto;
   padding-right: 5px;
@@ -130,7 +130,7 @@
   flex-shrink: 0;
 }
 
-.img-row {
+.img_row {
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -138,23 +138,23 @@
   margin-top: -60px;
 }
 
-.img-box {
+.img_box {
   width: 33%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.img-box img {
+.img_box img {
   width: 100%;
   aspect-ratio: 1;
 }
 
-.img-box-center {
+.img_box_center {
   margin-top: -5%;
 }
 
-.xp-label {
+.xp_label {
   margin-top: 6px;
   font-size: 14px;
   color: #1e87f0;
@@ -178,14 +178,14 @@
   overflow: visible;
 }
 
-.progress-wrapper {
+.progress_wrapper {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 10px 0;
 }
 
-.progress-target {
+.progress_target {
   font-size: 14px;
   white-space: nowrap;
   padding-right: 5px;
@@ -200,7 +200,7 @@
   position: relative;
 }
 
-.progress-bar {
+.progress_bar {
   height: 100%;
   background-color: #1e87f0;
   width: 0%;
@@ -213,7 +213,7 @@
   font-weight: bold;
 }
 
-.progress-striped .progress-bar {
+.progress_striped .progress_bar {
   background-image: linear-gradient(45deg,
       rgba(255, 255, 255, 0.2) 25%,
       transparent 25%,
@@ -225,7 +225,7 @@
   background-size: 40px 40px;
 }
 
-.progress-done .progress-bar {
+.progress-done .progress_bar {
   background: linear-gradient(135deg,
       #FFD700 0%,
       #FFED85 20%,

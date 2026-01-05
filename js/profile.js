@@ -18,7 +18,7 @@ window.addEventListener("group_reload", () => {
 function setXPProgress() {
     const progressValue = groupData.progress;
 
-    const circle = document.querySelector('.progress-ring__progress');
+    const circle = document.querySelector('.progress_ring_progress');
     const radius = parseFloat(circle.getAttribute('r'));
     const circumference = 2 * Math.PI * radius;
 
@@ -58,7 +58,7 @@ async function selectProfilePicture(id) {
 }
 
 function loadProfileInfos() {
-    document.getElementById("profile-image").src = `../files/icons/profile/${groupData.picture}`;
+    document.getElementById("profile_image").src = `../files/icons/profile/${groupData.picture}`;
     document.getElementById("group_name").textContent = groupData.group_name;
     document.getElementById("streak").textContent = groupData.streak;
     document.getElementById("level").textContent = groupData.level;
@@ -78,7 +78,7 @@ function setAchievementIcons() {
 }
 
 async function loadAchievements() {
-    const swacElem = document.getElementById('present-achievements');
+    const swacElem = document.getElementById('present_achievements');
     const achievementComp = swacElem.swac_comp;
     if (!swacElem || !achievementComp) return;
     try {
@@ -104,7 +104,7 @@ function initPopups() {
         });
     });
 
-    document.getElementById("profile-image").addEventListener("click", () => {
+    document.getElementById("profile_image").addEventListener("click", () => {
         document.getElementById("profile_popup").style.display = 'block'
     })
     document.getElementById("profile_overlay").addEventListener("click", closePopup)
@@ -112,7 +112,7 @@ function initPopups() {
 }
 
 async function loadAchievementPopup(a_id) {
-    const imgBoxes = document.querySelectorAll('.img-box');
+    const imgBoxes = document.querySelectorAll('.img_box');
     const data = achievementTierData.find(a => a.achievement_set_id == a_id);
     for (let i = 0; i < imgBoxes.length; i++) {
         const currentBox = imgBoxes[i];

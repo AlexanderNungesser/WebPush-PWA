@@ -29,7 +29,7 @@
     display: none;
 }
 
-.custom-spinner {
+.custom_spinner {
     animation: spin 1s linear infinite;
 }
 
