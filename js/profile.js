@@ -90,7 +90,7 @@ async function logoutUser() {
     } finally {
         localStorage.clear();
         btn?.setAttribute("disabled", "false");
-        window.location.assign(`${window.location.origin}/WebPush-PWA`);
+        window.location.assign(`../index.html`);
     }
 }
 
