@@ -159,11 +159,24 @@ self.addEventListener('activate', function (evt) {
 self.addEventListener('fetch', function (evt) {
     if (SWAC_config.debugmode)
         console.log('SWAC ServiceWorker: fetching >' + evt.request.url + '<');
-
     // Do not cache POST requests
     if (evt.request.method === 'POST') {
         if (SWAC_config.debugmode)
             console.log('SWAC ServiceWorker: ignored - is POST request');
+        return;
+    }
+
+    // Do not cache PUT requests
+    if (evt.request.method === 'PUT') {
+        if (SWAC_config.debugmode)
+            console.log('SWAC ServiceWorker: ignored - is PUT request');
+        return;
+    }
+
+    // Do not cache DELETE requests
+    if (evt.request.method === 'DELETE') {
+        if (SWAC_config.debugmode)
+            console.log('SWAC ServiceWorker: ignored - is DELETE request');
         return;
     }
 
@@ -172,6 +185,8 @@ self.addEventListener('fetch', function (evt) {
     for (let curSource of SWAC_config.datasources) {
         let curSourceMain = curSource.url.replace('[fromName]', '');
         if (evt.request.url.includes(curSourceMain)) {
+            isDataRequest = true;
+        }else if(evt.request.url.includes('smartdata/')){
             isDataRequest = true;
         }
     }

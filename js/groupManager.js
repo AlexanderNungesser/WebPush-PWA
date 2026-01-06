@@ -30,8 +30,10 @@ let groupData = null;
 async function loadData() {
     try {
         const response = await fetch(URL_TO_FETCH);
+
         if (!response.ok) throw new Error("Could not fetch data");
         const newData = await response.json().then(data => data.records[0])
+
         if (JSON.stringify(newData) !== JSON.stringify(groupData)) {
             groupData = newData;
             setStoredGroupData(newData);
