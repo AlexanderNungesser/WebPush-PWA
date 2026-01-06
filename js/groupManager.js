@@ -11,7 +11,7 @@ window.addEventListener("group_changed", () => {
 function tryGetGroupID(){
     const id = localStorage.getItem("user_group_id");
     if(!id){
-        window.location.assign(`${window.location.origin}/WebPush-PWA/index.html`);
+        window.location.assign('../index.html');
     }
     return id;
 }

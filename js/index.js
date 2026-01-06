@@ -2,7 +2,7 @@ import WebPush from './../../SWAC/swac/WebPush.js';
 
 const API_BASE = `${window.location.origin}/SmartDataAirquality/smartdata/records`;
 const STORAGE = `storage=gamification`;
-const LEADERBOARD_URL = `${window.location.origin}/WebPush-PWA/sites/leaderboard.html`;
+const LEADERBOARD_URL = `./sites/leaderboard.html`;
 
 let permissionState = null;
 
