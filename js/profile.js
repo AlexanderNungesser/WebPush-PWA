@@ -194,7 +194,7 @@ async function loadAchievementProgress(trigger_id) {
                 progress = 100;
                 style = 'progress_done';
             } else {
-                progress = calculateProgress(cond);
+                progress = calculateProgress(cond.value, cond.threshold, cond.operator);
                 value = `${cond.value}`;
                 style = 'progress_striped';
             }
