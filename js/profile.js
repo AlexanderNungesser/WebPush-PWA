@@ -35,7 +35,11 @@ function initProfilePictureSelection() {
     const pictures = document.querySelectorAll(".selectable_profile_picture");
     pictures.forEach(img => {
         if (img.dataset.picture !== "{picture}") {
-            img.src = `../files/icons/profile/${img.dataset.picture}`
+            const path = `../files/icons/profile/${img.dataset.picture}`;
+            img.src = path;
+            img.onerror = () => {
+                img.src = `../files/icons/profile/placeholder.png`;
+            }
             img.addEventListener("click", () => { selectProfilePicture(img.dataset.p_id) })
         }
     });
@@ -74,7 +78,7 @@ function addLogoutEventListener() {
 
 async function logoutUser() {
     const userId = localStorage.getItem("user_member_id", null);
-    if(!userId) {
+    if (!userId) {
         console.warn("logout failed: no user id found");
         return;
     }

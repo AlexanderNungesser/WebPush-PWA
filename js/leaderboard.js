@@ -22,8 +22,11 @@ async function loadGroups() {
         const current_id = row.dataset.g_id;
         const img = row.querySelector("img");
         const record = group_info.find(r => r.group_id == current_id);
-        const path = record ? `../files/icons/profile/${record.picture}` : ""
-        img.src = path
+        const path = record ? `../files/icons/profile/${record.picture}` : "../files/icons/profile/placeholder.png";
+        img.src = path;
+        img.onerror = () => {
+            img.src = `../files/icons/profile/placeholder.png`;
+        };
         if (row.dataset.g_id == group_id) {
             row.classList.add("highlight");
         }
