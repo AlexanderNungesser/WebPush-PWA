@@ -30,7 +30,7 @@ var SWAC_config = {
                 update: ['PUT', 'records'],
                 delete: ['DELETE', 'records']
             },
-            exclude: ['routes.json', 'notification_instruction.json' ]
+            exclude: ['routes.json']
         },
         {
             url: "/WebPush-PWA/data/[fromName]"

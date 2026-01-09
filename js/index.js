@@ -1,4 +1,5 @@
 import WebPush from './../../SWAC/swac/WebPush.js';
+import { instructions } from "./instructions.js";
 
 const API_BASE = `${window.location.origin}/SmartDataAirquality/smartdata/records`;
 const STORAGE = `storage=gamification`;
@@ -189,8 +190,9 @@ async function showError(title, message) {
     errorPopup.querySelector("p").textContent = message;
     errorPopup.style.display = "block";
     const instructionsButton = document.getElementById("show_instructions");
-    instructionsButton.onclick = () => {
+    instructionsButton.onclick = async () => {
         errorPopup.style.display = "none";
+        await renderInstructions();
         document.getElementById("instruction_popup").style.display = "block";
     };
     const closeButton = document.getElementById("Close");
@@ -206,6 +208,25 @@ async function showError(title, message) {
     };
 }
 
+async function loadInstructions() {
+    const key = selectGuideKey();
+    return instructions[key] || instructions.fallback;
+}
+
+async function renderInstructions() {
+    const swacElem = document.getElementById('present_instructions');
+    const instructionsComp = swacElem.swac_comp;
+    if (!swacElem || !instructionsComp) return;
+    try {
+        const steps = await loadInstructions();
+        instructionsComp.removeAllData();
+        instructionsComp.addData('view_instructions', steps);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 function setuptUI() {
     document.getElementById("loginform_wrapper").classList.add("hidden");
     document.getElementById("loading_screen").classList.remove("hidden");
@@ -213,6 +234,46 @@ function setuptUI() {
     document.getElementById("error_popup").style.display = "none";
     document.getElementById("instruction_popup").style.display = "none";
 }
+
+function isStandalonePwa() {
+  return window.matchMedia("(display-mode: standalone)").matches
+      || window.matchMedia("(display-mode: fullscreen)").matches
+      || window.navigator.standalone === true; // iOS Safari legacy
+}
+
+function detectOS() {
+  // Prefer UA-CH if available
+  const ua = navigator.userAgent || "";
+  const platform = navigator.platform || "";
+  const uaDataPlatform = navigator.userAgentData?.platform || "";
+
+  const p = (uaDataPlatform || platform).toLowerCase();
+
+  // iOS detection (reliable approach: Apple platform OR iPadOS pretending to be Mac + touch)
+  const isIOS =
+    /iphone|ipad|ipod/.test(ua.toLowerCase()) ||
+    (p.includes("mac") && navigator.maxTouchPoints > 1);
+
+  if (isIOS) return "ios";
+  if (p.includes("android") || /android/i.test(ua)) return "android";
+  if (p.includes("win")) return "windows";
+  if (p.includes("mac")) return "macos";
+  if (p.includes("linux")) return "linux";
+
+  return "unknown";
+}
+
+function selectGuideKey() {
+  const os = detectOS();
+  const standalone = isStandalonePwa();
+
+  if (os === "android") return standalone ? "android_pwa" : "android_browser";
+  if (os === "ios") return "ios";
+  if (os === "windows") return "windows";
+  if (os === "macos") return "macos";
+  return "fallback";
+}
+
 
 document.addEventListener('swac_components_complete', async () => await init());
 window.addEventListener("focus", async () => await syncPermissionState());
