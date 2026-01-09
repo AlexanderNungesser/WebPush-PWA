@@ -61,12 +61,24 @@
                 </div>
             </div>
         </div>
-        <div class="popup" id="retry-popup">
+        <div class="popup" id="error_popup">
             <div class="popup_content"></div>
             <div class="popup_content">
-                <p>Placeholder for Errormessage.</p>
+                <h1 id="error_popup_title">Placeholder for error title.</h1>
+                <p id="error_popup_message">Placeholder for error message</p>
                 <div class="button_row">
-                    <button class="uk-button uk-button-default" id="retry">Retry</button>
+                    <button class="uk-button uk-button-default" id="reload">Reload</button>
+                    <button class="uk-button uk-button-danger" id="show_instructions">Instruction</button>
+                </div>
+            </div>
+        </div>
+        <div class="popup" id="instruction_popup">
+            <div class="popup_content"></div>
+            <div class="popup_content">
+                <h1 id="instruction_popup_title">Notification settings instruction</h1>
+                <div id="instruction" swa="Present FROM notification_instruction.json TEMPLATE present_instruction"></div>
+                <div class="button_row">
+                    <button class="uk-button uk-button-default" id="Close">Close</button>
                 </div>
             </div>
         </div>

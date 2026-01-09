@@ -16,14 +16,30 @@ function navigateOnce(url) {
 async function init() {
     setuptUI();
 
-    document.getElementById("allow").addEventListener('click', async (event) => { await handlePermissionClick(event) }, { once: true });
-    document.getElementById("deny").addEventListener('click', async (event) => { await handlePermissionClick(event) }, { once: true });
+    document.getElementById("allow").addEventListener('click', (event) => { 
+        event.preventDefault();
+        event.stopPropagation();
+        Notification.requestPermission().then((permission) => { 
+            onPermissionResult(permission); 
+        }).catch((err) => {
+            console.error("Error requesting permission:", err);
+        });
+    }, { once: true });
+    document.getElementById("deny").addEventListener('click', (event) => { 
+        event.preventDefault();
+        event.stopPropagation();
+        Notification.requestPermission().then((permission) => { 
+            onPermissionResult(permission); 
+        }).catch((err) => {
+            console.error("Error requesting permission:", err);
+        });
+    }, { once: true });
     document.getElementById("loginForm").addEventListener("submit", async (event) => { await login(event) }, { once: true });
 
     loadGroups();
 
     if (!("Notification" in window)) {
-        await showError("This browser does not support notifications. You cannot use this app.");
+        await showError("Notifications not supported", "This browser does not support notifications. You cannot use this app.");
         return;
     }
 
@@ -32,24 +48,23 @@ async function init() {
         await checkSubscription();
     } else if (Notification.permission === "denied") {
         permissionState = "denied";
-        await showError("You have denied notification permissions. Please enable them in your browser or OS settings to use this app.");
+        await showError("Notifications are turned off", "To get important updates from this app, notifications need to be enabled. You can turn them on anytime in your device settings.");
     } else {
         permissionState = "default";
         document.getElementById("popup").style.display = 'block'
     }
 }
 
-async function handlePermissionClick() {
+function onPermissionResult(permission) {
     try {
-        const permission = await Notification.requestPermission();
         if (permission === "granted") {
             permissionState = "granted";
             console.log("✅ User agreed to notifications");
-            await checkSubscription();
+            checkSubscription();
         } else if (permission === "denied") {
             permissionState = "denied";
             console.log("❌ User disagreed to notifications");
-            await showError("You have denied notification permissions. Please enable them in your browser or OS settings to use this app.");
+            showError("Notifications are turned off", "To get important updates from this app, notifications need to be enabled. You can turn them on anytime in your device settings.");
         }
     } catch (err) {
         console.error("Error at permission/subscription:", err);
@@ -61,12 +76,12 @@ async function handlePermissionClick() {
 async function checkSubscription() {
     const id = await ensureMemberId();
     if (!id) {
-        await showError("Could not subscribe to notifications. You cannot use this app.");
+        await showError("Subscription failed", "Could not subscribe to notifications. You cannot use this app.");
         return;
     }
     const response = await fetch(`${API_BASE}/group_member/?${STORAGE}&filter=member_id,eq,${id}`);
     if (!response.ok) {
-        await showError("Error checking group membership: " + response.status + " Check your network connection and try again.");
+        await showError("Error checking group membership", "Status: " + response.status + " Check your network connection and try again.");
         return;
     }
     const data = await response.json();
@@ -167,14 +182,26 @@ async function syncPermissionState() {
   }
 }
 
-async function showError(errorMessage) {
+async function showError(title, message) {
     document.getElementById("loading_screen").classList.add("hidden");
-    const retryPopup = document.getElementById("retry-popup");
-    retryPopup.querySelector("p").textContent = errorMessage;
-    retryPopup.style.display = "block";
-    const retryButton = document.getElementById("retry");
-    retryButton.onclick = () => {
-        retryPopup.style.display = "none";
+    const errorPopup = document.getElementById("error_popup");
+    errorPopup.querySelector("h1").textContent = title;
+    errorPopup.querySelector("p").textContent = message;
+    errorPopup.style.display = "block";
+    const instructionsButton = document.getElementById("show_instructions");
+    instructionsButton.onclick = () => {
+        errorPopup.style.display = "none";
+        document.getElementById("instruction_popup").style.display = "block";
+    };
+    const closeButton = document.getElementById("Close");
+    closeButton.onclick = () => {
+        document.getElementById("instruction_popup").style.display = "none";
+        showError(title, message);
+    };
+
+    const reloadButton = document.getElementById("reload");
+    reloadButton.onclick = () => {
+        errorPopup.style.display = "none";
         location.reload();
     };
 }
@@ -183,7 +210,8 @@ function setuptUI() {
     document.getElementById("loginform_wrapper").classList.add("hidden");
     document.getElementById("loading_screen").classList.remove("hidden");
     document.getElementById("popup").style.display = "none";
-    document.getElementById("retry-popup").style.display = "none";
+    document.getElementById("error_popup").style.display = "none";
+    document.getElementById("instruction_popup").style.display = "none";
 }
 
 document.addEventListener('swac_components_complete', async () => await init());
@@ -191,3 +219,4 @@ window.addEventListener("focus", async () => await syncPermissionState());
 document.addEventListener("visibilitychange", async () => {
   if (!document.hidden) await syncPermissionState();
 });
+

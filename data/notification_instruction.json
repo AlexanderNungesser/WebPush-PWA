@@ -1,0 +1,18 @@
+[
+    {
+        "icon": "phone",
+        "description": "Press & hold the app icon"
+    },
+    {
+        "icon": "info",
+        "description": "Tap 'App info' or the 'i' icon"
+    },
+    {
+        "icon": "bell",
+        "description": "Open 'Notifications' settings"
+    },
+    {
+        "icon": "check",
+        "description": "Turn on 'Allow Notifications'"
+    }
+]
